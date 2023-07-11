@@ -1,0 +1,58 @@
+.navtotal {
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  background-color: #faffff;
+  font-family: "Times New Roman", Times, serif;
+}
+.components_nav {
+  margin: 5px 60px 0 0;
+}
+
+.teemo,
+.teemo:focus,
+.teemo:hover,
+.teemo:active {
+  color: black;
+}
+
+.icon {
+  margin-top: 23px;
+  margin-left: 40px;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+}
+
+.icon i {
+  color: darkblue;
+}
+.teemo {
+  display: block;
+  margin-left: 16px;
+}
+.nav_ul {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+}
+
+.nav_li {
+  display: block;
+  padding: 5px 40px;
+}
+
+.list {
+  font-size: 23px;
+  text-decoration: none;
+}
+
+.list,
+.list:hover,
+.list:active {
+  color: darkblue;
+}

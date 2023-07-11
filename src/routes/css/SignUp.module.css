@@ -1,0 +1,120 @@
+.signup_total {
+  margin-top: 200px;
+  margin-left: 27vw;
+  box-shadow: 0 0 8px;
+  border-radius: 15px;
+  display: flex;
+  width: 750px;
+  height: 500px;
+}
+
+.signup_form {
+  padding: 5px 20px 10px 15px;
+  display: flex;
+  flex-direction: column;
+}
+.signup_form_p {
+  margin-top: -20px;
+  margin-left: 15px;
+  font-size: 13px;
+  color: #5272e9;
+  opacity: 0.6;
+}
+
+.signup_box {
+  width: 50%;
+}
+
+.email {
+  margin-top: 15px;
+}
+
+.signup_form input {
+  height: 30px;
+  margin-left: 8px;
+  margin-bottom: 20px;
+  border: 1px solid black;
+  border-radius: 8px;
+  padding-left: 10px;
+  opacity: 0.6;
+}
+
+.description_box {
+  width: 50%;
+  height: 100%;
+  background-color: #5272e9;
+  border-radius: 15px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.forgot {
+  font-size: 13px;
+  margin-top: -18px;
+  margin-left: 193px;
+}
+.forgot,
+.forgot:focus,
+.forgot.hover,
+.forgot.active {
+  color: #5272e9;
+  text-decoration: none;
+}
+
+.sign_in_with {
+  color: #5272e9;
+  opacity: 0.6;
+}
+
+.btn {
+  color: #5272e9;
+  font-size: 25px;
+}
+
+.signIn {
+  background-color: #5272e9;
+  color: white;
+  margin-top: 10px;
+  width: 130px;
+  height: 30px;
+}
+
+.signIn_return {
+  background-color: lightgray;
+  color: white;
+  margin-top: -60px;
+  margin-left: 190px;
+  display: block;
+  width: 130px;
+  height: 30px;
+  border-radius: 7px;
+  border: none;
+}
+
+.signIn_return,
+.signIn_return .hover,
+.signIn_return .focus,
+.signIn_return .active {
+  text-decoration: none;
+  color: black;
+}
+
+.description {
+  margin-left: 45px;
+  margin-top: 70px;
+  color: white;
+}
+
+.description h1 {
+  margin-bottom: 40px;
+  font-size: 35px;
+}
+.description p {
+  margin-left: 15px;
+  margin-bottom: 45px;
+}
+
+.description i {
+  display: inline-block;
+  margin-right: 5px;
+}
