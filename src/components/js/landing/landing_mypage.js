@@ -1,7 +1,5 @@
-import mypage from "../css/landing_mypage.module.css";
-import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
-import mypage_img from "../img/landing_mypage.png";
+import mypage from "../../css/landing/landing_mypage.module.css";
+import mypage_img from "../../img/landing_mypage.png";
 
 function Mypage() {
   return (

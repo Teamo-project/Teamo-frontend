@@ -4,20 +4,25 @@
   box-shadow: 0 0 8px;
   border-radius: 15px;
   display: flex;
-  width: 750px;
-  height: 500px;
+  width: 730px;
+  height: 450px;
+}
+
+.login_form h1 {
+  font-size: 2.3rem;
 }
 
 .login_form {
-  padding: 5px 20px 0px 15px;
+  padding: 20px 20px 0px 30px;
+
   display: flex;
   flex-direction: column;
 }
 .login_form_p {
   margin-top: -20px;
   margin-left: 15px;
-  margin-bottom: 30px;
-  font-size: 13px;
+  margin-bottom: 50px;
+  font-size: 1.3rem;
   color: #5272e9;
   opacity: 0.6;
 }
@@ -26,83 +31,46 @@
   width: 50%;
 }
 
-.email {
-  margin-top: 15px;
-}
-
-.login_form input {
-  height: 30px;
-  margin-bottom: 25px;
-  border: 1px solid black;
-  border-radius: 8px;
-  margin-left: 8px;
-  padding-left: 10px;
-  opacity: 0.6;
-}
-
 .description_box {
   width: 50%;
   height: 100%;
-  background-color: #5272e9;
+
+  background: linear-gradient(to top, white, 15%, #86a8e7, 70%, #7f7fd5);
   border-radius: 15px;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
 
-.forgot {
-  font-size: 13px;
-  margin-top: -18px;
-  margin-left: 193px;
-}
-.forgot,
-.forgot:focus,
-.forgot.hover,
-.forgot.active {
-  color: #5272e9;
-  text-decoration: none;
-}
-
-.sign_in_with {
-  color: #5272e9;
-  opacity: 0.6;
-  margin-top: 60px;
-}
-
-.btn {
-  color: #5272e9;
-  font-size: 25px;
-}
-
-.signIn {
-  background-color: #5272e9;
-  color: white;
-  margin-top: 35px;
-  width: 130px;
-}
-
-.signUp {
-  background-color: lightgray;
-  color: white;
-  margin-top: -55px;
-  margin-left: 190px;
-  width: 130px;
-  height: 30px;
-  border-radius: 7px;
-  border: none;
+.Google {
   display: block;
-  border: 1px solid gray;
+  background: white;
+  color: #444;
+  width: 250px;
+  height: 40px;
+  border-radius: 10px;
+  font-weight: 600;
+  border: thin solid #888;
+  box-shadow: 1px 1px 1px gray;
 }
 
-.signUp,
-.signUp:focus,
-.signUp:hover,
-.signUp.active {
-  text-decoration-line: none;
+.Google:hover {
+  cursor: pointer;
+  background-color: #86a8e7;
+  opacity: 0.5;
+  color: white;
+}
+
+.Google i {
+  margin-right: 5px;
+}
+
+.Google {
+  margin-bottom: 40px;
 }
 
 .description {
   margin-left: 45px;
-  margin-top: 70px;
+  margin-top: 45px;
   color: white;
 }
 

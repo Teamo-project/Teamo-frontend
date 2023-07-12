@@ -1,6 +1,5 @@
-import team from "../css/landing_team.module.css";
-import { Link } from "react-router-dom";
-import team_headphone from "../img/landing_headphone.png";
+import team from "../../css/landing/landing_team.module.css";
+import team_headphone from "../../img/landing_headphone.png";
 
 function Team() {
   return (

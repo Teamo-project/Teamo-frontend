@@ -1,6 +1,6 @@
-import member from "../css/landing_membership.module.css";
+import member from "../../css/landing/landing_membership.module.css";
 import { Button } from "react-bootstrap";
-import member_box from "../img/landing_member_box.png";
+import member_box from "../../img/landing_member_box.png";
 
 function Membership() {
   return (
@@ -17,7 +17,7 @@ function Membership() {
       </div>
       <div className={member.membership_div}>
         <div className={member.membership_div_child}>
-          <img src={member_box} alt="member" />
+          <img src={member_box} alt="member_box" />
           <p>Free</p>
           <div>
             <ul>
@@ -36,12 +36,12 @@ function Membership() {
             </ul>
           </div>
           <p>Free</p>
-          <button className={member.button_blue} type="button">
+          <Button className={member.button_blue} type="button">
             BUTTON
-          </button>
+          </Button>
         </div>
         <div className={member.membership_div_child}>
-          <img src={member_box} />
+          <img src={member_box} alt="member_box" />
           <p>Standard</p>
           <div>
             <ul>
@@ -68,12 +68,12 @@ function Membership() {
             </ul>
           </div>
           <p>$ 9 / Month</p>
-          <button className={member.button_blue} type="button">
+          <Button className={member.button_blue} type="button">
             BUTTON
-          </button>
+          </Button>
         </div>
         <div className={member.membership_div_child}>
-          <img src={member_box} />
+          <img src={member_box} alt="member_box" />
           <p>Premium</p>
           <div>
             <ul>
@@ -104,9 +104,9 @@ function Membership() {
             </ul>
           </div>
           <p>$ 12 / Month</p>
-          <button className={member.button_blue} type="button">
+          <Button className={member.button_blue} type="button">
             BUTTON
-          </button>
+          </Button>
         </div>
       </div>
     </div>
