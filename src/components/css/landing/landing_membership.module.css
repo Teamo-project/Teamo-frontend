@@ -8,7 +8,7 @@
 
 .membership h1 {
   font-size: 3rem;
-  margin-bottom: 36px;
+  margin-bottom: 30px;
 }
 
 .text {
@@ -24,25 +24,25 @@
 .membership_div_child {
   display: flex;
   flex-direction: column;
-  margin-right: 120px;
+  margin-right: 100px;
   height: 300px;
 }
 
 .membership_div_child p {
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   font-weight: bold;
 }
 
 .membership_div_child ul {
-  width: 220px;
-  height: 460px;
+  width: 200px;
+  height: 430px;
   list-style: none;
   text-align: left;
 }
 
 .membership_div_child li {
   font-size: 1.3rem;
-  margin-bottom: 40px;
+  margin-bottom: 25px;
   margin-left: 10px;
 }
 

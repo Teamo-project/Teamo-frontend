@@ -2,6 +2,7 @@
   position: fixed;
   width: 100vw;
   top: 0;
+  height: 50px;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -28,31 +29,10 @@
   align-items: center;
 }
 
-.icon i {
+.icon img {
   color: darkblue;
 }
 .teemo {
   display: block;
   margin-left: 16px;
-}
-.nav_ul {
-  display: flex;
-  align-items: center;
-  list-style-type: none;
-}
-
-.nav_li {
-  display: block;
-  padding: 5px 40px;
-}
-
-.list {
-  font-size: 23px;
-  text-decoration: none;
-}
-
-.list,
-.list:hover,
-.list:active {
-  color: darkblue;
 }

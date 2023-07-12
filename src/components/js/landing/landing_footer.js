@@ -1,12 +1,12 @@
-import footer from "../css/landing_footer.module.css";
+import footer from "../../css/landing/landing_footer.module.css";
 
 function Footer() {
   return (
     <div className={footer.footer_total}>
       <div className={footer.footer_left}>
-        <h1>
+        <h2>
           <i className="fa-regular fa-calendar-check"></i>LaslesVPN
-        </h1>
+        </h2>
         <p>
           Lorem ipsum dolor sit amet consectetur. Quis tortor gravida nibh arcu
           id purus ullamcorper. Vel vel erat semper augue.

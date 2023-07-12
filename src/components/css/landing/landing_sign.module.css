@@ -36,7 +36,7 @@
   color: #fff;
   border: none;
   position: relative;
-  width: 130px;
+  width: 160px;
   height: 50px;
   border-radius: 15px;
   font-size: 1rem;
@@ -71,48 +71,6 @@
   width: 100%;
   transition: 800ms ease all;
 }
-.button2 {
-  margin-left: 60px;
-  background: #5272e9;
-  color: #fff;
-  border: none;
-  position: relative;
-  width: 130px;
-  height: 50px;
-  border-radius: 15px;
-  font-size: 1rem;
-  padding: 0 2em;
-  cursor: pointer;
-  transition: 800ms ease all;
-  outline: none;
-}
-.button2:hover {
-  background: #fff;
-  color: #5272e9;
-}
-.button2:before,
-.button2:after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 2px;
-  width: 0;
-  background: #5272e9;
-  transition: 400ms ease all;
-}
-.button2:after {
-  right: inherit;
-  top: inherit;
-  left: 0;
-  bottom: 0;
-}
-.button2:hover:before,
-.button2:hover:after {
-  width: 100%;
-  transition: 800ms ease all;
-}
-
 .team_img {
   margin-left: 130px;
   width: 650px;

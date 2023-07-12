@@ -1,7 +1,5 @@
-import teamo from "../css/landing_teamo_score.module.css";
-import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
-import teamo_img from "../img/landing_teamo.png";
+import teamo from "../../css/landing/landing_teamo_score.module.css";
+import teamo_img from "../../img/landing_teamo.png";
 
 function Teamo() {
   return (
