@@ -1,7 +1,7 @@
 .nav_total {
   height: 100vh;
   width: 300px;
-  background: linear-gradient(to top, white, 10%, #86a8e7, 80%, #8585d4);
+  background-color: #86a8e7;
 }
 
 .nav_header {
@@ -37,6 +37,7 @@
   margin-top: 3px;
   text-align: left;
   padding-left: 20px;
+  border-radius: 8px;
   font-size: 1.2rem;
 }
 .nav_link Button span {
@@ -54,6 +55,7 @@
   width: 260px;
   opacity: 0.7;
   margin-top: 450px;
+  border-radius: 7px;
 }
 
 .gear span {
