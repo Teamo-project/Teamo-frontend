@@ -1,0 +1,35 @@
+.mypage_box {
+  width: 250px;
+  height: 70px;
+  border: 0.1px solid black;
+  margin-left: 40px;
+  margin-top: 30px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.user_img {
+  font-size: 50px;
+  margin-left: 12px;
+  filter: invert(64%) sepia(20%) saturate(2147%) hue-rotate(202deg)
+    brightness(89%) contrast(85%);
+}
+.user {
+  display: flex;
+  flex-direction: column;
+  margin-left: 13px;
+}
+
+.user span {
+  display: block;
+  margin-top: 10px;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+.user p {
+  font-size: 0.9rem;
+  margin-top: 3px;
+  font-weight: 200;
+  margin-left: 5px;
+}

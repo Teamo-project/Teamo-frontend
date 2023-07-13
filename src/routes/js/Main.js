@@ -1,14 +1,21 @@
 import main from "../css/Main.module.css";
 import Navigation from "../../components/js/main_navigation";
-import Main_page from "../../components/js/main/main_mypage";
+import My_page from "../../components/js/main/main_mypage";
+import Schedule from "../../components/js/main/main_schedule";
+import Project from "../../components/js/main/main_project";
 
 function Main() {
   return (
     <div className={main.main_column}>
       <Navigation />
       <div>
-        <Main_page />
-        <Main_page />
+        <My_page />
+        <div className={main.mypage_bottom}>
+          <Schedule />
+          <div>
+            <Project />
+          </div>
+        </div>
       </div>
     </div>
   );
