@@ -1,0 +1,41 @@
+.mypage_total {
+  margin-top: 45px;
+  display: flex;
+}
+
+.mypage_description {
+  width: 450px;
+  height: 400px;
+  margin-left: 150px;
+  margin-top: 100px;
+}
+.mypage_description h1 {
+  font-size: 2.4rem;
+}
+
+.mypage_div_child {
+  margin-top: 60px;
+}
+
+.mypage_div_child ul {
+  width: 380px;
+  height: 470px;
+  list-style: none;
+  text-align: left;
+}
+
+.mypage_div_child li {
+  font-size: 1.3rem;
+  margin-bottom: 40px;
+}
+
+.mypage_div_child li i {
+  margin-right: 10px;
+}
+
+.mypage_img {
+  margin-left: 170px;
+  margin-top: 100px;
+  width: 550px;
+  height: 450px;
+}

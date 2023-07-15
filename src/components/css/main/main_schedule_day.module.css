@@ -1,0 +1,12 @@
+.day_box {
+  height: 90px;
+  width: 90px;
+  border: 1px solid #b9b4b4a1;
+  border-bottom: none;
+}
+.day_box_last {
+  height: 50px;
+  width: 90px;
+  border: 1px solid #b9b4b4a1;
+  border-bottom: none;
+}

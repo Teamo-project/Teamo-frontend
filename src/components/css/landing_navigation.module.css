@@ -1,0 +1,38 @@
+.navtotal {
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  height: 50px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  background-color: #faffff;
+  font-family: "Times New Roman", Times, serif;
+}
+.components_nav {
+  margin: 5px 60px 0 0;
+}
+
+.teemo,
+.teemo:focus,
+.teemo:hover,
+.teemo:active {
+  color: black;
+}
+
+.icon {
+  margin-top: 23px;
+  margin-left: 40px;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+}
+
+.icon img {
+  color: darkblue;
+}
+.teemo {
+  display: block;
+  margin-left: 16px;
+}

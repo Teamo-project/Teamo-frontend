@@ -1,70 +1,37 @@
-# Getting Started with Create React App
+# Create React App 에서 React를 이용하여 개발 구현
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 프론트엔드 화면을 보기 위하여 cmd에 npm start를 이용하여 서버를 실행 시킨다.
 
-## Available Scripts
+# 프론트엔드 서버는 localhost:3000을 default 채널로 잡는다.
 
-In the project directory, you can run:
+# Code Splitting
+  - 실제 프론트엔드 개발에서는 한 페이지당 코드가 10만줄이 넘어가는 등 한 페이지에 들어갈 요소들이 굉장히 많다.
+  - 이것을 하나의 js에 모두 작성하면 줄이 너무 길어져 개발이 힘들어지기 때문에 요소마다 코드를 쪼개어 파일에 저장하여
+    개발을 편리하게 하도록 한다.
+  - 쪼개어 개발한후 import를 통하여 연결하여 주는 형식으로 구현할 것
 
-### `npm start`
+# 개발 순서 계획
+  - 랜딩 페이지 -> 로그인 -> 회원가입 -> 메인 페이지 (개인 스케줄) -> 메인 페이지 (팀 프로젝트 생성) -> 팀 프로젝트 페이지 -> 마이페이지 -> 로그인 시 비밀번호 찾기 -> 기타 메뉴 -> 마무리
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# 개발 요소(페이지)
+ - 랜딩 페이지
+ - 로그인 페이지
+ - 회원가입 페이지
+ - 비밀번호 찾기 페이지
+ - 로그인 후 메인 페이지(개인 스케줄)
+ - 프로젝트 별 페이지
+ - 마이페이지
+ - 기타 메뉴 페이지 등등
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# 개발요소(알림 창)
+  - 메인 페이지에서 개인 스케쥴 추가 시 알림창
+  - 메인 페이지에서 팀 프로젝트 생성 시 알림창
+  - 팀 페이지에서 모임 생성 시 알림창
 
-### `npm test`
+# 개발 고려 사항 (이외 세부 사항)
+  - 서버간 통신 방법
+  - 페이스북, 카카오 등 소셜을 통한 로그인 방법
+  - 스케줄 표에 원하는 시간대의 스케줄 뜨도록 하기
+  - 팀 일정 생성 시 개인 스케줄 별을 고려한 가능한 시간 확인 방법
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# 배포 시 npm run build로 배포 가능

@@ -1,0 +1,9 @@
+.main_column {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.mypage_bottom {
+  display: flex;
+}

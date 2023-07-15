@@ -1,0 +1,42 @@
+.team_total {
+  margin-top: 80px;
+  display: flex;
+  margin-bottom: 50px;
+}
+
+.team_total_first {
+  margin-left: 210px;
+}
+
+.team_description {
+  width: 500px;
+  height: 400px;
+  margin-top: 60px;
+  margin-left: 140px;
+}
+.team_description h1 {
+  font-size: 2.6rem;
+}
+.team_description p {
+  font-size: 1rem;
+}
+
+.team_img {
+  width: 650px;
+  height: 400px;
+}
+
+.team_ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  font-size: 20px;
+}
+
+.team_ul i {
+  margin-right: 10px;
+}
+
+.team_li {
+  margin-top: 20px;
+}
