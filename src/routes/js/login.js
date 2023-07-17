@@ -15,10 +15,7 @@ function Login() {
             <p className={login.login_form_p}>
               It's time to check Your business
             </p>
-            <GoogleOAuthProvider
-              clientId="
-              617889757552-kkjsgl2e9rs1heefavl8macrgnsvh891.apps.googleusercontent.com"
-            >
+            <GoogleOAuthProvider clientId="617889757552-kkjsgl2e9rs1heefavl8macrgnsvh891.apps.googleusercontent.com">
               <GoogleButton />
             </GoogleOAuthProvider>
 
