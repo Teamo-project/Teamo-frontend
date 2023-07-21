@@ -11,7 +11,6 @@ function Navigation() {
         <Link to="/" style={{ textDecoration: "none" }}>
           <span className={navigation.teemo}>TEEMO</span>
         </Link>
-
         <Link to="/main" style={{ textDecoration: "none" }}>
           <span>Main</span>
         </Link>

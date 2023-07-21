@@ -2,9 +2,24 @@ import React from "react";
 import Navigation from "../../components/js/landing_navigation.js";
 import login from "../css/login.module.css";
 import GoogleButton from "../../components/js/GoogleButton.js";
-import { GoogleOAuthProvider } from "@react-oauth/google";
+import GoogleLogin from "../../components/js/GoogleLogin.js";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
+  const GLogin = () => {
+    axios
+      .get("http://localhost:8080/oauth2/authorization/google", {}, {})
+      .then((res) => {
+        console.log(res);
+        navigate("/Main");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   return (
     <div>
       <Navigation />
@@ -15,10 +30,7 @@ function Login() {
             <p className={login.login_form_p}>
               It's time to check Your business
             </p>
-            <GoogleOAuthProvider clientId="617889757552-kkjsgl2e9rs1heefavl8macrgnsvh891.apps.googleusercontent.com">
-              <GoogleButton />
-            </GoogleOAuthProvider>
-
+            <button onClick={GLogin}>Google Login</button>
             <p> 위의 버튼을 눌러 구글 아이디를 연동하여 로그인을 진행하세요.</p>
             <span>구글 아이디를 통하여 바로 로그인이 가능합니다.</span>
           </div>
