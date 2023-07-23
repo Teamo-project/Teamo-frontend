@@ -1,12 +1,9 @@
 import React from "react";
-import Navigation from "../../components/js/landing_navigation.js";
 import login from "../css/login.module.css";
-import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
+
 function Login() {
   return (
     <div>
-      <Navigation />
       <div className={login.login_total}>
         <div className={login.login_box}>
           <div className={login.login_form}>
@@ -14,10 +11,13 @@ function Login() {
             <p className={login.login_form_p}>
               It's time to check Your business
             </p>
-            <Button className={login.Google}>
-              <i class="fa-brands fa-google"></i>
-              구글 로그인
-            </Button>
+            <a
+              href={
+                "http://localhost:8080/oauth2/authorize/google?redirect_uri=http://localhost:3000/oauth2/redirect"
+              }
+            >
+              Google Login
+            </a>
             <p> 위의 버튼을 눌러 구글 아이디를 연동하여 로그인을 진행하세요.</p>
             <span>구글 아이디를 통하여 바로 로그인이 가능합니다.</span>
           </div>
