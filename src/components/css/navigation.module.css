@@ -1,0 +1,73 @@
+.total {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+.total img {
+  margin-top: 15px;
+  margin-left: 90px;
+}
+
+.man {
+  width: 45px;
+  height: 90px;
+  object-fit: contain;
+}
+
+.woman {
+  position: absolute;
+  width: 25px;
+  height: 50px;
+  object-fit: contain;
+  top: 40px;
+  left: 255px;
+}
+
+.total div h1 {
+  margin-left: 10px;
+  font-size: 1.8rem;
+  color: #66c109;
+}
+
+.total div p {
+  position: absolute;
+  top: 45px;
+  left: 150px;
+  font-size: 0.9rem;
+}
+
+.logo {
+  display: flex;
+}
+
+.login {
+  margin-top: 40px;
+  margin-right: 60px;
+  width: 80px;
+  height: 30px;
+  background-color: white;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #66c109;
+}
+.login:hover {
+  color: black;
+  cursor: pointer;
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+}
+
+.menu Button {
+  background-color: white;
+  border: none;
+  font-size: 1.2rem;
+  margin-left: 55px;
+  margin-right: 55px;
+  font-weight: bold;
+  cursor: pointer;
+}
