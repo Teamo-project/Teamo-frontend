@@ -13,7 +13,7 @@ function Login() {
             </p>
             <a
               href={
-                "http://localhost:8080/oauth2/authorize/google?redirect_uri=http://localhost:3000/oauth2/redirect"
+                "http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorize/google?redirect_uri=http://localhost:3000/oauth2/redirect"
               }
             >
               Google Login
