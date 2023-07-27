@@ -3,7 +3,7 @@ import Home from "./routes/js/home";
 import Login from "./routes/js/login";
 import Redirection from "./components/js/Redirection";
 import Posting from "./routes/js/posting";
-
+import Mypage from "./routes/js/mypage";
 function App() {
   return (
     <Router>
@@ -11,6 +11,8 @@ function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/posting" element={<Posting />}></Route>
+        <Route path="/mypage" element={<Mypage />}></Route>
+
         <Route path="/oauth2/redirect" element={<Redirection />}></Route>
       </Routes>
     </Router>
