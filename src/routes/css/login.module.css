@@ -1,69 +1,83 @@
-.login_total {
-  margin-top: 200px;
-  margin-left: 27vw;
-  box-shadow: 0 8px 16px rgb(0 0 0 / 0.2);
-  border-radius: 15px;
-  display: flex;
-  width: 730px;
-  height: 450px;
+.loginBox {
+  position: relative;
+  margin: auto;
+  width: 380px;
+  height: 50em;
 }
-
-.login_form h1 {
-  font-size: 2.3rem;
+.logo {
+  position: relative;
+  margin: 50% auto 0;
+  cursor: pointer;
 }
-
-.login_form {
-  padding: 20px 20px 0px 30px;
-
-  display: flex;
-  flex-direction: column;
+.man {
+  width: 100px;
+  height: 250px;
+  position: relative;
+  margin-left: 5rem;
 }
-.login_form_p {
-  margin-top: -20px;
-  margin-left: 15px;
-  margin-bottom: 50px;
-  font-size: 1.3rem;
-  color: #5272e9;
-  opacity: 0.6;
-}
-
-.login_box {
-  width: 50%;
-}
-
-.description_box {
-  width: 50%;
-  height: 100%;
-
-  background-color: #86a8e7;
-  border-radius: 15px;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-}
-
-.Google i {
-  margin-right: 5px;
-}
-
-.Google {
-  margin-bottom: 40px;
-}
-
-.description {
-  margin-left: 45px;
-  margin-top: 45px;
-  color: white;
-}
-
-.description h1 {
-  font-size: 35px;
-}
-.description p {
-  margin-left: 10px;
-  margin-bottom: 45px;
-}
-
-.description i {
+.txt {
   display: inline-block;
-  margin-right: 5px;
+  position: relative;
+  font-size: 35px;
+  font-weight: 700;
+  color: #66c109;
+}
+
+.lineBox {
+  position: relative;
+}
+.line {
+  width: 45%;
+  float: left;
+  border: 1px solid;
+}
+.line2 {
+  width: 45%;
+  float: right;
+  border: 1px solid;
+}
+.btnBox {
+  margin-top: 60px;
+}
+.Button {
+  background: white;
+  color: #444;
+  width: 380px;
+  height: 46px;
+
+  border: 1px #e6e6ea;
+  box-shadow: 1px 1px 1px #e6e6ea;
+  margin: 5% auto 0;
+  font-size: 14px;
+}
+.kakao {
+  color: #000000;
+  font-weight: 600;
+  font-family: "Inter";
+  background-color: #fee500;
+}
+.naver {
+  color: #767678;
+  font-weight: 500;
+  font-family: "Inter";
+  background-color: #ffffff;
+}
+.google {
+  color: #767678;
+  font-weight: 500;
+  background-color: #ffffff;
+  font-family: "Inter";
+}
+.Button:hover {
+  cursor: pointer;
+}
+.buttonText {
+  margin-left: 5%;
+  display: flex;
+}
+
+.btnLogo {
+  width: 6%;
+  height: 6%;
+  margin: auto 20px auto 0px;
 }

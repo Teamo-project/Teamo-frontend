@@ -4,8 +4,10 @@ import navigation from "../css/navigation.module.css";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { useState } from "react";
+//import { UseSelector, useSelector } from "react-redux/es/hooks/useSelector";
 function Navigation() {
   const [logIn, setLogin] = useState(false);
+  //const isLogedIn = useSelector((state) => state.accessToken);
   return (
     <div style={{ height: "50px" }}>
       <div className={navigation.total}>

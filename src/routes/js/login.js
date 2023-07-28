@@ -1,44 +1,54 @@
 import React from "react";
 import login from "../css/login.module.css";
-
+import man_logo from "../../components/img/man.png";
+import kakagoLogo from "../../kakaoLogo.png";
+import googleLogo from "../../googleLogo.png";
+import naverLogo from "../../naverLogo.png";
+import { Link } from "react-router-dom";
 function Login() {
-  return (
-    <div>
-      <div className={login.login_total}>
-        <div className={login.login_box}>
-          <div className={login.login_form}>
-            <h1>Sign In</h1>
-            <p className={login.login_form_p}>
-              It's time to check Your business
-            </p>
-            <a
-              href={
-                "http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorize/google?redirect_uri=http://localhost:3000/oauth2/redirect"
-              }
-            >
-              Google Login
-            </a>
-            <p> 위의 버튼을 눌러 구글 아이디를 연동하여 로그인을 진행하세요.</p>
-            <span>구글 아이디를 통하여 바로 로그인이 가능합니다.</span>
-          </div>
-        </div>
+  const GoogleLogin = () => {
+    window.location.href =
+      "http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorize/google?redirect_uri=http://localhost:3000/oauth2/redirect";
+  };
 
-        <div className={login.description_box}>
-          <div className={login.description}>
-            <h1>FEATURES</h1>
-            <p>
-              <i class="fa-regular fa-circle-check"></i>100% Free Sign Up
-            </p>
-            <p>
-              <i class="fa-regular fa-circle-check"></i>Free register company
-            </p>
-            <p>
-              <i class="fa-regular fa-circle-check"></i>Account can be linked
-            </p>
-            <p>
-              <i class="fa-regular fa-circle-check"></i>Anyone can use
-            </p>
-          </div>
+  return (
+    <div className={login.root}>
+      <div className={login.loginBox}>
+        <div className={login.logo}>
+          <Link to={"/"}>
+            <img className={login.man} src={man_logo} />
+            <p className={login.txt}>홀로서기</p>
+          </Link>
+        </div>
+        <div className={login.lineBox}>
+          <hr className={login.line} />
+          <hr className={login.line2} />
+        </div>
+        <div className={login.btnBox}>
+          <button type="button" className={`${login.Button} ${login.kakao}`}>
+            <div className={login.buttonText}>
+              <img className={login.btnLogo} src={kakagoLogo}></img>
+              <div className={login.buttonText2}>카카오로 로그인하기</div>
+            </div>
+          </button>
+          <button type="button" className={`${login.Button} ${login.naver}`}>
+            <div className={login.buttonText}>
+              <img className={login.btnLogo} src={naverLogo}></img>
+
+              <div>네이버로 로그인하기</div>
+            </div>
+          </button>
+          <button
+            onClick={GoogleLogin}
+            type="button"
+            className={`${login.Button} ${login.google}`}
+          >
+            <div className={login.buttonText}>
+              <img className={login.btnLogo} src={googleLogo}></img>
+
+              <div>구글로 로그인하기</div>
+            </div>
+          </button>
         </div>
       </div>
     </div>
