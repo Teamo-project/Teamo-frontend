@@ -41,7 +41,7 @@ function Navigation() {
         <Link to="/" style={{ textDecoration: "none" }}>
           <Button>문의</Button>
         </Link>
-        <Link to="/" style={{ textDecoration: "none" }}>
+        <Link to="/postlist" style={{ textDecoration: "none" }}>
           <Button>멘토멘티신청</Button>
         </Link>
         <Link to="/" style={{ textDecoration: "none" }}>
