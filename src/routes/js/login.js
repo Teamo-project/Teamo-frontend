@@ -1,9 +1,9 @@
 import React from "react";
 import login from "../css/login.module.css";
 import man_logo from "../../components/img/man.png";
-import kakagoLogo from "../../kakaoLogo.png";
-import googleLogo from "../../googleLogo.png";
-import naverLogo from "../../naverLogo.png";
+import kakagoLogo from "../img/kakaoLogo.png";
+import googleLogo from "../img/googleLogo.png";
+import naverLogo from "../img/naverLogo.png";
 import { Link } from "react-router-dom";
 function Login() {
   const GoogleLogin = () => {
