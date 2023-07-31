@@ -56,18 +56,3 @@
   color: black;
   cursor: pointer;
 }
-
-.menu {
-  display: flex;
-  justify-content: center;
-}
-
-.menu Button {
-  background-color: white;
-  border: none;
-  font-size: 1.2rem;
-  margin-left: 55px;
-  margin-right: 55px;
-  font-weight: bold;
-  cursor: pointer;
-}

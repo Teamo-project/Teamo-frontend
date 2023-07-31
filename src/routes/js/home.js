@@ -1,18 +1,130 @@
 import Navigation from "../../components/js/navigation";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import home from "../css/home.module.css";
+import menu from "../../components/css/navigation_menu.module.css";
 
+import home from "../css/home.module.css";
+import { useEffect, useState } from "react";
+import axios from "axios";
 function Home() {
+  const [boardlist, setBoardlist] = useState([]);
+
+  const getboardlist = async () => {
+    const resp = await (
+      await axios.get(
+        "http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/posting"
+      )
+    ).data;
+    setBoardlist(resp.data);
+  };
+
+  useEffect(() => {
+    getboardlist();
+  }, []);
+
+  const hi = [
+    { title: "HAHAHAHAHAHAHghghghghghgAH", idx: "5", category: "자유" },
+    { title: "HIHIHIHIHHIiIIH", idx: "1", category: "정보" },
+    { title: "hohohohohohohogogogogogogoho", idx: "2", category: "자유" },
+    { title: "hahahahahahaha", idx: "7", category: "자유" },
+    { title: "huhuhuhgugughu", idx: "13", category: "정보" },
+    {
+      title: "pupuppupupupuuppupupupuppupuppu",
+      idx: "14",
+      category: "구인구직",
+    },
+    {
+      title: "mamamaaa",
+      idx: "16",
+      category: "구인구직",
+    },
+    { title: "momooooooooomooomomomommomommomo", idx: "18", category: "질문" },
+    { title: "mimiiiimiijmiim", idx: "20", category: "질문" },
+    {
+      title: "lelellelelelleleleeleeel",
+      idx: "24",
+      category: "질문",
+    },
+    {
+      title: "gigigigigigiggigigigiggigigiigigig",
+      idx: "28",
+      category: "자유",
+    },
+    { title: "dudududududududududduududududddu", idx: "4", category: "자유" },
+    {
+      title: "ririririrririririririririririr",
+      idx: "19",
+      category: "구인구직",
+    },
+  ];
+  let number_total = 0;
+  let number_free = 0;
+  let number_question = 0;
+  let number_information = 0;
+  let number_job = 0;
+
   return (
     <div>
       <div>
         <Navigation />
       </div>
+      <div className={menu.menu}>
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <Button style={{ color: "#66c109" }}>홈</Button>
+        </Link>
+        <div className={menu.post}>
+          <Link to="/posting" style={{ textDecoration: "none" }}>
+            <Button>
+              게시판 <i class="fa-solid fa-angle-down"></i>
+            </Button>
+          </Link>
+          <ul className={menu.list}>
+            <Link to="/posting" style={{ textDecoration: "none" }}>
+              <li>전체 게시판</li>
+            </Link>
+            <Link
+              to="/posting/category=자유"
+              style={{ textDecoration: "none" }}
+            >
+              <li>자유 게시판</li>
+            </Link>
+            <Link
+              to="/posting/category=질문"
+              style={{ textDecoration: "none" }}
+            >
+              <li>질문 게시판</li>
+            </Link>
+            <Link
+              to="/posting/category=정보"
+              style={{ textDecoration: "none" }}
+            >
+              <li>정보 게시판</li>
+            </Link>
+            <Link
+              to="/posting/category=구인구직"
+              style={{ textDecoration: "none" }}
+            >
+              <li>구인/구직 게시판</li>
+            </Link>
+          </ul>
+        </div>
+        <Link to="/program" style={{ textDecoration: "none" }}>
+          <Button>프로그램</Button>
+        </Link>
+
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <Button>멘토멘티신청</Button>
+        </Link>
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <Button>문의</Button>
+        </Link>
+      </div>
       <div className={home.program}>
         <div className={home.program_top}>
           <p>정부 지원 프로그램</p>
-          <Button>더보기</Button>
+          <Link to="/program">
+            <Button>더보기</Button>
+          </Link>
         </div>
         <div className={home.program_pro}>
           <div></div>
@@ -28,49 +140,137 @@ function Home() {
         </div>
         <div className={home.board}>
           <div className={home.full_board}>
-            <p>전체 글</p>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+            {hi.map((v) => {
+              if (number_total < 10) {
+                number_total = number_total + 1;
+                return (
+                  <div
+                    style={{
+                      paddingLeft: "4px",
+                      marginTop: "5px",
+                      height: "30px",
+                      paddingRight: "20px",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
+                    {v.title}
+                  </div>
+                );
+              }
+            })}
           </div>
           <div className={home.separate_board}>
             <div className={home.separate_board_firstline}>
               <div className={home.separate_board_part}>
-                <p>자유 게시판</p>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+                <Link
+                  to="/posting/category=자유"
+                  style={{ textDecoration: "none" }}
+                >
+                  <p>자유 게시판</p>
+                </Link>
+                {hi.map((v) => {
+                  if (number_free < 4 && v.category === "자유") {
+                    number_free = number_free + 1;
+                    return (
+                      <div
+                        style={{
+                          width: "182px",
+                          paddingLeft: "8px",
+                          height: "30px",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                          paddingRight: "20px",
+                        }}
+                      >
+                        {v.title}
+                      </div>
+                    );
+                  }
+                })}
               </div>
               <div className={home.separate_board_part}>
-                <p>질문 게시판</p>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+                <Link
+                  to="/posting/category=질문"
+                  style={{ textDecoration: "none" }}
+                >
+                  <p>질문 게시판</p>
+                </Link>
+                {hi.map((v) => {
+                  if (number_question < 4 && v.category === "질문") {
+                    number_question = number_question + 1;
+                    return (
+                      <div
+                        style={{
+                          width: "182px",
+                          paddingLeft: "8px",
+                          height: "30px",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                          paddingRight: "20px",
+                        }}
+                      >
+                        {v.title}
+                      </div>
+                    );
+                  }
+                })}
               </div>
             </div>
             <div className={home.separate_board_secondline}>
               <div className={home.separate_board_part}>
-                <p>정보 게시판</p>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+                <Link
+                  to="/posting/category=정보"
+                  style={{ textDecoration: "none" }}
+                >
+                  <p>정보 게시판</p>
+                </Link>
+                {hi.map((v) => {
+                  if (number_information < 4 && v.category === "정보") {
+                    number_information = number_information + 1;
+                    return (
+                      <div
+                        style={{
+                          width: "182px",
+                          paddingLeft: "8px",
+                          height: "30px",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                          paddingRight: "20px",
+                        }}
+                      >
+                        {v.title}
+                      </div>
+                    );
+                  }
+                })}
               </div>
               <div className={home.separate_board_part}>
-                <p>구인/구직 게시판</p>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+                <Link
+                  to="/posting/category=구인구직"
+                  style={{ textDecoration: "none" }}
+                >
+                  <p>구인/구직 게시판</p>
+                </Link>
+                {hi.map((v) => {
+                  if (number_job < 4 && v.category === "구인구직") {
+                    number_job = number_job + 1;
+                    return (
+                      <div
+                        style={{
+                          width: "182px",
+                          paddingLeft: "8px",
+                          height: "30px",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                          paddingRight: "20px",
+                        }}
+                      >
+                        {v.title}
+                      </div>
+                    );
+                  }
+                })}
               </div>
             </div>
           </div>

@@ -19,25 +19,9 @@ function Navigation() {
           <img className={navigation.woman} src={woman_logo} alt="holo_img" />
         </div>
 
+        {/* 로그인 성공시 로그인 -> 마이페이지로 */}
         <Link to="/login" style={{ textDecoration: "none" }}>
           <Button className={navigation.login}>로그인</Button>
-        </Link>
-      </div>
-      <div className={navigation.menu}>
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <Button style={{ color: "#66c109" }}>홈</Button>
-        </Link>
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <Button>캘린더</Button>
-        </Link>
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <Button>문의</Button>
-        </Link>
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <Button>멘토멘티신청</Button>
-        </Link>
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <Button>마이페이지</Button>
         </Link>
       </div>
     </div>
