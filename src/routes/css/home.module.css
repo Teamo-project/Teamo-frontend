@@ -2,7 +2,7 @@
   position: relative;
   margin: 60px auto 50px;
   width: 800px;
-  height: 260px;
+  height: 270px;
   box-shadow: 0 8px 16px rgb(0 0 0 / 0.15);
   border-radius: 15px;
 }
@@ -37,9 +37,9 @@
   justify-content: space-around;
 }
 
-.program_pro div {
-  width: 320px;
-  height: 160px;
+.program_pro a {
+  width: 335px;
+  height: 190px;
   border: 1px solid #e7e7e7;
   background-color: #e7e7e7;
   color: white;

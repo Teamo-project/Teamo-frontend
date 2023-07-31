@@ -119,6 +119,7 @@ function Home() {
           <Button>문의</Button>
         </Link>
       </div>
+
       <div className={home.program}>
         <div className={home.program_top}>
           <p>정부 지원 프로그램</p>
@@ -127,10 +128,152 @@ function Home() {
           </Link>
         </div>
         <div className={home.program_pro}>
-          <div></div>
-          <div></div>
+          <a
+            href="https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=374&act=&searchValueList2=1&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=2"
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <div
+              style={{
+                padding: "10px 20px",
+                position: "relative",
+              }}
+            >
+              <div
+                style={{
+                  paddingBottom: "10px",
+                  borderBottom: "1px solid lightgray",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div
+                  style={{
+                    border: "1px solid #66C109",
+                    color: "#66C109",
+                    fontSize: "0.8rem",
+                  }}
+                >
+                  자립 지원 / 기타
+                </div>
+                <div style={{ fontSize: "0.9rem" }}>마감 일자 2023.08.10</div>
+              </div>
+
+              <div
+                style={{
+                  fontSize: "1.2rem",
+                  fontWeight: "bold",
+                  margin: "10px 0px 10px",
+                }}
+              >
+                바람개비서포터즈 14기 3차모집
+              </div>
+              <div
+                style={{
+                  marginTop: "20px",
+                  width: "280px",
+                  height: "40px",
+                  textOverflow: "ellipsis",
+                  overflow: "hidden",
+                  fontSize: "0.9rem",
+                }}
+              >
+                직종별 전문가 멘토링 및 지역별 모임, 방문교육이 있습니다.
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  position: "absolute",
+                  fontSize: "0.8rem",
+                  top: "158px",
+                }}
+              >
+                <div
+                  style={{
+                    paddingRight: "5px",
+                    borderRight: "2px solid gray",
+                  }}
+                >
+                  서울 자립지원전담기관
+                </div>
+                <div style={{ marginLeft: "7px" }}>전국</div>
+              </div>
+            </div>
+          </a>
+          <a
+            href="https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=377&act=&searchValueList2=1&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=1"
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <div
+              style={{
+                padding: "10px 20px",
+                position: "relative",
+              }}
+            >
+              <div
+                style={{
+                  paddingBottom: "10px",
+                  borderBottom: "1px solid lightgray",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div
+                  style={{
+                    border: "1px solid #66C109",
+                    color: "#66C109",
+                    fontSize: "0.8rem",
+                  }}
+                >
+                  자립 지원 / 진학
+                </div>
+                <div style={{ fontSize: "0.9rem" }}>마감 일자 2023.08.13</div>
+              </div>
+
+              <div
+                style={{
+                  fontSize: "1.2rem",
+                  fontWeight: "bold",
+                  margin: "10px 0px 10px",
+                }}
+              >
+                IBK 자립준비청년 장학금취업지원
+              </div>
+              <div
+                style={{
+                  marginTop: "20px",
+                  width: "280px",
+                  height: "40px",
+                  textOverflow: "ellipsis",
+                  overflow: "hidden",
+                  fontSize: "0.9rem",
+                }}
+              >
+                장학금 및 금융경제교육, 취업 컨설팅, 생활법률교육 등의
+                지원사업을 하고있습니다.
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  position: "absolute",
+                  fontSize: "0.8rem",
+                  top: "158px",
+                }}
+              >
+                <div
+                  style={{
+                    paddingRight: "5px",
+                    borderRight: "2px solid gray",
+                  }}
+                >
+                  IBK기업은행
+                </div>
+                <div style={{ marginLeft: "7px" }}>전국</div>
+              </div>
+            </div>
+          </a>
         </div>
       </div>
+
       <div className={home.board_total}>
         <div className={home.board_top}>
           <p>소통 게시판</p>
