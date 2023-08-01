@@ -87,7 +87,7 @@ function Navigation(prop) {
           </Button>
         </Link>
         <Link
-          to="/"
+          to="/mypage"
           style={{ textDecoration: "none" }}
           onClick={() => handleActive("mypage")}
         >
