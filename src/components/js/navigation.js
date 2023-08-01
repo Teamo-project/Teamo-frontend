@@ -5,9 +5,15 @@ import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { useState } from "react";
 //import { UseSelector, useSelector } from "react-redux/es/hooks/useSelector";
-function Navigation() {
+function Navigation(prop) {
   const [logIn, setLogin] = useState(false);
   //const isLogedIn = useSelector((state) => state.accessToken);
+  const [btnActive, setBtnActive] = useState(prop.re);
+  console.log(prop.re, btnActive);
+
+  const handleActive = (re) => {
+    setBtnActive(re);
+  };
   return (
     <div style={{ height: "50px" }}>
       <div className={navigation.total}>
@@ -33,19 +39,65 @@ function Navigation() {
       </div>
       <div className={navigation.menu}>
         <Link to="/" style={{ textDecoration: "none" }}>
-          <Button style={{ color: "#66c109" }}>홈</Button>
+          <Button
+            style={
+              btnActive == "home" ? { color: "#66c109" } : { background: "" }
+            }
+          >
+            홈
+          </Button>
         </Link>
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <Button>캘린더</Button>
+        <Link
+          to="/"
+          style={{ textDecoration: "none" }}
+          onClick={() => handleActive("cal")}
+        >
+          <Button
+            style={
+              btnActive == "cal" ? { color: "#66c109" } : { background: "" }
+            }
+          >
+            캘린더
+          </Button>
         </Link>
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <Button>문의</Button>
+        <Link
+          to="/"
+          style={{ textDecoration: "none" }}
+          onClick={() => handleActive("qna")}
+        >
+          <Button
+            style={
+              btnActive == "qna" ? { color: "#66c109" } : { background: "" }
+            }
+          >
+            문의
+          </Button>
         </Link>
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <Button>멘토멘티신청</Button>
+        <Link
+          to="/postlist"
+          style={{ textDecoration: "none" }}
+          onClick={() => handleActive("mento")}
+        >
+          <Button
+            style={
+              btnActive == "mento" ? { color: "#66c109" } : { background: "" }
+            }
+          >
+            멘토멘티신청
+          </Button>
         </Link>
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <Button>마이페이지</Button>
+        <Link
+          to="/"
+          style={{ textDecoration: "none" }}
+          onClick={() => handleActive("mypage")}
+        >
+          <Button
+            style={
+              btnActive == "mypage" ? { color: "#66c109" } : { background: "" }
+            }
+          >
+            마이페이지
+          </Button>
         </Link>
       </div>
     </div>

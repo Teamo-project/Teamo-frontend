@@ -7,7 +7,7 @@ function Home() {
   return (
     <div>
       <div>
-        <Navigation />
+        <Navigation re="home" />
       </div>
       <div className={home.program}>
         <div className={home.program_top}>
