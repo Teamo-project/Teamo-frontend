@@ -3,7 +3,7 @@ import Footer from "../../components/js/footer";
 import post from "../css/post.module.css";
 import applyPopup from "../../components/js/applyPopup";
 import { useState } from "react";
-function CreatePost() {
+function ViewPost() {
   function subTitleBack(input, flag) {
     return flag == "1" ? (
       <div className={post.subTitle}>{input}</div>
@@ -15,7 +15,6 @@ function CreatePost() {
   }
   const [isPopup, setIsPopup] = useState(false);
   const handlePopup = () => {
-    console.log(isPopup);
     setIsPopup(!isPopup);
   };
   return (
@@ -42,7 +41,13 @@ function CreatePost() {
           글의 내용
           <div className={post.recruitment}>모집인원 3 / 10</div>
         </div>
-        <button className={post.createBtn}>작성하기</button>
+        <div className={post.mentoring}>
+          <p className={post.mentoringText}>멘토링 연결 신청</p>
+
+          <button className={post.mentoringBtn} onClick={handlePopup}>
+            신청하러가기
+          </button>
+        </div>
       </div>
 
       {isPopup ? "POPUP" : ""}
@@ -50,4 +55,4 @@ function CreatePost() {
     </div>
   );
 }
-export default CreatePost;
+export default ViewPost;

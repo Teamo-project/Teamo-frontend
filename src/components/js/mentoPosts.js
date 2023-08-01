@@ -6,7 +6,7 @@ function posts() {
       <div className={mentoStyle.postsContent}>
         <div className={mentoStyle.postsContents}>
           <flex style={{ marginRight: "42px" }}>1</flex> <flex> 법률</flex>
-          <Link to="/mentopost" className={mentoStyle.linkPage}>
+          <Link to="/viewpost" className={mentoStyle.linkPage}>
             <span>지원 멘티 모집</span>
           </Link>
         </div>
