@@ -7,6 +7,15 @@
 }
 .titleText {
   margin-left: 20px;
+  border: 0px solid;
+  background-color: #eaeaea;
+
+  font-family: "Jost";
+  font-weight: 700;
+  font-size: 24px;
+}
+.titleText:focus {
+  outline: 0;
 }
 .postTitle {
   font-family: "Jost";
@@ -48,13 +57,23 @@
 
   width: 950px;
   height: 400px;
-  position: relative;
+}
+.mainTextInput {
+  width: 950px;
+  height: 400px;
+  border: 0px solid;
+  resize: none;
 }
 
+.mainTextInput:focus {
+  outline: none;
+}
 .recruitment {
-  position: absolute;
-  right: 0;
-  bottom: 0;
+  color: #000000;
+  font-family: "Jost";
+  font-weight: 700;
+  font-size: 18px;
+  float: right;
 }
 
 .mentoring {
@@ -98,6 +117,7 @@
   background: #66c109;
   color: #ffffff;
   display: flex;
+  clear: right;
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -107,4 +127,5 @@
   border: none;
   border-radius: 10px;
   margin-top: 70px;
+  margin-bottom: 20px;
 }

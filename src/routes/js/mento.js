@@ -3,10 +3,22 @@ import mentoStyle from "../css/mento.module.css";
 import Posts from "../../components/js/mentoPosts";
 import Footer from "../../components/js/footer";
 import { Link } from "react-router-dom";
+import axios from "axios";
 function mento() {
-  const postBtn = (num) => {
-    return <button className={mentoStyle.pageBtn}>{num}</button>;
-  };
+  function postBtn(num, center) {
+    console.log(center);
+    return center ? (
+      <button
+        style={{ backgroundColor: "#66c109" }}
+        className={mentoStyle.pageBtn}
+      >
+        {num}
+      </button>
+    ) : (
+      <button className={mentoStyle.pageBtn}>{num}</button>
+    );
+  }
+  axios.get("URL");
   return (
     <div>
       <Navigation re="mento" />
@@ -28,12 +40,12 @@ function mento() {
           </div>
         </div>
         <hr className={mentoStyle.line} />
-        <Posts />
-        <Posts />
-        <Posts />
-        <Posts />
-        <Posts />
 
+        <Posts />
+        <Posts />
+        <Posts />
+        <Posts />
+        <Posts />
         <Posts />
         <Posts />
         <Posts />
@@ -47,7 +59,7 @@ function mento() {
         <div className={mentoStyle.pageNum}>
           {postBtn("◀")}
           {postBtn("1")}
-          {postBtn("2")}
+          {postBtn("2", true)}
           {postBtn("3")}
           {postBtn("▶")}
         </div>

@@ -1,10 +1,12 @@
 import { Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { createContext } from "react";
+export const ACCESSTOKEN = createContext(null);
 function Redirection() {
-  const toMain = useNavigate;
-  const searchParams = new URLSearchParams(window.location.search);
   const urlParams = new URL(window.location.href).searchParams;
+
   const accessToken = urlParams.get("accessToken");
+  <ACCESSTOKEN.Provider>{accessToken}</ACCESSTOKEN.Provider>;
   console.log(accessToken);
   axios
     .get(
