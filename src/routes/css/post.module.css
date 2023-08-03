@@ -32,6 +32,7 @@
   align-items: center;
   padding-left: 20px;
 }
+
 .line {
   margin: 0px;
   background: #989898;
@@ -49,6 +50,7 @@
   height: 400px;
   position: relative;
 }
+
 .recruitment {
   position: absolute;
   right: 0;
