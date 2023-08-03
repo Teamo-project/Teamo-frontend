@@ -3,7 +3,9 @@ import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import home from "../css/home.module.css";
 
+import { ACCESSTOKEN } from "../../components/js/Redirection";
 function Home() {
+  console.log(ACCESSTOKEN);
   return (
     <div>
       <div>
