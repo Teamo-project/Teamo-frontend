@@ -12,12 +12,10 @@ function Write() {
 
   //posting_id, 생성일,수정일은 백엔드에서 하기로 함
   const [board, setBoard] = useState({
-    title: "",
-    content: "",
-    user_id: "",
-    // createdate: "",
-    // lastModifiedTime: "",
-    category: "자유",
+    user_id: "1234",
+    title: "제목입니다",
+    content: "내용입니다.",
+    category: "구인구직",
   });
 
   const { title, content } = board;
@@ -34,26 +32,23 @@ function Write() {
   // let week = WEEKDAY[new Date().getDay()];
 
   const saveBoard = async () => {
-    // setBoard({
-    //   ...board,
-    //   createdate: `${new Date().getFullYear()}/${
-    //     new Date().getMonth() + 1
-    //   }/${new Date().getDate()} ${week} ${("0" + new Date().getHours()).slice(
-    //     -2
-    //   )}:${("0" + new Date().getMinutes()).slice(-2)}:${(
-    //     "0" + new Date().getSeconds()
-    //   ).slice(-2)}`,
-    // });
-
-    await axios
-      .post(
-        `https://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/posting`,
-        board
-      )
-      .then((res) => {
-        alert("글이 등록되었습니다.");
-        navigate("/posting");
-      });
+    try {
+      await axios
+        .post(
+          "http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/posting",
+          board,
+          {
+            headers: { Authorization: "Bearer debug" },
+          }
+        )
+        .then((res) => {
+          console.log(res);
+          alert("글이 등록되었습니다.");
+          navigate("/posting");
+        });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const backBoard = () => {
@@ -63,18 +58,26 @@ function Write() {
   let number = 0;
 
   return (
-    <div>
-      <div>
-        <Navigation />
-      </div>
+    <div
+      style={{
+        position: "relative",
+        display: "flex",
+        flexDirection: "column",
+        marginLeft: "230px",
+        marginRight: "230px",
+      }}
+    >
+      <Navigation />
 
       <div className={menu.menu}>
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <Button>홈</Button>
-        </Link>
+        <div>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <Button style={{ color: "#66c109" }}>홈</Button>
+          </Link>
+        </div>
         <div className={menu.post}>
           <Link to="/posting" style={{ textDecoration: "none" }}>
-            <Button style={{ color: "#66c109" }}>
+            <Button>
               게시판 <i class="fa-solid fa-angle-down"></i>
             </Button>
           </Link>
@@ -108,35 +111,40 @@ function Write() {
             </Link>
           </ul>
         </div>
-        <Link to="/program" style={{ textDecoration: "none" }}>
-          <Button>프로그램</Button>
-        </Link>
-
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <Button>멘토멘티신청</Button>
-        </Link>
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <Button>문의</Button>
-        </Link>
+        <div>
+          <Link to="/program" style={{ textDecoration: "none" }}>
+            <Button>프로그램</Button>
+          </Link>
+        </div>
+        <div>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <Button>멘토멘티신청</Button>
+          </Link>
+        </div>
+        <div>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <Button>문의</Button>
+          </Link>
+        </div>
       </div>
 
       <div className={write.total}>
         <div
           style={{
-            marginLeft: "5px",
-            marginBottom: "15px",
+            marginLeft: "6px",
+            marginBottom: "16px",
             fontSize: "1.6rem",
             fontWeight: "bold",
-            paddingBottom: "13px",
+            paddingBottom: "14px",
             borderBottom: "1px solid gray",
           }}
         >
-          새 글 작성하기
+          게시판 새 글 작성하기
         </div>
         <div className={write.total_top}>
           <span>카테고리</span>
           <div className={write.cate}>
-            <div style={{ marginLeft: "330px" }}>
+            <div style={{ marginLeft: "540px" }}>
               <label htmlFor="자유">자유</label>
               <input
                 id="자유"

@@ -6,7 +6,6 @@ import pro_list from "../../components/js/program_public";
 import { useState } from "react";
 import post from "../css/program.module.css";
 import { useNavigate } from "react-router-dom";
-import program_total from "../../components/js/Program/program_total";
 import Program_total from "../../components/js/Program/program_total";
 import Program_pub from "../../components/js/Program/program_pub";
 import Program_private from "../../components/js/Program/program_private";
@@ -46,14 +45,23 @@ function Program() {
   };
 
   return (
-    <div>
-      <div>
-        <Navigation />
-      </div>
+    <div
+      style={{
+        position: "relative",
+        display: "flex",
+        flexDirection: "column",
+        marginLeft: "230px",
+        marginRight: "230px",
+      }}
+    >
+      <Navigation />
+
       <div className={menu.menu}>
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <Button>홈</Button>
-        </Link>
+        <div>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <Button>홈</Button>
+          </Link>
+        </div>
         <div className={menu.post}>
           <Link to="/posting" style={{ textDecoration: "none" }}>
             <Button>
@@ -90,16 +98,21 @@ function Program() {
             </Link>
           </ul>
         </div>
-        <Link to="/program" style={{ textDecoration: "none" }}>
-          <Button style={{ color: "#66c109" }}>프로그램</Button>
-        </Link>
-
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <Button>멘토멘티신청</Button>
-        </Link>
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <Button>문의</Button>
-        </Link>
+        <div>
+          <Link to="/program" style={{ textDecoration: "none" }}>
+            <Button style={{ color: "#66c109" }}>프로그램</Button>
+          </Link>
+        </div>
+        <div>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <Button>멘토멘티신청</Button>
+          </Link>
+        </div>
+        <div>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <Button>문의</Button>
+          </Link>
+        </div>
       </div>
 
       <div className={post.first_button}>
@@ -116,7 +129,8 @@ function Program() {
         <Button onClick={number6}>진학</Button>
         <Button onClick={number7}>기타</Button>
       </div>
-      <div style={{ width: "100%" }}>
+
+      <div style={{ width: "980px" }}>
         {number === "0" ? (
           <Program_total />
         ) : number === "1" ? (

@@ -8,19 +8,21 @@ import { useEffect, useState } from "react";
 import Update_caption from "../../components/js/update_caption";
 
 function Modifycomment() {
-  const { posting_id } = useParams();
+  const { posting_id, comment_id } = useParams();
 
   const [loading, setLoading] = useState(true);
   const [board, setBoard] = useState({});
 
   const getBoard = async () => {
-    const resp = await (
-      await axios.get(
+    try {
+      const resp = await axios.get(
         `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/posting/${posting_id}`
-      )
-    ).data;
-    setBoard(resp.data);
-    setLoading(false);
+      );
+      setBoard(resp.data);
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
@@ -28,17 +30,26 @@ function Modifycomment() {
   }, []);
 
   return (
-    <div>
-      <div>
-        <Navigation />
-      </div>
+    <div
+      style={{
+        position: "relative",
+        display: "flex",
+        flexDirection: "column",
+        marginLeft: "230px",
+        marginRight: "230px",
+      }}
+    >
+      <Navigation />
+
       <div className={menu.menu}>
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <Button>홈</Button>
-        </Link>
+        <div>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <Button style={{ color: "#66c109" }}>홈</Button>
+          </Link>
+        </div>
         <div className={menu.post}>
           <Link to="/posting" style={{ textDecoration: "none" }}>
-            <Button style={{ color: "#66c109" }}>
+            <Button>
               게시판 <i class="fa-solid fa-angle-down"></i>
             </Button>
           </Link>
@@ -72,16 +83,21 @@ function Modifycomment() {
             </Link>
           </ul>
         </div>
-        <Link to="/program" style={{ textDecoration: "none" }}>
-          <Button>프로그램</Button>
-        </Link>
-
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <Button>멘토멘티신청</Button>
-        </Link>
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <Button>문의</Button>
-        </Link>
+        <div>
+          <Link to="/program" style={{ textDecoration: "none" }}>
+            <Button>프로그램</Button>
+          </Link>
+        </div>
+        <div>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <Button>멘토멘티신청</Button>
+          </Link>
+        </div>
+        <div>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <Button>문의</Button>
+          </Link>
+        </div>
       </div>
       <div
         style={{ marginTop: "50px", display: "flex", justifyContent: "center" }}
@@ -96,6 +112,7 @@ function Modifycomment() {
             user_id={board.user_id}
             createdate={board.createDate}
             category={board.category}
+            comment_id={comment_id}
           />
         )} */}
 
@@ -117,6 +134,7 @@ function Modifycomment() {
           user_id="qwer"
           createdate="2023-07-28"
           category="정보"
+          comment_id="asdf"
         />
       </div>
     </div>

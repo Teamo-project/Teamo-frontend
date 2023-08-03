@@ -29,24 +29,38 @@ function Update() {
   };
 
   const getBoard = async () => {
-    const resp = await (
-      await axios.get(
+    try {
+      const resp = await axios.get(
         `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/posting/${posting_id}`
-      )
-    ).data;
-    setBoard(resp.data);
+      );
+      setBoard(resp.data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const updateBoard = async () => {
-    await axios
-      .put(
-        `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/posting/${posting_id}`,
-        { title: board.title, content: board.content, category: board.category }
-      )
-      .then((res) => {
-        alert("글이 수정되었습니다.");
-        navigate("/posting/" + posting_id);
-      });
+    try {
+      let editConfirm = window.confirm("게시글을 수정 하시겠습니까?");
+      if (editConfirm) {
+        // let {title,content,category}=board;
+        // let payload={title,content,category};
+
+        await axios
+          .put(
+            `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/posting/${posting_id}`,
+            {
+              board,
+            }
+          )
+          .then((res) => {
+            alert("글이 수정되었습니다.");
+            navigate("/posting/" + posting_id);
+          });
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const backDetail = () => {
@@ -58,18 +72,26 @@ function Update() {
   }, []);
 
   return (
-    <div>
-      <div>
-        <Navigation />
-      </div>
+    <div
+      style={{
+        position: "relative",
+        display: "flex",
+        flexDirection: "column",
+        marginLeft: "230px",
+        marginRight: "230px",
+      }}
+    >
+      <Navigation />
 
       <div className={menu.menu}>
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <Button>홈</Button>
-        </Link>
+        <div>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <Button style={{ color: "#66c109" }}>홈</Button>
+          </Link>
+        </div>
         <div className={menu.post}>
           <Link to="/posting" style={{ textDecoration: "none" }}>
-            <Button style={{ color: "#66c109" }}>
+            <Button>
               게시판 <i class="fa-solid fa-angle-down"></i>
             </Button>
           </Link>
@@ -103,16 +125,21 @@ function Update() {
             </Link>
           </ul>
         </div>
-        <Link to="/program" style={{ textDecoration: "none" }}>
-          <Button>프로그램</Button>
-        </Link>
-
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <Button>멘토멘티신청</Button>
-        </Link>
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <Button>문의</Button>
-        </Link>
+        <div>
+          <Link to="/program" style={{ textDecoration: "none" }}>
+            <Button>프로그램</Button>
+          </Link>
+        </div>
+        <div>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <Button>멘토멘티신청</Button>
+          </Link>
+        </div>
+        <div>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <Button>문의</Button>
+          </Link>
+        </div>
       </div>
 
       <div className={write.total}>

@@ -1,75 +1,65 @@
 .post {
-  padding: 15px;
   margin-top: 20px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 1100px;
-  margin-left: 300px;
+  width: 980px;
 }
 
 .box {
-  border-radius: 15px;
+  border-radius: 16px;
   background-color: #e7e7e799;
   border: 1px solid #d6d6d6;
   padding: 20px;
-  width: 350px;
-  height: 180px;
-  margin: 15px 27px;
-  cursor: pointer;
-}
+  width: 428px;
+  height: 242px;
+  margin: 10px;
 
-@media (max-width: 1400px) {
-  .post {
-    width: 1000px;
-  }
-}
-@media (max-width: 1170px) {
-  .post,
-  .box {
-    width: 1000px;
-  }
+  cursor: pointer;
 }
 
 .first_button {
   border: 1px solid lightgray;
   border-radius: 10px;
   padding: 10px;
-  margin-top: 30px;
-  margin-left: 380px;
-  width: 60%;
+  margin-top: 270px;
+  width: 980px;
 }
+
 .second_button {
   margin-top: 10px;
-
   border: 1px solid lightgray;
   border-radius: 10px;
   padding: 10px;
-  margin-left: 380px;
-  width: 60%;
+
+  width: 980px;
 }
 
 .first_button span {
-  margin-right: 50px;
+  margin-left: 10px;
+  margin-right: 40px;
 }
 
 .second_button span {
-  margin-right: 34px;
+  margin-left: 10px;
+  margin-right: 24px;
 }
 
 .first_button Button,
 .second_button Button {
-  margin-right: 15px;
+  margin-left: 20px;
   cursor: pointer;
-  border: none;
-  background-color: #66c109;
-  border-radius: 5px;
-  color: white;
-}
 
-.first_button Button:hover,
-.second_button Button:hover {
-  background-color: white;
+  background-color: #d9d9d9;
+  border-radius: 5px;
   color: black;
   border: 1px solid gray;
+}
+
+.first_button Button:focus,
+.second_button Button:focus {
+  background-color: #66c109;
+  color: white;
+  border: 1px solid gray;
+  border: none;
 }

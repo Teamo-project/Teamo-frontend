@@ -10,12 +10,21 @@ function Program_cash() {
         if (event.category === "금융") {
           return (
             <a
-              href={event.url}
-              style={{ textDecoration: "none", color: "black" }}
+              href="https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=374&act=&searchValueList2=1&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=2"
+              style={{
+                textDecoration: "none",
+                color: "black",
+                width: "428px",
+                height: "242px",
+                border: "1px solid #f1f1f1",
+                backgroundColor: "#f1f1f1",
+                margin: "10px 30px",
+                borderRadius: "16px",
+              }}
             >
               <div
-                className={post.box}
                 style={{
+                  padding: "16px 10px",
                   position: "relative",
                 }}
               >
@@ -29,35 +38,57 @@ function Program_cash() {
                 >
                   <div
                     style={{
-                      border: "1px solid #66C109",
+                      display: "flex",
+                      fontSize: "12px",
+                      fontWeight: "700",
+                      lineHeight: "14px",
+                      marginLeft: "14px",
+                      border: "1px solid #66c109",
                       color: "#66C109",
                       fontSize: "0.8rem",
+                      width: "128px",
+                      height: "24px",
+                      justifyContent: "center",
+                      alignItems: "center",
                     }}
                   >
                     자립 지원 / {event.category_description}
                   </div>
-                  <div style={{ fontSize: "0.9rem" }}>
-                    마감 일자 {event.deadline}
+                  <div
+                    style={{
+                      width: "114px",
+                      height: "14px",
+                      color: "#ADADAD",
+                      fontSize: "12px",
+                      marginRight: "10px",
+                    }}
+                  >
+                    마감일자 {event.deadline}
                   </div>
                 </div>
 
                 <div
                   style={{
-                    fontSize: "1.3rem",
-                    fontWeight: "bold",
-                    margin: "10px 0px 10px",
+                    width: "400px",
+                    height: "50px",
+                    padding: "22px 20px 0px",
+                    fontSize: "20px",
+                    fontWeight: "700",
+                    lineHeight: "24px",
+                    letterSpacing: "0em",
+                    textAlign: "left",
                   }}
                 >
                   {event.title}
                 </div>
                 <div
                   style={{
-                    marginTop: "20px",
-                    width: "330px",
+                    width: "320px",
                     height: "40px",
                     textOverflow: "ellipsis",
                     overflow: "hidden",
-                    fontSize: "0.9rem",
+                    fontSize: "1rem",
+                    padding: "0px 20px",
                   }}
                 >
                   {event.content}
@@ -67,13 +98,14 @@ function Program_cash() {
                     display: "flex",
                     position: "absolute",
                     fontSize: "0.8rem",
-                    top: "185px",
+                    top: "208px",
                   }}
                 >
                   <div
                     style={{
-                      paddingRight: "5px",
+                      paddingLeft: "18px",
                       borderRight: "2px solid gray",
+                      paddingRight: "10px",
                     }}
                   >
                     {event.agency}

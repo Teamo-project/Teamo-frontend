@@ -4,7 +4,7 @@ import update from "../css/update_caption.module.css";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { Button } from "react-bootstrap";
-import Comment from "./Comment.js";
+import EtcComment from "./EtcComment.js";
 
 function Update_caption({
   posting_id,
@@ -13,16 +13,18 @@ function Update_caption({
   user_id,
   createdate,
   category,
+  comment_id,
 }) {
   const navigate = useNavigate();
 
-  //   삭제할려는 caption_id
-  //   해당 삭제하려는 댓글의 사용자 user id를 알아야한다.
-  const { caption_id } = useParams();
+  // 유저 id과 글의user id 가 같을 때 버튼이 보이게
+  // realuser는 redux하기전 진짜 user id
+  const [realuser, setRealuser] = useState("asdf");
+
   const [caption, setCaption] = useState({
-    comment_id: { caption_id },
+    comment_id: comment_id,
     post_id: posting_id,
-    user: "",
+    user_id: realuser,
     comment: "",
   });
 
@@ -39,12 +41,14 @@ function Update_caption({
   const [commentlist, setCommentlist] = useState([]);
 
   const getCaptionlist = async () => {
-    const resp = await (
-      await axios.get(
+    try {
+      const resp = await axios.get(
         `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/posting/${posting_id}/comment`
-      )
-    ).data;
-    setCommentlist(resp.data);
+      );
+      setCommentlist(resp.data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
@@ -52,18 +56,25 @@ function Update_caption({
   }, []);
 
   const updateComment = async () => {
-    await axios
-      .put(
-        `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/posting/${posting_id}/comment/${caption_id}`,
-        {
-          post_id: caption.post_id,
-          comment: caption.comment,
-        }
-      )
-      .then((res) => {
-        alert("댓글이 수정되었습니다.");
-        navigate(`/posting/${posting_id}`);
-      });
+    try {
+      let updateConfirm = window.confirm("댓글을 수정 하시겠습니까?");
+
+      if (updateConfirm) {
+        await axios
+          .put(
+            `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/posting/${posting_id}/comment/${comment_id}`,
+            {
+              caption,
+            }
+          )
+          .then((res) => {
+            alert("댓글이 수정되었습니다.");
+            navigate(`/posting/${posting_id}`);
+          });
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const backDetail = () => {
@@ -74,26 +85,27 @@ function Update_caption({
     <div>
       <div
         style={{
-          width: "788px",
+          width: "980px",
           fontSize: "1.5rem",
-          height: "35px",
+          height: "36px",
           border: "1px solid gray",
-          padding: "10px",
-          borderRadius: "5px",
+          padding: "10px 0px 10px 10px",
+          borderRadius: "6px",
           fontWeight: "bold",
-          marginBottom: "13px",
+          marginBottom: "14px",
+          marginTop: "260px",
         }}
       >
         {category}게시판
       </div>
       <div
         style={{
-          width: "800px",
-          height: "365px",
+          width: "980px",
+          height: "366px",
           paddingLeft: "10px",
           border: "1px solid gray",
 
-          borderRadius: "5px",
+          borderRadius: "6px",
         }}
       >
         <div
@@ -102,15 +114,15 @@ function Update_caption({
             marginTop: "20px",
             borderBottom: "1px solid lightgray",
             paddingBottom: "10px",
-            paddingLeft: "7px",
-            width: "95%",
+            paddingLeft: "8px",
+            width: "950px",
           }}
         >
           <div>
             <img src={user_img} alt="user_img" style={{ width: "38px" }} />
           </div>
           <div style={{ marginLeft: "10px" }}>
-            <div style={{ fontWeight: "bold", fontSize: "0.9rem" }}>
+            <div style={{ fontWeight: "700", fontSize: "0.9rem" }}>
               익명 {user_id}
             </div>
             <div style={{ fontSize: "0.9rem" }}>{createdate}</div>
@@ -119,8 +131,8 @@ function Update_caption({
         <div
           style={{
             borderBottom: "1px solid lightgray",
-            width: "93%",
-            padding: "15px 10px",
+            width: "940px",
+            padding: "14px 10px",
             fontSize: "1.4rem",
             fontWeight: "bold",
           }}
@@ -139,25 +151,36 @@ function Update_caption({
         </div>
       </div>
       <div
-        style={{ margin: "13px 10px", fontWeight: "bold", fontSize: "1.1rem" }}
+        style={{
+          margin: "16px 10px",
+          fontWeight: "bold",
+          fontSize: "1.1rem",
+          width: "980px",
+        }}
       >
         댓글 수정
       </div>
 
-      <div style={{ paddingTop: "20px", borderTop: "1px solid gray" }}>
+      <div
+        style={{
+          borderBottom: "1px solid lightgray",
+          paddingTop: "20px",
+          borderTop: "1px solid gray",
+        }}
+      >
         <div style={{ display: "flex" }}>
           <div>
             <img style={{ width: "30px" }} src={user_img} alt="user" />
           </div>
-          <div style={{ marginLeft: "7px", marginTop: "2px" }}>
-            익명{user_id}
+          <div style={{ marginLeft: "8px", marginTop: "2px" }}>
+            익명{caption.user_id}
           </div>
         </div>
-        <div style={{ marginTop: "7px" }}>
+        <div style={{ marginTop: "8px" }}>
           <input
             name="comment"
             type="text"
-            placeholder="수정을 해주세요"
+            placeholder="댓글 수정을 해주세요"
             value={comment}
             onChange={onChange}
             className={update.comment}
@@ -170,14 +193,12 @@ function Update_caption({
             marginBottom: "20px",
           }}
         >
-          <div style={{ marginTop: "12px", fontSize: "0.9rem" }}>
-            2022-03-28 11:03:25{update.createDate}
-          </div>
+          <div style={{ marginTop: "12px", fontSize: "0.9rem" }}></div>
           <div className={update.caption_btn}>
             <Button
               onClick={updateComment}
               style={{
-                marginLeft: "538px",
+                marginLeft: "850px",
                 backgroundColor: "#66c109",
                 color: "white",
                 borderRadius: "5px",
@@ -194,8 +215,8 @@ function Update_caption({
       </div>
 
       {commentlist.map((comment) => {
-        if (caption_id !== comment.comment_id) {
-          <Comment
+        if (comment_id !== comment.comment_id) {
+          <etc_Comment
             comment_id={comment.comment_id}
             post_id={comment.post_id}
             user_id={comment.user_id}
@@ -206,7 +227,7 @@ function Update_caption({
       })}
 
       {/* 댓글 예시 */}
-      <Comment
+      <EtcComment
         comment_id="1234"
         post_id="5678"
         user_id="ljsf"
