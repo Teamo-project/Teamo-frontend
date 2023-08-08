@@ -4,10 +4,18 @@ import post from "../css/createPost.module.css";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-function CreatePost() {
+import { useEffect } from "react";
+function EditPost() {
   const [mainText, setMainText] = useState("");
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
+  const [count, setCount] = useState("");
+  const [info, setInfo] = useState({
+    title: "",
+    description: "",
+    category: "",
+    limited: "",
+  });
   const today = new Date();
   const navigate = useNavigate();
   const registDay =
@@ -23,9 +31,34 @@ function CreatePost() {
     setCategory(e.target.value);
     console.log(title, mainText, category);
   };
-
+  useEffect(() => {
+    axios
+      .put(
+        "http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring/1",
+        {
+          title: "법률 멘토링",
+          description: "abcde",
+          category: "법률",
+          limited: 5,
+        },
+        {
+          headers: {
+            Authorization: "Bearer debug",
+          },
+        }
+      )
+      .then(function (res) {
+        setInfo({
+          title: res.data.title,
+          description: res.data.description,
+          category: res.data.category,
+          limited: res.data.limited,
+        });
+        setCount(res.data.count);
+      });
+  }, []);
   const posting = () => {
-    axios //멘토링 게시글 생성
+    axios
       .post(
         "http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring",
         {
@@ -71,7 +104,7 @@ function CreatePost() {
         <div className={post.postTitle}>
           <input
             onChange={handleTitle}
-            placeholder="제목을 입력해주세요"
+            placeholder={info.title}
             className={post.titleText}
           ></input>
         </div>
@@ -82,7 +115,8 @@ function CreatePost() {
         </div>
         <hr className={post.line}></hr>
         <div className={post.subTitleBox}>
-          {subTitleBack("분류", 0)}
+          {subTitleBack("", 0)} {subTitleBack("", 1)}
+          {subTitleBack("분류", 0)}{" "}
           <select
             onClick={handleCategory}
             className={post.subTitle}
@@ -95,8 +129,6 @@ function CreatePost() {
             <option value={"상담"}>상담</option>
             <option value={"기타"}>기타</option>
           </select>
-          {subTitleBack("", 0)}
-          {subTitleBack("", 1)}
         </div>
         <hr className={post.line}></hr>
 
@@ -109,7 +141,7 @@ function CreatePost() {
         </div>
 
         <button className={post.createBtn} onClick={posting}>
-          작성하기
+          수정하기
         </button>
       </div>
 
@@ -118,4 +150,4 @@ function CreatePost() {
     </div>
   );
 }
-export default CreatePost;
+export default EditPost;

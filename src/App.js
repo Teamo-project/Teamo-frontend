@@ -7,7 +7,7 @@ import Mypage from "./routes/js/mypage";
 import Mento from "./routes/js/mento";
 import CreatePost from "./routes/js/createPost";
 import ViewPost from "./routes/js/viewPost";
-
+import EditPost from "./routes/js/editPost";
 function App() {
   return (
     <Router>
@@ -19,7 +19,7 @@ function App() {
         <Route path="/postlist" element={<Mento />}></Route>
         <Route path="/createpost" element={<CreatePost />}></Route>
         <Route path="/viewpost" element={<ViewPost />}></Route>
-
+        <Route path="/editpost" element={<EditPost />}></Route>
         <Route path="/oauth2/redirect" element={<Redirection />}></Route>
       </Routes>
     </Router>
