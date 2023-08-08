@@ -1,21 +1,29 @@
 import Navigation from "../../components/js/navigation";
-import { Button, Nav } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import menu from "../../components/css/navigation_menu.module.css";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import write from "../css/posting_write.module.css";
+import { writeBoardApi } from "../../apis/boardApi";
+import { useSelector } from "react-redux";
+import { Editor } from "@toast-ui/react-editor";
+import "@toast-ui/editor/dist/toastui-editor.css";
+import { useRef } from "react";
 
+// 게시물 작성 페이지
 function Write() {
   const navigate = useNavigate();
 
-  //posting_id, 생성일,수정일은 백엔드에서 하기로 함
+  // 로그인 한 사용자의 user_id받기
+  const state_userid = useSelector((state) => state.rootReducer.user.user_id);
+
   const [board, setBoard] = useState({
-    user_id: "1234",
-    title: "제목입니다",
-    content: "내용입니다.",
-    category: "구인구직",
+    // user_id: state_userid,
+    title: "",
+    content: "",
+    category: "자유",
   });
 
   const { title, content } = board;
@@ -28,24 +36,22 @@ function Write() {
     });
   };
 
-  // const WEEKDAY = ["일", "월", "화", "수", "목", "금", "토"];
-  // let week = WEEKDAY[new Date().getDay()];
+  // content는 toast ui로 입력받는다.(엔터 적용되게 하기 위해)
+  const editorRef = useRef();
+  const toastui = (e) => {
+    setBoard({
+      ...board,
+      content: editorRef.current?.getInstance().getHTML(),
+    });
+  };
 
-  const saveBoard = async () => {
+  const writeBoard = async () => {
     try {
-      await axios
-        .post(
-          "http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/posting",
-          board,
-          {
-            headers: { Authorization: "Bearer debug" },
-          }
-        )
-        .then((res) => {
-          console.log(res);
-          alert("글이 등록되었습니다.");
-          navigate("/posting");
-        });
+      await writeBoardApi(board).then((res) => {
+        console.log(res);
+        alert("글이 등록되었습니다.");
+        navigate("/posting");
+      });
     } catch (err) {
       console.log(err);
     }
@@ -55,61 +61,31 @@ function Write() {
     navigate("/posting");
   };
 
-  let number = 0;
-
   return (
     <div
       style={{
         position: "relative",
         display: "flex",
         flexDirection: "column",
-        marginLeft: "230px",
-        marginRight: "230px",
+        width: "980px",
+        // marginLeft: "230px",
+        // marginRight: "230px",
+        margin: "0 auto",
       }}
     >
       <Navigation />
 
+      {/* 메뉴 부분 */}
       <div className={menu.menu}>
         <div>
           <Link to="/" style={{ textDecoration: "none" }}>
-            <Button style={{ color: "#66c109" }}>홈</Button>
+            <Button>홈</Button>
           </Link>
         </div>
         <div className={menu.post}>
           <Link to="/posting" style={{ textDecoration: "none" }}>
-            <Button>
-              게시판 <i class="fa-solid fa-angle-down"></i>
-            </Button>
+            <Button style={{ color: "#66c109" }}>게시판</Button>
           </Link>
-          <ul className={menu.list}>
-            <Link to="/posting" style={{ textDecoration: "none" }}>
-              <li>전체 게시판</li>
-            </Link>
-            <Link
-              to="/posting/category=자유"
-              style={{ textDecoration: "none" }}
-            >
-              <li>자유 게시판</li>
-            </Link>
-            <Link
-              to="/posting/category=질문"
-              style={{ textDecoration: "none" }}
-            >
-              <li>질문 게시판</li>
-            </Link>
-            <Link
-              to="/posting/category=정보"
-              style={{ textDecoration: "none" }}
-            >
-              <li>정보 게시판</li>
-            </Link>
-            <Link
-              to="/posting/category=구인구직"
-              style={{ textDecoration: "none" }}
-            >
-              <li>구인/구직 게시판</li>
-            </Link>
-          </ul>
         </div>
         <div>
           <Link to="/program" style={{ textDecoration: "none" }}>
@@ -118,12 +94,12 @@ function Write() {
         </div>
         <div>
           <Link to="/" style={{ textDecoration: "none" }}>
-            <Button>멘토멘티신청</Button>
+            <Button>멘토멘티</Button>
           </Link>
         </div>
         <div>
           <Link to="/" style={{ textDecoration: "none" }}>
-            <Button>문의</Button>
+            <Button>마이페이지</Button>
           </Link>
         </div>
       </div>
@@ -141,8 +117,10 @@ function Write() {
         >
           게시판 새 글 작성하기
         </div>
+
         <div className={write.total_top}>
           <span>카테고리</span>
+          {/* 카테고리 선택 부분 */}
           <div className={write.cate}>
             <div style={{ marginLeft: "540px" }}>
               <label htmlFor="자유">자유</label>
@@ -196,18 +174,18 @@ function Write() {
           className={write.title}
         />
 
-        <textarea
-          name="content"
-          cols="90"
-          rows="15"
-          value={content}
-          onChange={onChange}
-          className={write.content}
-          placeholder="새 글의 내용을 작성해주세요."
-        />
+        <Editor
+          ref={editorRef}
+          placeholder="내용을 입력해주세요."
+          previewStyle="vertical"
+          height="340px"
+          initialEditType="wysiwyg"
+          useCommandShortcut={false}
+          onChange={toastui}
+        ></Editor>
 
         <div className={write.button_div}>
-          <Button onClick={saveBoard}>올리기</Button>
+          <Button onClick={writeBoard}>올리기</Button>
           <Button onClick={backBoard}>취소</Button>
         </div>
       </div>

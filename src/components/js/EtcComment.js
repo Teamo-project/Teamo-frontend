@@ -4,6 +4,7 @@ import axios from "axios";
 import { Button } from "react-bootstrap";
 import { useState } from "react";
 
+// 수정하려는 댓글 제외 해당 댓글 보여주기(update_comment 아래)
 function EtcComment({ comment_id, post_id, user_id, comment, createDate }) {
   return (
     <div

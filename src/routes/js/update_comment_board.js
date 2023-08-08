@@ -3,24 +3,25 @@ import { Button } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import menu from "../../components/css/navigation_menu.module.css";
 import axios from "axios";
-import Board from "../../components/js/Board";
 import { useEffect, useState } from "react";
+import UpdateComment_board from "../../components/js/update_comment";
 import { getBoardDetailApi } from "../../apis/boardApi";
 
-// 게시물 상세 페이지
-function BoardDetail() {
-  const { posting_id } = useParams();
+// 댓글 수정 페이지
+function Modifycomment() {
+  const { post_id, comment_id } = useParams();
 
   const [board, setBoard] = useState({});
 
   const getBoard = async () => {
     try {
-      const resp = await getBoardDetailApi(posting_id);
+      const resp = await getBoardDetailApi(post_id);
       setBoard(resp.data);
     } catch (err) {
       console.log(err);
     }
   };
+
   useEffect(() => {
     getBoard();
   }, []);
@@ -32,9 +33,9 @@ function BoardDetail() {
         display: "flex",
         flexDirection: "column",
         width: "980px",
+        margin: "0 auto",
         // marginLeft: "230px",
         // marginRight: "230px",
-        margin: "0 auto",
       }}
     >
       <Navigation />
@@ -68,24 +69,21 @@ function BoardDetail() {
         </div>
       </div>
       <div
-        style={{
-          width: "980px",
-          marginTop: "300px",
-          display: "flex",
-        }}
+        style={{ marginTop: "50px", display: "flex", justifyContent: "center" }}
       >
-        {/* 해당 게시물 Detail 보이도록 하는 부분 */}
-        <Board
+        {/* 댓글을 수정하기 위한 화면(board와 비슷한 역할) */}
+        <UpdateComment_board
           posting_id={board.posting_id}
           title={board.title}
           content={board.content}
           user_id={board.user_id}
           createDate={board.createDate}
           category={board.category}
+          comment_id={comment_id}
         />
       </div>
     </div>
   );
 }
 
-export default BoardDetail;
+export default Modifycomment;

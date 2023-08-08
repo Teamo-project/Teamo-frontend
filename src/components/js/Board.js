@@ -5,13 +5,19 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Button } from "react-bootstrap";
 import Comment from "./Comment.js";
+import { deleteBoardApi } from "../../apis/boardApi";
+import { writeCommentApi } from "../../apis/boardApi";
+import { getCommentListApi } from "../../apis/boardApi";
+import { useSelector } from "react-redux";
+import { Viewer } from "@toast-ui/react-editor";
+import "@toast-ui/editor/dist/toastui-editor-viewer.css";
 
-function Board({ posting_id, title, content, user_id, createdate, category }) {
+// 게시물 정보 보여주는 부분 (posting_detail아래)
+function Board({ posting_id, title, content, user_id, createDate, category }) {
   const navigate = useNavigate();
 
-  // 유저 id과 글의user id 가 같을 때 버튼이 보이게
-  // realuser는 redux하기전 진짜 user id
-  const [realuser, setRealuser] = useState("qwer");
+  // 로그인한 사용자의 user_id
+  const state_userid = useSelector((state) => state.rootReducer.user.user_id);
 
   const moveToupdate = () => {
     navigate(`/update/${posting_id}`);
@@ -21,11 +27,7 @@ function Board({ posting_id, title, content, user_id, createdate, category }) {
     try {
       let DeleteConfirm = window.confirm("게시글을 삭제 하시겠습니까?");
       if (DeleteConfirm) {
-        (
-          await axios.delete(
-            `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/posting/${posting_id}`
-          )
-        ).then((res) => {
+        (await deleteBoardApi(posting_id)).then((res) => {
           alert("삭제되었습니다.");
           navigate("/posting");
         });
@@ -35,36 +37,33 @@ function Board({ posting_id, title, content, user_id, createdate, category }) {
     }
   };
 
-  const [caption, setCaption] = useState({
+  // 새롭게 쓰는 댓글 정보
+  const [new_comment, setNew_comment] = useState({
     post_id: posting_id,
-    user_id: realuser,
+    // user_id: state_userid,
     comment: "",
   });
 
-  const { comment } = caption;
+  const { comment } = new_comment;
 
   const onChange = (event) => {
     const { value, name } = event.target;
-    setCaption({
-      ...caption,
+    setNew_comment({
+      ...new_comment,
       [name]: value,
     });
   };
 
+  // 댓글 수 number 변수
   const [number, setNumber] = useState(0);
 
-  const writeCaption = async () => {
+  const writeComment = async () => {
     try {
-      await axios
-        .post(
-          `https://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/posting/${posting_id}/comment`,
-          caption
-        )
-        .then((res) => {
-          setNumber(number + 1);
-          alert("댓글이 작성되었습니다.");
-          navigate(`/posting/${posting_id}`);
-        });
+      await writeCommentApi(new_comment).then((res) => {
+        setNumber(number + 1);
+        alert("댓글이 작성되었습니다.");
+        navigate(`/posting/${posting_id}`);
+      });
     } catch (err) {
       console.log(err);
     }
@@ -72,11 +71,10 @@ function Board({ posting_id, title, content, user_id, createdate, category }) {
 
   const [commentlist, setCommentlist] = useState([]);
 
-  const getCaptionlist = async () => {
+  // 모든 댓글들 가져오기
+  const getCommentlist = async () => {
     try {
-      const resp = await axios.get(
-        `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/posting/${posting_id}/comment`
-      );
+      const resp = await getCommentListApi(posting_id);
       setCommentlist(resp.data);
     } catch (err) {
       console.log(err);
@@ -84,7 +82,7 @@ function Board({ posting_id, title, content, user_id, createdate, category }) {
   };
 
   useEffect(() => {
-    getCaptionlist();
+    getCommentlist();
     commentlist.map((board) => {
       setNumber(number + 1);
     });
@@ -92,6 +90,7 @@ function Board({ posting_id, title, content, user_id, createdate, category }) {
 
   return (
     <div>
+      {/* 어떤 게시판인지 보여주는 부분 */}
       <div
         style={{
           width: "980px",
@@ -104,8 +103,10 @@ function Board({ posting_id, title, content, user_id, createdate, category }) {
           marginBottom: "14px",
         }}
       >
-        {category}게시판
+        {category} 게시판
       </div>
+
+      {/* 게시물 정보 보여주는 부분 */}
       <div
         style={{
           width: "980px",
@@ -131,9 +132,9 @@ function Board({ posting_id, title, content, user_id, createdate, category }) {
           </div>
           <div style={{ marginLeft: "10px" }}>
             <div style={{ fontWeight: "700", fontSize: "0.9rem" }}>
-              익명 {user_id}
+              익명{user_id}
             </div>
-            <div style={{ fontSize: "0.9rem" }}>{createdate}</div>
+            <div style={{ fontSize: "0.9rem" }}>{createDate}</div>
           </div>
         </div>
         <div
@@ -147,17 +148,19 @@ function Board({ posting_id, title, content, user_id, createdate, category }) {
         >
           {title}
         </div>
-        <div className={board.content}>
-          {content.split(`\n`).map((line) => {
-            return (
-              <div>
-                {line}
-                <br />
-              </div>
-            );
-          })}
+
+        <div
+          style={{
+            paddingLeft: "10px",
+            marginTop: "10px",
+            height: "176px",
+            overflowY: "scroll",
+            marginRight: "30px",
+          }}
+        >
+          {content && <Viewer initialValue={content} />}
         </div>
-        {realuser === user_id ? (
+        {state_userid === user_id ? (
           <div className={board.btn}>
             {/* 수정삭제는 게시글의 user이름과 사용자의 user이름이 같을 경우만 */}
             <Button onClick={moveToupdate}>수정</Button>
@@ -173,6 +176,8 @@ function Board({ posting_id, title, content, user_id, createdate, category }) {
       >
         댓글 {number}
       </div>
+
+      {/* 댓글 작성 부분 */}
       <div style={{ position: "relative", width: "980px" }}>
         <input
           name="comment"
@@ -184,7 +189,7 @@ function Board({ posting_id, title, content, user_id, createdate, category }) {
           style={{ marginLeft: "8px", width: "840px" }}
         />
         <Button
-          onClick={writeCaption}
+          onClick={writeComment}
           style={{
             position: "absolute",
             right: "4px",
@@ -202,6 +207,8 @@ function Board({ posting_id, title, content, user_id, createdate, category }) {
           등록
         </Button>
       </div>
+
+      {/* 해당 게시물의 작성된 댓글들 보여주는 부분 */}
       {commentlist.map((event) => {
         <Comment
           comment_id={event.comment_id}
@@ -211,15 +218,6 @@ function Board({ posting_id, title, content, user_id, createdate, category }) {
           createDate={event.createDate}
         />;
       })}
-
-      {/* 댓글 예시 */}
-      <Comment
-        comment_id="1234"
-        post_id="5678"
-        user_id="asdf"
-        comment="안녕"
-        createDate="2022"
-      />
 
       <div style={{ paddingBottom: "80px" }}></div>
     </div>

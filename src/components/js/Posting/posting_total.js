@@ -1,20 +1,15 @@
-import Navigation from "../navigation";
-import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import post from "../../../../src/routes/css/posting.module.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
-
+import { getBoardListApi } from "../../../apis/boardApi";
 function Posting_total() {
+  // 모든 게시물 가져오기
   const [boardlist, setBoardlist] = useState([]);
-
-  let number = 0;
 
   const getboardlist = async () => {
     try {
-      const resp = await axios.get(
-        "http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/posting"
-      );
+      const resp = await getBoardListApi();
       setBoardlist(resp.data);
     } catch (err) {
       console.log(err);
@@ -25,10 +20,53 @@ function Posting_total() {
     getboardlist();
   }, []);
 
+  // 아래는 예시화면
+  // const hi = [
+  //   {
+  //     posting_id: "3",
+  //     createDate: "2022-11-33 ~~~~~~~~~~",
+  //     user_id: "3",
+  //     title: "제목3",
+  //     content: "내용3",
+  //     category: "자유",
+  //   },
+  //   {
+  //     posting_id: "2",
+  //     createDate: "2022-11-22",
+  //     user_id: "유저2",
+  //     title: "제2",
+  //     content: "내용2",
+  //     category: "정보",
+  //   },
+  //   {
+  //     posting_id: "1",
+  //     createDate: "2022-21-11",
+  //     user_id: "유저1",
+  //     title: "제목1",
+  //     content: "내용1",
+  //     category: "구인구직",
+  //   },
+  //   {
+  //     posting_id: "4",
+  //     createDate: "2022-21-11",
+  //     user_id: "유저4",
+  //     title: "제목4",
+  //     content: "내용4",
+  //     category: "질문",
+  //   },
+  //   {
+  //     posting_id: "5",
+  //     createDate: "2022-21-11",
+  //     user_id: "익명5",
+  //     title: "제목5",
+  //     content: "내용5",
+  //     category: "자유",
+  //   },
+  // ];
+  // 모든 게시물 보이기
   return (
     <div className={post.ten_post}>
       {boardlist.map((board) => {
-        number = number + 1;
         return (
           <Link
             to={`/posting/${board.posting_id}`}
@@ -56,7 +94,7 @@ function Posting_total() {
                   padding: "0px 28px",
                 }}
               >
-                {number}
+                {board.posting_id}
               </div>
               <div
                 style={{
@@ -98,38 +136,25 @@ function Posting_total() {
                   fontSize: "16px",
                   justifyContent: "center",
                   padding: "0px 8px",
-                  marginLeft: "80px",
+                  marginLeft: "50px",
                 }}
               >
-                {board.user_id}
+                익명{board.user_id}
               </div>
               <div
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  width: "73px",
+                  width: "146px",
                   height: "32px",
                   fontWeight: "700",
                   fontSize: "16px",
-                  justifyContent: "center",
+                  justifyContent: "flex-start",
                   padding: "0px 4px",
+                  marginLeft: "8px",
                 }}
               >
                 {board.createDate}
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  width: "31px",
-                  height: "32px",
-                  fontWeight: "700",
-                  fontSize: "16px",
-                  justifyContent: "center",
-                  padding: "0px 26px 0px 26px",
-                }}
-              >
-                댓글수
               </div>
             </div>
           </Link>

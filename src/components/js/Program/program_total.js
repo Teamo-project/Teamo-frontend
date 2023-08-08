@@ -2,6 +2,7 @@ import pro_list from "../../js/program_public";
 import post from "../../../routes/css/program.module.css";
 import { useState } from "react";
 
+// 전체 프로그램 보이기 (가장 기본이 됨)
 function Program_total() {
   const [program, setProgram] = useState(pro_list);
 

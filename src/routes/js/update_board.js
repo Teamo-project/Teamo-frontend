@@ -2,23 +2,44 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import write from "../css/posting_write.module.css";
 import Navigation from "../../components/js/navigation";
-import { Button, Nav } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import menu from "../../components/css/navigation_menu.module.css";
 import axios from "axios";
+import { getBoardDetailApi } from "../../apis/boardApi";
+import { updateBoardApi } from "../../apis/boardApi";
 
+import { Editor } from "@toast-ui/react-editor";
+import "@toast-ui/editor/dist/toastui-editor.css";
+import { useRef } from "react";
+
+// 게시물 수정 페이지
 function Update() {
   const navigate = useNavigate();
   const { posting_id } = useParams();
+  const editorRef = useRef();
+
   const [board, setBoard] = useState({
     posting_id: posting_id,
     title: "",
     user_id: "",
     content: "",
     category: "",
+    createDate: "",
   });
+  const getBoard = async () => {
+    try {
+      const resp = await getBoardDetailApi(posting_id);
+      setBoard(resp.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  useEffect(() => {
+    getBoard();
+  }, []);
 
-  const { title, user_id, content, category } = board;
+  const { title, category } = board;
 
   const onChange = (event) => {
     const { value, name } = event.target;
@@ -28,35 +49,22 @@ function Update() {
     });
   };
 
-  const getBoard = async () => {
-    try {
-      const resp = await axios.get(
-        `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/posting/${posting_id}`
-      );
-      setBoard(resp.data);
-    } catch (err) {
-      console.log(err);
-    }
+  // toast ui로 수정
+  const toastui = (e) => {
+    setBoard({
+      ...board,
+      content: editorRef.current?.getInstance().getHTML(),
+    });
   };
 
   const updateBoard = async () => {
     try {
       let editConfirm = window.confirm("게시글을 수정 하시겠습니까?");
       if (editConfirm) {
-        // let {title,content,category}=board;
-        // let payload={title,content,category};
-
-        await axios
-          .put(
-            `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/posting/${posting_id}`,
-            {
-              board,
-            }
-          )
-          .then((res) => {
-            alert("글이 수정되었습니다.");
-            navigate("/posting/" + posting_id);
-          });
+        await updateBoardApi(board).then((res) => {
+          alert("글이 수정되었습니다.");
+          navigate("/posting/" + posting_id);
+        });
       }
     } catch (err) {
       console.log(err);
@@ -67,63 +75,31 @@ function Update() {
     navigate("/posting/" + posting_id);
   };
 
-  useEffect(() => {
-    getBoard();
-  }, []);
-
   return (
     <div
       style={{
         position: "relative",
         display: "flex",
         flexDirection: "column",
-        marginLeft: "230px",
-        marginRight: "230px",
+        width: "980px",
+        // marginLeft: "230px",
+        // marginRight: "230px",
+        margin: "0 auto",
       }}
     >
       <Navigation />
 
+      {/* 메뉴 부분 */}
       <div className={menu.menu}>
         <div>
           <Link to="/" style={{ textDecoration: "none" }}>
-            <Button style={{ color: "#66c109" }}>홈</Button>
+            <Button>홈</Button>
           </Link>
         </div>
         <div className={menu.post}>
           <Link to="/posting" style={{ textDecoration: "none" }}>
-            <Button>
-              게시판 <i class="fa-solid fa-angle-down"></i>
-            </Button>
+            <Button style={{ color: "#66c109" }}>게시판</Button>
           </Link>
-          <ul className={menu.list}>
-            <Link to="/posting" style={{ textDecoration: "none" }}>
-              <li>전체 게시판</li>
-            </Link>
-            <Link
-              to="/posting/category=자유"
-              style={{ textDecoration: "none" }}
-            >
-              <li>자유 게시판</li>
-            </Link>
-            <Link
-              to="/posting/category=질문"
-              style={{ textDecoration: "none" }}
-            >
-              <li>질문 게시판</li>
-            </Link>
-            <Link
-              to="/posting/category=정보"
-              style={{ textDecoration: "none" }}
-            >
-              <li>정보 게시판</li>
-            </Link>
-            <Link
-              to="/posting/category=구인구직"
-              style={{ textDecoration: "none" }}
-            >
-              <li>구인/구직 게시판</li>
-            </Link>
-          </ul>
         </div>
         <div>
           <Link to="/program" style={{ textDecoration: "none" }}>
@@ -132,12 +108,12 @@ function Update() {
         </div>
         <div>
           <Link to="/" style={{ textDecoration: "none" }}>
-            <Button>멘토멘티신청</Button>
+            <Button>멘토멘티</Button>
           </Link>
         </div>
         <div>
           <Link to="/" style={{ textDecoration: "none" }}>
-            <Button>문의</Button>
+            <Button>마이페이지</Button>
           </Link>
         </div>
       </div>
@@ -155,8 +131,10 @@ function Update() {
         >
           글 수정하기
         </div>
+
         <div className={write.total_top}>
           <span>카테고리</span>
+          {/* 카테고리 선택 부분, default되게 바꿔야 됨 */}
           <div className={write.cate}>
             <div style={{ marginLeft: "330px" }}>
               <label htmlFor="자유">자유</label>
@@ -166,7 +144,7 @@ function Update() {
                 name="category"
                 value="자유"
                 onChange={onChange}
-                defaultChecked
+                checked={board.category === "자유"}
               ></input>
             </div>
             <div>
@@ -177,6 +155,7 @@ function Update() {
                 name="category"
                 value="질문"
                 onChange={onChange}
+                checked={board.category === "질문"}
               ></input>
             </div>
             <div>
@@ -187,6 +166,7 @@ function Update() {
                 name="category"
                 value="정보"
                 onChange={onChange}
+                checked={board.category === "정보"}
               ></input>
             </div>
             <div>
@@ -197,10 +177,12 @@ function Update() {
                 name="category"
                 value="구인구직"
                 onChange={onChange}
+                checked={board.category === "구인구직"}
               ></input>
             </div>
           </div>
         </div>
+
         <input
           name="title"
           type="text"
@@ -210,22 +192,16 @@ function Update() {
           className={write.title}
         />
 
-        <textarea
-          name="content"
-          cols="90"
-          rows="15"
-          value={content.split("\n").map((line) => {
-            return (
-              <div>
-                {line}
-                <br />
-              </div>
-            );
-          })}
-          onChange={onChange}
-          className={write.content}
-          placeholder="새 글의 내용을 작성해주세요."
-        />
+        <Editor
+          ref={editorRef}
+          placeholder="내용을 입력해주세요."
+          previewStyle="vertical"
+          height="340px"
+          initialEditType="wysiwyg"
+          initialValue={board.content}
+          useCommandShortcut={false}
+          onChange={toastui}
+        ></Editor>
 
         <div className={write.button_div}>
           <Button onClick={updateBoard}>수정</Button>

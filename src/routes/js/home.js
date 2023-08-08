@@ -5,18 +5,19 @@ import menu from "../../components/css/navigation_menu.module.css";
 import home from "../css/home.module.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { getBoardListApi } from "../../apis/boardApi";
 
+// 첫 웹사이트 메인페이지
 function Home() {
+  // 게시물 리스트 가져오기
   const [boardlist, setBoardlist] = useState([]);
-
   const getboardlist = async () => {
     try {
-      const resp = await axios.get(
-        "http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/posting"
-      );
+      const resp = await getBoardListApi();
+      console.log("resP:::", resp);
       setBoardlist(resp.data);
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
@@ -24,47 +25,12 @@ function Home() {
     getboardlist();
   }, []);
 
-  // const hi = [
-  //   { title: "HAHAHAHAHAHAHghghghghghgAH", idx: "5", category: "자유" },
-  //   { title: "HIHIHIHIHHIiIIH", idx: "1", category: "정보" },
-  //   { title: "hohohohohohohogogogogogogoho", idx: "2", category: "자유" },
-  //   { title: "hahahahahahaha", idx: "7", category: "자유" },
-  //   { title: "huhuhuhgugughu", idx: "13", category: "정보" },
-  //   {
-  //     title: "pupuppupupupuuppupupupuppupuppu",
-  //     idx: "14",
-  //     category: "구인구직",
-  //   },
-  //   {
-  //     title: "mamamaaa",
-  //     idx: "16",
-  //     category: "구인구직",
-  //   },
-  //   { title: "momooooooooomooomomomommomommomo", idx: "18", category: "질문" },
-  //   { title: "mimiiiimiijmiim", idx: "20", category: "질문" },
-  //   {
-  //     title: "lelellelelelleleleeleeel",
-  //     idx: "24",
-  //     category: "질문",
-  //   },
-  //   {
-  //     title: "gigigigigigiggigigigiggigigiigigig",
-  //     idx: "28",
-  //     category: "자유",
-  //   },
-  //   { title: "dudududududududududduududududddu", idx: "4", category: "자유" },
-  //   {
-  //     title: "ririririrririririririririririr",
-  //     idx: "19",
-  //     category: "구인구직",
-  //   },
-  // ];
-
-  let number_total = 0;
-  let number_free = 0;
-  let number_question = 0;
-  let number_information = 0;
-  let number_job = 0;
+  //홈화면이므로 일정개수만큼만 화면에 보이도록 한다.
+  const [number_total, setNumber_total] = useState(0);
+  const [number_free, setNumber_free] = useState(0);
+  const [number_question, setNumber_question] = useState(0);
+  const [number_information, setNumber_information] = useState(0);
+  const [number_job, setNumber_job] = useState(0);
 
   return (
     <div style={{ width: "100%" }}>
@@ -73,53 +39,26 @@ function Home() {
           position: "relative",
           display: "flex",
           flexDirection: "column",
-          marginLeft: "230px",
-          marginRight: "230px",
+          width: "980px",
+          // marginLeft: "230px",
+          // marginRight: "230px",
+          margin: "0 auto",
         }}
       >
+        {/* 제일 위 로고 부분 */}
         <Navigation />
 
+        {/* 메뉴 부분 */}
         <div className={menu.menu}>
           <div>
             <Link to="/" style={{ textDecoration: "none" }}>
               <Button style={{ color: "#66c109" }}>홈</Button>
             </Link>
           </div>
-          <div className={menu.post}>
+          <div>
             <Link to="/posting" style={{ textDecoration: "none" }}>
-              <Button>
-                게시판 <i class="fa-solid fa-angle-down"></i>
-              </Button>
+              <Button>게시판</Button>
             </Link>
-            <ul className={menu.list}>
-              <Link to="/posting" style={{ textDecoration: "none" }}>
-                <li>전체 게시판</li>
-              </Link>
-              <Link
-                to="/posting/category=자유"
-                style={{ textDecoration: "none" }}
-              >
-                <li>자유 게시판</li>
-              </Link>
-              <Link
-                to="/posting/category=질문"
-                style={{ textDecoration: "none" }}
-              >
-                <li>질문 게시판</li>
-              </Link>
-              <Link
-                to="/posting/category=정보"
-                style={{ textDecoration: "none" }}
-              >
-                <li>정보 게시판</li>
-              </Link>
-              <Link
-                to="/posting/category=구인구직"
-                style={{ textDecoration: "none" }}
-              >
-                <li>구인/구직 게시판</li>
-              </Link>
-            </ul>
           </div>
           <div>
             <Link to="/program" style={{ textDecoration: "none" }}>
@@ -128,16 +67,17 @@ function Home() {
           </div>
           <div>
             <Link to="/" style={{ textDecoration: "none" }}>
-              <Button>멘토멘티신청</Button>
+              <Button>멘토멘티</Button>
             </Link>
           </div>
           <div>
             <Link to="/" style={{ textDecoration: "none" }}>
-              <Button>문의</Button>
+              <Button>마이페이지</Button>
             </Link>
           </div>
         </div>
 
+        {/* 지원 프로그램 부분 */}
         <div className={home.program}>
           <div className={home.program_top}>
             <p>정부 지원 프로그램</p>
@@ -280,11 +220,11 @@ function Home() {
                   </div>
                   <div
                     style={{
-                      width: "114px",
+                      width: "118px",
                       height: "14px",
                       color: "#ADADAD",
                       fontSize: "12px",
-                      marginRight: "10px",
+                      marginRight: "12px",
                     }}
                   >
                     마감 일자 2023.08.13
@@ -342,6 +282,7 @@ function Home() {
           </div>
         </div>
 
+        {/* 게시판 부분 */}
         <div className={home.board_total}>
           <div className={home.board_top}>
             <p>소통 게시판</p>
@@ -354,7 +295,7 @@ function Home() {
               <div style={{ fontSize: "16px", fontWeight: "700" }}>전체</div>
               {boardlist.map((v) => {
                 if (number_total < 10) {
-                  number_total = number_total + 1;
+                  setNumber_total(number_total + 1);
                   return (
                     <div
                       style={{
@@ -375,10 +316,7 @@ function Home() {
             <div className={home.separate_board}>
               <div className={home.separate_board_firstline}>
                 <div className={home.separate_board_part}>
-                  <Link
-                    to="/posting/category=자유"
-                    style={{ textDecoration: "none" }}
-                  >
+                  <Link to="/posting" style={{ textDecoration: "none" }}>
                     <p
                       style={{
                         paddingLeft: "4px",
@@ -391,7 +329,8 @@ function Home() {
                   </Link>
                   {boardlist.map((v) => {
                     if (number_free < 4 && v.category === "자유") {
-                      number_free = number_free + 1;
+                      setNumber_free(number_free + 1);
+
                       return (
                         <div>
                           <div
@@ -411,10 +350,7 @@ function Home() {
                   })}
                 </div>
                 <div className={home.separate_board_part}>
-                  <Link
-                    to="/posting/category=질문"
-                    style={{ textDecoration: "none" }}
-                  >
+                  <Link to="/posting" style={{ textDecoration: "none" }}>
                     <p
                       style={{
                         paddingLeft: "4px",
@@ -427,7 +363,7 @@ function Home() {
                   </Link>
                   {boardlist.map((v) => {
                     if (number_question < 4 && v.category === "질문") {
-                      number_question = number_question + 1;
+                      setNumber_question(number_question + 1);
                       return (
                         <div>
                           <div
@@ -449,10 +385,7 @@ function Home() {
               </div>
               <div className={home.separate_board_secondline}>
                 <div className={home.separate_board_part}>
-                  <Link
-                    to="/posting/category=정보"
-                    style={{ textDecoration: "none" }}
-                  >
+                  <Link to="/posting" style={{ textDecoration: "none" }}>
                     <p
                       style={{
                         paddingLeft: "4px",
@@ -465,7 +398,7 @@ function Home() {
                   </Link>
                   {boardlist.map((v) => {
                     if (number_information < 4 && v.category === "정보") {
-                      number_information = number_information + 1;
+                      setNumber_information(number_information + 1);
                       return (
                         <div>
                           <div
@@ -485,10 +418,7 @@ function Home() {
                   })}
                 </div>
                 <div className={home.separate_board_part}>
-                  <Link
-                    to="/posting/category=구인구직"
-                    style={{ textDecoration: "none" }}
-                  >
+                  <Link to="/posting" style={{ textDecoration: "none" }}>
                     <p
                       style={{
                         paddingLeft: "4px",
@@ -503,7 +433,7 @@ function Home() {
                   </Link>
                   {boardlist.map((v) => {
                     if (number_job < 4 && v.category === "구인구직") {
-                      number_job = number_job + 1;
+                      setNumber_job(number_job + 1);
                       return (
                         <div>
                           <div
@@ -527,6 +457,8 @@ function Home() {
           </div>
         </div>
       </div>
+
+      {/* 가장 아래 footer부분 */}
       <div className={home.footer}>
         <div className={home.footer_left}>
           <Link to="/" style={{ textDecoration: "none" }}>

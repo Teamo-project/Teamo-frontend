@@ -2,6 +2,7 @@ import pro_list from "../../js/program_public";
 import post from "../../../routes/css/program.module.css";
 import { useState } from "react";
 
+// 주관사 공공인 프로그램 보이기
 function Program_pub() {
   const [program, setProgram] = useState(pro_list);
   return (

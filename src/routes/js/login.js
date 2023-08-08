@@ -6,6 +6,7 @@ import googleLogo from "../img/googleLogo.png";
 import naverLogo from "../img/naverLogo.png";
 import { Link } from "react-router-dom";
 
+// 로그인 페이지
 function Login() {
   const GoogleLogin = () => {
     window.location.href =

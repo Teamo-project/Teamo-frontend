@@ -48,6 +48,13 @@
   border: none;
 }
 
+.button Button[data-checked="true"] {
+  background-color: #66c109;
+  color: white;
+  border: 1px solid gray;
+  border: none;
+}
+
 .post {
   margin-top: 56px;
   width: 980px;
@@ -55,9 +62,8 @@
 }
 
 .ten_post {
-  margin-top: 60px;
   height: 600px;
-  overflow-y: auto;
+  overflow-y: scroll;
   width: 980px;
 }
 
@@ -69,4 +75,17 @@
   height: 60px;
   border-top: 1px solid #989898;
   border-bottom: 1px solid #989898;
+}
+
+.search {
+  width: 240px;
+  margin-left: 24px;
+  padding-left: 8px;
+}
+
+.searchbutton {
+  margin-top: 2px;
+  width: 60px;
+  height: 36px;
+  margin-left: 10px;
 }

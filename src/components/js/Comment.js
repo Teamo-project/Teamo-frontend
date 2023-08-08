@@ -4,27 +4,25 @@ import axios from "axios";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { deleteCommentApi } from "../../apis/boardApi";
+import { useSelector } from "react-redux";
 
+// 해당 댓글 내용 보여주기(Board 아래)
 function Comment({ comment_id, post_id, user_id, comment, createDate }) {
   const navigate = useNavigate();
 
-  // 유저 id과 글의user id 가 같을 때 버튼이 보이게
-  // realuser는 redux하기전 진짜 user id
-  const [realuser, setRealuser] = useState("asdf");
+  //로그인 한 user의 user_id
+  const state_userid = useSelector((state) => state.rootReducer.user.user_id);
 
-  const moveToupdateCaption = () => {
+  const moveToupdateComment = () => {
     navigate(`/update/${post_id}/comment/${comment_id}`);
   };
 
-  const deletecaption = async () => {
+  const deleteComment = async () => {
     try {
       let deleteConfirm = window.confirm("댓글을 삭제 하시겠습니까?");
       if (deleteConfirm) {
-        (
-          await axios.delete(
-            `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/posting/${post_id}/comment/${comment_id}`
-          )
-        ).then((res) => {
+        (await deleteCommentApi(post_id, comment_id)).then((res) => {
           alert("댓글이 삭제되었습니다.");
           navigate(`/posting/${post_id}`);
         });
@@ -54,15 +52,15 @@ function Comment({ comment_id, post_id, user_id, comment, createDate }) {
         <div style={{ marginTop: "12px", fontSize: "0.9rem" }}>
           {createDate}
         </div>
-        {realuser === user_id ? (
+        {state_userid === user_id ? (
           <div className={board.caption_btn}>
             <Button
-              onClick={moveToupdateCaption}
+              onClick={moveToupdateComment}
               style={{ marginLeft: "640px" }}
             >
               수정
             </Button>
-            <Button onClick={deletecaption}>삭제</Button>
+            <Button onClick={deleteComment}>삭제</Button>
           </div>
         ) : (
           <div className={board.caption_btn}></div>

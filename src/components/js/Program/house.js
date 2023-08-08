@@ -2,6 +2,7 @@ import pro_list from "../../js/program_public";
 import post from "../../../routes/css/program.module.css";
 import { useState } from "react";
 
+// 카테고리 주거인 프로그램 보이기
 function Program_house() {
   const [program, setProgram] = useState(pro_list);
   return (

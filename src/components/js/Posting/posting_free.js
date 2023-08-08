@@ -1,21 +1,16 @@
-import Navigation from "../navigation";
-import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import post from "../../../../src/routes/css/posting.module.css";
-
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { getBoardListApi } from "../../../apis/boardApi";
 
 function Posting_free() {
+  //모든 게시물들 가져오기
   const [boardlist, setBoardlist] = useState([]);
-
-  let number = 0;
 
   const getboardlist = async () => {
     try {
-      const resp = await axios.get(
-        "http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/posting"
-      );
+      const resp = await getBoardListApi();
       setBoardlist(resp.data);
     } catch (err) {
       console.log(err);
@@ -26,11 +21,14 @@ function Posting_free() {
     getboardlist();
   }, []);
 
+  // 댓글수 number변수(할지 안할지 모름)
+  const [number, setNumber] = useState(0);
+
   return (
     <div className={post.ten_post}>
+      {/* 게시물 카테고리 자유인 게시물들 가져오기 */}
       {boardlist.map((board) => {
-        if (board.category == "자유") {
-          number = number + 1;
+        if (board.category === "자유") {
           return (
             <Link
               to={`/posting/${board.posting_id}`}
@@ -58,7 +56,7 @@ function Posting_free() {
                     padding: "0px 28px",
                   }}
                 >
-                  {number}
+                  {board.posting_id}
                 </div>
                 <div
                   style={{
@@ -100,38 +98,25 @@ function Posting_free() {
                     fontSize: "16px",
                     justifyContent: "center",
                     padding: "0px 8px",
-                    marginLeft: "80px",
+                    marginLeft: "50px",
                   }}
                 >
-                  {board.user_id}
+                  익명{board.user_id}
                 </div>
                 <div
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    width: "73px",
+                    width: "146px",
                     height: "32px",
                     fontWeight: "700",
                     fontSize: "16px",
-                    justifyContent: "center",
+                    justifyContent: "flex-start",
                     padding: "0px 4px",
+                    marginLeft: "8px",
                   }}
                 >
                   {board.createDate}
-                </div>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    width: "31px",
-                    height: "32px",
-                    fontWeight: "700",
-                    fontSize: "16px",
-                    justifyContent: "center",
-                    padding: "0px 26px 0px 26px",
-                  }}
-                >
-                  댓글수
                 </div>
               </div>
             </Link>
