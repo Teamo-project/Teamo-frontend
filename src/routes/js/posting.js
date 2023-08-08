@@ -160,7 +160,7 @@ function Posting() {
             </Link>
           </div>
           <div>
-            <Link to="/" style={{ textDecoration: "none" }}>
+            <Link to="/postlist" style={{ textDecoration: "none" }}>
               <Button>멘토멘티</Button>
             </Link>
           </div>
@@ -274,7 +274,7 @@ function Posting() {
               </div>
             </div>
 
-            {/* 카테고리 선택 시 해당 게시물들 보이도록 설정 */}
+            {/* 카테고리 선택 시 해당 게시물들 보이도록 설정
             {number === "0" ? (
               <Posting_total />
             ) : number === "1" ? (
@@ -388,7 +388,7 @@ function Posting() {
                   }
                 })}
               </div>
-            )}
+            )} */}
 
             {/* 검색어 입력 및 글쓰기 부분 */}
             <div style={{ display: "flex", marginTop: "20px" }}>

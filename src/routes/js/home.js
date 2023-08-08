@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { getBoardListApi } from "../../apis/boardApi";
 
-
 // 첫 웹사이트 메인페이지
 function Home() {
   // 게시물 리스트 가져오기
@@ -67,7 +66,7 @@ function Home() {
             </Link>
           </div>
           <div>
-            <Link to="/" style={{ textDecoration: "none" }}>
+            <Link to="/postlist" style={{ textDecoration: "none" }}>
               <Button>멘토멘티</Button>
             </Link>
           </div>
@@ -76,7 +75,6 @@ function Home() {
               <Button>문의</Button>
             </Link>
           </div>
-
         </div>
 
         {/* 지원 프로그램 부분 */}
@@ -295,7 +293,7 @@ function Home() {
           <div className={home.board}>
             <div className={home.full_board}>
               <div style={{ fontSize: "16px", fontWeight: "700" }}>전체</div>
-              {boardlist.map((v) => {
+              {/* {boardlist.map((v) => {
                 if (number_total < 10) {
                   setNumber_total(number_total + 1);
                   return (
@@ -313,7 +311,7 @@ function Home() {
                     </div>
                   );
                 }
-              })}
+              })} */}
             </div>
             <div className={home.separate_board}>
               <div className={home.separate_board_firstline}>
@@ -329,7 +327,7 @@ function Home() {
                       <span style={{ marginLeft: "10px" }}>자유 게시판</span>
                     </p>
                   </Link>
-                  {boardlist.map((v) => {
+                  {/* {boardlist.map((v) => {
                     if (number_free < 4 && v.category === "자유") {
                       setNumber_free(number_free + 1);
 
@@ -349,7 +347,7 @@ function Home() {
                         </div>
                       );
                     }
-                  })}
+                  })} */}
                 </div>
                 <div className={home.separate_board_part}>
                   <Link to="/posting" style={{ textDecoration: "none" }}>
@@ -363,7 +361,7 @@ function Home() {
                       <span style={{ marginLeft: "10px" }}>질문 게시판</span>
                     </p>
                   </Link>
-                  {boardlist.map((v) => {
+                  {/* {boardlist.map((v) => {
                     if (number_question < 4 && v.category === "질문") {
                       setNumber_question(number_question + 1);
                       return (
@@ -382,7 +380,7 @@ function Home() {
                         </div>
                       );
                     }
-                  })}
+                  })} */}
                 </div>
               </div>
               <div className={home.separate_board_secondline}>
@@ -398,7 +396,7 @@ function Home() {
                       <span style={{ marginLeft: "10px" }}>정보 게시판</span>
                     </p>
                   </Link>
-                  {boardlist.map((v) => {
+                  {/* {boardlist.map((v) => {
                     if (number_information < 4 && v.category === "정보") {
                       setNumber_information(number_information + 1);
                       return (
@@ -417,7 +415,7 @@ function Home() {
                         </div>
                       );
                     }
-                  })}
+                  })} */}
                 </div>
                 <div className={home.separate_board_part}>
                   <Link to="/posting" style={{ textDecoration: "none" }}>
@@ -433,7 +431,7 @@ function Home() {
                       </span>
                     </p>
                   </Link>
-                  {boardlist.map((v) => {
+                  {/* {boardlist.map((v) => {
                     if (number_job < 4 && v.category === "구인구직") {
                       setNumber_job(number_job + 1);
                       return (
@@ -452,7 +450,7 @@ function Home() {
                         </div>
                       );
                     }
-                  })}
+                  })} */}
                 </div>
               </div>
             </div>

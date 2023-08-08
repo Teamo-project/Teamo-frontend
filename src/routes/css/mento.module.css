@@ -1,11 +1,11 @@
 .searchBox {
+  position: absolute;
   display: flex;
   width: 100vw;
   height: 100px;
-  margin-top: 150px;
+  margin-top: 250px;
   background-color: #d9d9d9;
-  text-align: center;
-  justify-content: center;
+  left: -44%;
 }
 .searchBoxContnet {
   margin: auto;
@@ -32,6 +32,7 @@
   width: 980px;
 }
 .posts {
+  margin-top: 350px;
   font-weight: 700;
   font-size: 15px;
   color: #545454;
