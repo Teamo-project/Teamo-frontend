@@ -9,7 +9,6 @@ import CreatePost from "./routes/js/createPost";
 import ViewPost from "./routes/js/viewPost";
 import EditPost from "./routes/js/editPost";
 
-
 import BoardDetail from "./routes/js/posting_detail";
 import Write from "./routes/js/posting_write";
 import Update from "./routes/js/update_board";
@@ -18,7 +17,6 @@ import Program from "./routes/js/support_program";
 
 function App() {
   return (
-
     <div style={{ minWidth: "1440px" }}>
       <Router>
         <Routes>
@@ -36,18 +34,15 @@ function App() {
           <Route
             path="/update/:post_id/comment/:comment_id"
             element={<Modifycomment />}
-
- <Route path="/mypage" element={<Mypage />}></Route>
-        <Route path="/postlist" element={<Mento />}></Route>
-        <Route path="/createpost" element={<CreatePost />}></Route>
-        <Route path="/viewpost" element={<ViewPost />}></Route>
-        <Route path="/editpost" element={<EditPost />}></Route>
           ></Route>
+          <Route path="/mypage" element={<Mypage />}></Route>
+          <Route path="/postlist" element={<Mento />}></Route>
+          <Route path="/createpost" element={<CreatePost />}></Route>
+          <Route path="/viewpost" element={<ViewPost />}></Route>
+          <Route path="/editpost" element={<EditPost />}></Route>
         </Routes>
       </Router>
     </div>
-
-
   );
 }
 
