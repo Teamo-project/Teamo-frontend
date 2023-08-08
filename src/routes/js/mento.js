@@ -62,6 +62,8 @@ function mento() {
             </Link>
           </div>
         </div>
+      </div>
+      <div>
         <div className={mentoStyle.searchBox}>
           <div className={mentoStyle.searchBoxContnet}>
             <select className={mentoStyle.classify}>
