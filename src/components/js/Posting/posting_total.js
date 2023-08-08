@@ -21,52 +21,52 @@ function Posting_total() {
   }, []);
 
   // 아래는 예시화면
-  // const hi = [
-  //   {
-  //     posting_id: "3",
-  //     createDate: "2022-11-33 ~~~~~~~~~~",
-  //     user_id: "3",
-  //     title: "제목3",
-  //     content: "내용3",
-  //     category: "자유",
-  //   },
-  //   {
-  //     posting_id: "2",
-  //     createDate: "2022-11-22",
-  //     user_id: "유저2",
-  //     title: "제2",
-  //     content: "내용2",
-  //     category: "정보",
-  //   },
-  //   {
-  //     posting_id: "1",
-  //     createDate: "2022-21-11",
-  //     user_id: "유저1",
-  //     title: "제목1",
-  //     content: "내용1",
-  //     category: "구인구직",
-  //   },
-  //   {
-  //     posting_id: "4",
-  //     createDate: "2022-21-11",
-  //     user_id: "유저4",
-  //     title: "제목4",
-  //     content: "내용4",
-  //     category: "질문",
-  //   },
-  //   {
-  //     posting_id: "5",
-  //     createDate: "2022-21-11",
-  //     user_id: "익명5",
-  //     title: "제목5",
-  //     content: "내용5",
-  //     category: "자유",
-  //   },
-  // ];
+  const hi = [
+    {
+      posting_id: "3",
+      createDate: "2022-11-33 ~~~~~~~~~~",
+      user_id: "3",
+      title: "제목3",
+      content: "내용3",
+      category: "자유",
+    },
+    {
+      posting_id: "2",
+      createDate: "2022-11-22",
+      user_id: "유저2",
+      title: "제2",
+      content: "내용2",
+      category: "정보",
+    },
+    {
+      posting_id: "1",
+      createDate: "2022-21-11",
+      user_id: "유저1",
+      title: "제목1",
+      content: "내용1",
+      category: "구인구직",
+    },
+    {
+      posting_id: "4",
+      createDate: "2022-21-11",
+      user_id: "유저4",
+      title: "제목4",
+      content: "내용4",
+      category: "질문",
+    },
+    {
+      posting_id: "5",
+      createDate: "2022-21-11",
+      user_id: "익명5",
+      title: "제목5",
+      content: "내용5",
+      category: "자유",
+    },
+  ];
   // 모든 게시물 보이기
   return (
     <div className={post.ten_post}>
-      {boardlist.map((board) => {
+      {hi.map((board) => {
         return (
           <Link
             to={`/posting/${board.posting_id}`}
