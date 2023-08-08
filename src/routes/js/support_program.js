@@ -87,7 +87,7 @@ function Program() {
         </div>
         <div>
           <Link to="/" style={{ textDecoration: "none" }}>
-            <Button>마이페이지</Button>
+            <Button>문의</Button>
           </Link>
         </div>
       </div>

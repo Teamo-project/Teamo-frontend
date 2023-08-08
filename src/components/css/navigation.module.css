@@ -66,14 +66,22 @@
   top: 57px;
 }
 
-.logout {
+.mybutton {
   border: none;
   color: #66c109;
   background-color: white;
-  font-size: 20px;
+  color: #66c109;
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
   font-weight: 700;
-  line-height: 21px;
-  margin-left: 36px;
-  letter-spacing: 0em;
-  text-align: left;
+  line-height: normal;
+}
+
+.myimg {
+  display: flex;
+
+  width: 19.038px;
+  height: 18.5px;
+  flex-shrink: 0;
 }

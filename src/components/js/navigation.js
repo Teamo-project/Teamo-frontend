@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/slices/userSlice";
+import profile from "../img/Profile.png";
+import log from "../img/Logout.png";
 
 // 제일 위 로고쪽 부분
 function Navigation() {
@@ -38,9 +40,19 @@ function Navigation() {
             <Button className={navigation.login}>로그인 / 회원가입</Button>
           </Link>
         ) : (
-          <Button className={navigation.logout} onClick={LogOut}>
-            로그아웃
-          </Button>
+          <div
+            style={{ display: "flex", width: "270px", alignItems: "center" }}
+          >
+            <img src={profile} className={navigation.myimg} />
+            <Link to="/" style={{ textDecoration: "none" }}>
+              <Button className={navigation.mybutton}>마이페이지</Button>
+            </Link>
+            <div style={{ padding: "8px" }}>/</div>
+            <img src={log} className={navigation.myimg} />
+            <Button className={navigation.mybutton} onClick={LogOut}>
+              로그아웃
+            </Button>
+          </div>
         )}
       </div>
     </div>
