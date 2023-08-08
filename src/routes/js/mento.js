@@ -18,7 +18,7 @@ function mento() {
       <button className={mentoStyle.pageBtn}>{num}</button>
     );
   }
-  axios.get("URL");
+
   return (
     <div>
       <Navigation re="mento" />
@@ -41,15 +41,16 @@ function mento() {
         </div>
         <hr className={mentoStyle.line} />
 
-        <Posts />
-        <Posts />
-        <Posts />
-        <Posts />
-        <Posts />
-        <Posts />
-        <Posts />
-        <Posts />
-        <Posts />
+        <Posts index={0} />
+        <Posts index={1} />
+        <Posts index={2} />
+        <Posts index={3} />
+        <Posts index={4} />
+        <Posts index={5} />
+        <Posts index={6} />
+        <Posts index={7} />
+        <Posts index={8} />
+        <Posts index={9} />
 
         <div className={mentoStyle.buttonBox}>
           <Link to={"/createpost"} className={mentoStyle.wirteBtn}>
@@ -68,5 +69,4 @@ function mento() {
     </div>
   );
 }
-
 export default mento;

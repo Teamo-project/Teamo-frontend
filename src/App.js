@@ -7,6 +7,8 @@ import Mypage from "./routes/js/mypage";
 import Mento from "./routes/js/mento";
 import CreatePost from "./routes/js/createPost";
 import ViewPost from "./routes/js/viewPost";
+import EditPost from "./routes/js/editPost";
+
 
 import BoardDetail from "./routes/js/posting_detail";
 import Write from "./routes/js/posting_write";
@@ -34,10 +36,17 @@ function App() {
           <Route
             path="/update/:post_id/comment/:comment_id"
             element={<Modifycomment />}
+
+ <Route path="/mypage" element={<Mypage />}></Route>
+        <Route path="/postlist" element={<Mento />}></Route>
+        <Route path="/createpost" element={<CreatePost />}></Route>
+        <Route path="/viewpost" element={<ViewPost />}></Route>
+        <Route path="/editpost" element={<EditPost />}></Route>
           ></Route>
         </Routes>
       </Router>
     </div>
+
 
   );
 }
