@@ -5,6 +5,9 @@ import applyPopup from "../../components/js/applyPopup";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import menu from "../../components/css/navigation_menu.module.css";
+import { Button } from "react-bootstrap";
+
 function ViewPost(id) {
   const [info, setInfo] = useState({
     title: "",
@@ -71,46 +74,85 @@ function ViewPost(id) {
 
   return (
     <div>
-      <Navigation re="mento" />
+      <div
+        style={{
+          position: "relative",
+          display: "flex",
+          flexDirection: "column",
+          width: "980px",
+          // marginLeft: "230px",
+          // marginRight: "230px",
+          margin: "0 auto",
+        }}
+      >
+        <Navigation />
+        <div className={menu.menu}>
+          <div>
+            <Link to="/" style={{ textDecoration: "none" }}>
+              <Button style={{ color: "none" }}>홈</Button>
+            </Link>
+          </div>
+          <div>
+            <Link to="/posting" style={{ textDecoration: "none" }}>
+              <Button>게시판</Button>
+            </Link>
+          </div>
+          <div>
+            <Link to="/program" style={{ textDecoration: "none" }}>
+              <Button>프로그램</Button>
+            </Link>
+          </div>
+          <div>
+            <Link to="/postlist" style={{ textDecoration: "none" }}>
+              <Button style={{ color: "#66c109" }}>멘토멘티</Button>
+            </Link>
+          </div>
+          <div>
+            <Link to="/" style={{ textDecoration: "none" }}>
+              <Button>문의</Button>
+            </Link>
+          </div>
+        </div>
 
-      <div className={post.postBox}>
-        <div className={post.postTitle}>
-          <p className={post.titleText}>{info.title}</p>
-        </div>
-        <hr className={post.line}></hr>
-        <div className={post.subTitleBox}>
-          {subTitleBack("등록자명", 0)} {subTitleBack("최원서", 1)}
-          {subTitleBack("등록일", 0)} {subTitleBack("2023.07.30", 1)}
-        </div>
-        <hr className={post.line}></hr>
-        <div className={post.subTitleBox}>
-          {subTitleBack("분류", 0)} {subTitleBack(info.category, 1)}
-          {subTitleBack("조회수", 0)} {subTitleBack("20", 1)}
-        </div>
-        <hr className={post.line}></hr>
+        <div className={post.postBox}>
+          <div className={post.postTitle}>
+            <p className={post.titleText}>{info.title}</p>
+          </div>
+          <hr className={post.line}></hr>
+          <div className={post.subTitleBox}>
+            {subTitleBack("등록자명", 0)} {subTitleBack("최원서", 1)}
+            {subTitleBack("등록일", 0)} {subTitleBack("2023.07.30", 1)}
+          </div>
+          <hr className={post.line}></hr>
+          <div className={post.subTitleBox}>
+            {subTitleBack("분류", 0)} {subTitleBack(info.category, 1)}
+            {subTitleBack("조회수", 0)} {subTitleBack("20", 1)}
+          </div>
+          <hr className={post.line}></hr>
 
-        <div className={post.mainText}>
-          {info.description}
-          <div className={post.recruitment}>모집인원 3 / {info.limited}</div>
-        </div>
-        <div className={post.mentoring}>
-          <p className={post.mentoringText}>멘토링 연결 신청</p>
+          <div className={post.mainText}>
+            {info.description}
+            <div className={post.recruitment}>모집인원 3 / {info.limited}</div>
+          </div>
+          <div className={post.mentoring}>
+            <p className={post.mentoringText}>멘토링 연결 신청</p>
 
-          <button className={post.mentoringBtn} onClick={handlePopup}>
-            신청하러가기
-          </button>
-          <Link to="/editpost">
-            <button className={post.mentoringBtn} onClick={editRequest}>
-              Edit
+            <button className={post.mentoringBtn} onClick={handlePopup}>
+              신청하러가기
             </button>
-          </Link>
-          <button className={post.mentoringBtn} onClick={editRequest}>
-            접수 마감
-          </button>
+            <Link to="/editpost">
+              <button className={post.mentoringBtn} onClick={editRequest}>
+                Edit
+              </button>
+            </Link>
+            <button className={post.mentoringBtn} onClick={editRequest}>
+              접수 마감
+            </button>
+          </div>
         </div>
+        {isPopup ? "POPUP" : ""}
+        <Footer />
       </div>
-      {isPopup ? "POPUP" : ""}
-      <Footer />
     </div>
   );
 }

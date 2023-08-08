@@ -8,7 +8,7 @@ function Posts(index) {
     category: "",
     title: "",
     id: "",
-    registDate: "",
+    createDate: "",
     userName: "",
     count: "",
   });
