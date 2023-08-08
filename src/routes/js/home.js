@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { getBoardListApi } from "../../apis/boardApi";
 
+
 // 첫 웹사이트 메인페이지
 function Home() {
   // 게시물 리스트 가져오기
@@ -75,6 +76,7 @@ function Home() {
               <Button>문의</Button>
             </Link>
           </div>
+
         </div>
 
         {/* 지원 프로그램 부분 */}

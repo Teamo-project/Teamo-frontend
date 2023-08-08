@@ -6,7 +6,6 @@ import googleLogo from "../img/googleLogo.png";
 import naverLogo from "../img/naverLogo.png";
 import { Link } from "react-router-dom";
 
-// 로그인 페이지
 function Login() {
   const GoogleLogin = () => {
     window.location.href =
@@ -21,11 +20,13 @@ function Login() {
             <img className={login.man} src={man_logo} />
             <p className={login.txt}>홀로서기</p>
           </Link>
+
         </div>
         <div className={login.lineBox}>
           <hr className={login.line} />
           <hr className={login.line2} />
         </div>
+
         <div className={login.btnBox}>
           <button type="button" className={`${login.Button} ${login.kakao}`}>
             <div className={login.buttonText}>

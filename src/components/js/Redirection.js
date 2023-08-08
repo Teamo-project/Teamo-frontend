@@ -1,5 +1,6 @@
 import { Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
+
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../redux/slices/userSlice";
 import { useEffect, useState } from "react";
@@ -46,6 +47,7 @@ function Redirection() {
     navigate("/");
     console.log(`엑세스토큰 : ${accessToken} 을 저장했습니다.`);
   }, [accessToken, dispatch]);
+
 
   return <h3>로딩중입니다.</h3>;
 }

@@ -3,6 +3,10 @@ import Home from "./routes/js/home";
 import Login from "./routes/js/login";
 import Redirection from "./components/js/Redirection";
 import Posting from "./routes/js/posting";
+import Mypage from "./routes/js/mypage";
+import Mento from "./routes/js/mento";
+import CreatePost from "./routes/js/createPost";
+import ViewPost from "./routes/js/viewPost";
 
 import BoardDetail from "./routes/js/posting_detail";
 import Write from "./routes/js/posting_write";
@@ -12,6 +16,7 @@ import Program from "./routes/js/support_program";
 
 function App() {
   return (
+
     <div style={{ minWidth: "1440px" }}>
       <Router>
         <Routes>
@@ -33,6 +38,7 @@ function App() {
         </Routes>
       </Router>
     </div>
+
   );
 }
 
