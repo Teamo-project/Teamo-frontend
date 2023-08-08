@@ -11,11 +11,14 @@ function CreatePost() {
   const [mainText, setMainText] = useState("");
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
+  const [recruit, setRecruit] = useState("");
   const today = new Date();
   const navigate = useNavigate();
   const registDay =
     today.getFullYear() + "." + (today.getMonth() + 1) + "." + today.getDate();
-
+  const handleRecruit = (e) => {
+    setRecruit(e.target.value);
+  };
   const handleMainText = (e) => {
     setMainText(e.target.value);
   };
@@ -35,7 +38,7 @@ function CreatePost() {
           title: title,
           description: mainText,
           category: category,
-          limited: 5,
+          limited: recruit,
         },
         {
           headers: {
@@ -136,8 +139,26 @@ function CreatePost() {
               <option value={"상담"}>상담</option>
               <option value={"기타"}>기타</option>
             </select>
-            {subTitleBack("", 0)}
-            {subTitleBack("", 1)}
+            {subTitleBack("모집 ", 0)}
+            <select
+              onClick={handleRecruit}
+              className={post.subTitle}
+              style={{ width: "270px" }}
+            >
+              <option value="" disabled selected>
+                ㅣ눤 선택
+              </option>
+              <option value={"1"}>1</option>
+              <option value={"2"}>2</option>
+              <option value={"3"}>3</option>
+              <option value={"4"}>4</option>
+              <option value={"5"}>5</option>
+              <option value={"6"}>6</option>
+              <option value={"7"}>7</option>
+              <option value={"8"}>8</option>
+              <option value={"9"}>9</option>
+              <option value={"10"}>10</option>
+            </select>
           </div>
           <hr className={post.line}></hr>
 

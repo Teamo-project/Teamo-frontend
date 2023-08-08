@@ -9,11 +9,10 @@ function Posts(index) {
     title: "",
     id: "",
     createDate: "",
-    userName: "",
+    creatorName: "",
     count: "",
   });
-
-  const getMentoringList = () => {
+  useEffect(() => {
     axios
       .get(
         "http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring/list?page=1",
@@ -29,19 +28,18 @@ function Posts(index) {
           category: res.data.content[index.index].category,
           title: res.data.content[index.index].title,
           id: res.data.content[index.index].id,
-          registDate: res.data.content[index.index].registDate,
-          userName: res.data.content[index.index].userName,
+          createDate: res.data.content[index.index].createDate,
+          creatorName: res.data.content[index.index].creatorName,
+          count: res.data.content[index.index].count,
         });
       })
       .catch(function (res) {
         console.log(res);
       });
-  };
+  }, []);
 
   return (
     <div>
-      {getMentoringList()}
-
       <div className={mentoStyle.postsContent}>
         <div className={mentoStyle.postsContents}>
           <flex style={{ marginRight: "42px" }}>{postInfo.id}</flex>{" "}
@@ -52,8 +50,8 @@ function Posts(index) {
         </div>
 
         <div className={mentoStyle.postsContents}>
-          <flex style={{ marginRight: "30px" }}>{postInfo.userName}</flex>{" "}
-          <flex style={{ marginRight: "30px" }}>{postInfo.registDate}</flex>{" "}
+          <flex style={{ marginRight: "30px" }}>{postInfo.creatorName}</flex>{" "}
+          <flex style={{ marginRight: "30px" }}>{postInfo.createDate}</flex>{" "}
           <flex style={{ marginRight: "15px" }}>{postInfo.count}</flex>
         </div>
       </div>

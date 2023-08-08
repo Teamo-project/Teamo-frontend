@@ -14,12 +14,14 @@ function ViewPost(id) {
     description: "",
     category: "",
     limited: "",
+    name: "",
+    count: "",
   });
   const [count, setCount] = useState("");
   useEffect(() => {
     axios
       .get(
-        `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring/${2}`
+        `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring/1`
       )
       .then(function (res) {
         setInfo({
@@ -27,6 +29,8 @@ function ViewPost(id) {
           description: res.data.description,
           category: res.data.category,
           limited: res.data.limited,
+          name: res.data.mentorInfo.name,
+          count: res.data.count,
         });
         console.log(info, "zzz");
       })
@@ -151,8 +155,8 @@ function ViewPost(id) {
           </div>
         </div>
         {isPopup ? "POPUP" : ""}
-        <Footer />
       </div>
+      <Footer />
     </div>
   );
 }
