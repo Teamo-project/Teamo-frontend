@@ -11,7 +11,7 @@ import log from "../img/Logout.png";
 
 // 제일 위 로고쪽 부분
 function Navigation(prop) {
-  const token = useSelector((state) => state.rootReducer.user.user_token);
+  const token = useSelector((state) => state.rootReducer.user.userToken);
 
   const dispatch = useDispatch();
 

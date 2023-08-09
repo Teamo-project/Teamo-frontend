@@ -7,7 +7,11 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import menu from "../../components/css/navigation_menu.module.css";
 import { Button } from "react-bootstrap";
+import { useSelector } from "react-redux";
 function CreatePost() {
+  const accessToken = localStorage.token;
+  console.log(accessToken);
+  const registor = useSelector((state) => state.rootReducer.user.userName);
   const [mainText, setMainText] = useState("");
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
@@ -42,7 +46,7 @@ function CreatePost() {
         },
         {
           headers: {
-            Authorization: "Bearer debug",
+            Authorization: `Bearer ${accessToken}`,
           },
         }
       )
@@ -71,6 +75,7 @@ function CreatePost() {
   };
   return (
     <div>
+      {console.log(registor, "zz")}
       <div
         style={{
           position: "relative",
@@ -121,7 +126,7 @@ function CreatePost() {
           </div>
           <hr className={post.line}></hr>
           <div className={post.subTitleBox}>
-            {subTitleBack("등록자명", 0)} {subTitleBack("최원서", 1)}
+            {subTitleBack("등록자명", 0)} {subTitleBack(registor, 1)}
             {subTitleBack("등록일", 0)} {subTitleBack(registDay, 1)}
           </div>
           <hr className={post.line}></hr>

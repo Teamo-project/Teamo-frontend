@@ -77,7 +77,9 @@
   font-weight: 700;
   line-height: normal;
 }
-
+.mybutton:hover {
+  cursor: pointer;
+}
 .myimg {
   display: flex;
 
