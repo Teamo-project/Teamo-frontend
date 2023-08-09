@@ -21,7 +21,7 @@ function ViewPost(id) {
   useEffect(() => {
     axios
       .get(
-        `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring/1`
+        `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring/${id}`
       )
       .then(function (res) {
         setInfo({
