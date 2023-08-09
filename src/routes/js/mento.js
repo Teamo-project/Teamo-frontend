@@ -11,10 +11,6 @@ import { useState } from "react";
 function Mento() {
   const [page, setPage] = useState(1);
 
-  const handlePageChange = (page) => {
-    setPage(page);
-    console.log(page);
-  };
   function postBtn(num, center) {
     console.log(center);
     return center ? (
@@ -28,7 +24,27 @@ function Mento() {
       <button className={mentoStyle.pageBtn}>{num}</button>
     );
   }
-
+  const pages = (
+    <div>
+      <Posts index={0} page={page} />
+      <Posts index={1} page={page} />
+      <Posts index={2} page={page} />
+      <Posts index={3} page={page} />
+      <Posts index={4} page={page} />
+      <Posts index={5} page={page} />
+      <Posts index={6} page={page} />
+      <Posts index={7} page={page} />
+      <Posts index={8} page={page} />
+      <Posts index={9} page={page} />
+    </div>
+  );
+  const handlePageChange = (page) => {
+    setPage(page);
+    {
+      pages;
+    }
+    console.log(page);
+  };
   return (
     <div>
       <div
@@ -91,17 +107,7 @@ function Mento() {
           </div>
           <hr className={mentoStyle.line} />
 
-          <Posts index={0} />
-          <Posts index={1} />
-          <Posts index={2} />
-          <Posts index={3} />
-          <Posts index={4} />
-          <Posts index={5} />
-          <Posts index={6} />
-          <Posts index={7} />
-          <Posts index={8} />
-          <Posts index={9} />
-
+          {pages}
           <div className={mentoStyle.buttonBox}>
             <Link to={"/createpost"} className={mentoStyle.wirteBtn}>
               <p style={{ margin: "auto" }}>글쓰기</p>

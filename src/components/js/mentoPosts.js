@@ -4,6 +4,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 function Posts(index) {
+  const accessToken = localStorage.token;
+  const nowPage = index.page;
+
   const [postInfo, setPostInfo] = useState({
     category: "",
     title: "",
@@ -15,10 +18,10 @@ function Posts(index) {
   useEffect(() => {
     axios
       .get(
-        "http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring/list?page=1",
+        `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring/list?page=${nowPage}`,
         {
           headers: {
-            Authorization: "Bearer debug",
+            Authorization: accessToken,
           },
         }
       )

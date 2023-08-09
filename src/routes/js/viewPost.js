@@ -4,11 +4,15 @@ import post from "../css/post.module.css";
 import applyPopup from "../../components/js/applyPopup";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import menu from "../../components/css/navigation_menu.module.css";
 import { Button } from "react-bootstrap";
 
-function ViewPost(id) {
+function ViewPost() {
+  const accessToken = localStorage.token;
+  const postingId = useParams().postingId;
+
+  console.log(postingId);
   const [info, setInfo] = useState({
     title: "",
     description: "",
@@ -21,7 +25,7 @@ function ViewPost(id) {
   useEffect(() => {
     axios
       .get(
-        `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring/${id}`
+        `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring/${postingId}`
       )
       .then(function (res) {
         setInfo({
@@ -65,7 +69,7 @@ function ViewPost(id) {
         },
         {
           headers: {
-            Authorization: "Bearer debug",
+            Authorization: `Bearer ${accessToken}`,
           },
         }
       )
@@ -78,6 +82,7 @@ function ViewPost(id) {
 
   return (
     <div>
+      {console.log(postingId)}
       <div
         style={{
           position: "relative",
