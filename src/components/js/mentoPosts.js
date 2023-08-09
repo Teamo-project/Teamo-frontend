@@ -44,14 +44,16 @@ function Posts(index) {
         <div className={mentoStyle.postsContents}>
           <flex style={{ marginRight: "42px" }}>{postInfo.id}</flex>{" "}
           <flex> {postInfo.category}</flex>
-          <Link to="/viewpost" className={mentoStyle.linkPage}>
+          <Link to={`/viewpost/${postInfo.id}`} className={mentoStyle.linkPage}>
             <span>{postInfo.title}</span>
           </Link>
         </div>
 
         <div className={mentoStyle.postsContents}>
           <flex style={{ marginRight: "30px" }}>{postInfo.creatorName}</flex>{" "}
-          <flex style={{ marginRight: "30px" }}>{postInfo.createDate}</flex>{" "}
+          <flex style={{ marginRight: "30px" }}>
+            {postInfo.createDate.substring(0, 10)}
+          </flex>{" "}
           <flex style={{ marginRight: "15px" }}>{postInfo.count}</flex>
         </div>
       </div>

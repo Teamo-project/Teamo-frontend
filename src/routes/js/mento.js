@@ -6,7 +6,15 @@ import { Link } from "react-router-dom";
 import menu from "../../components/css/navigation_menu.module.css";
 import { Button } from "react-bootstrap";
 import axios from "axios";
-function mento() {
+import Pagination from "react-js-pagination";
+import { useState } from "react";
+function Mento() {
+  const [page, setPage] = useState(1);
+
+  const handlePageChange = (page) => {
+    setPage(page);
+    console.log(page);
+  };
   function postBtn(num, center) {
     console.log(center);
     return center ? (
@@ -99,12 +107,23 @@ function mento() {
               <p style={{ margin: "auto" }}>글쓰기</p>
             </Link>
           </div>
+
           <div className={mentoStyle.pageNum}>
-            {postBtn("◀")}
+            <Pagination
+              activePage={page}
+              itemsCountPerPage={10}
+              totalItemsCount={450}
+              pageRangeDisplayed={5}
+              prevPageText={"‹"}
+              nextPageText={"›"}
+              onChange={handlePageChange}
+              className={mentoStyle.pagination}
+            />
+            {/* {postBtn("◀")}
             {postBtn("1")}
             {postBtn("2", true)}
             {postBtn("3")}
-            {postBtn("▶")}
+            {postBtn("▶")} */}
           </div>
         </div>
       </div>
@@ -112,4 +131,4 @@ function mento() {
     </div>
   );
 }
-export default mento;
+export default Mento;
