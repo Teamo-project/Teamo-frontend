@@ -29,14 +29,14 @@ function Redirection() {
       )
       .then((res) => {
         localStorage.setItem("token", accessToken);
-
+        console.log(res);
         dispatch(
           login({
-            user_id: res.data.id,
-            user_token: accessToken,
-            user_email: res.data.email,
-            user_image: res.data.img,
-            user_name: res.data.name,
+            userId: res.data.id,
+            userToken: accessToken,
+            userEmail: res.data.email,
+            userImage: res.data.img,
+            userName: res.data.name,
           })
         );
       })
@@ -47,7 +47,6 @@ function Redirection() {
     navigate("/");
     console.log(`엑세스토큰 : ${accessToken} 을 저장했습니다.`);
   }, [accessToken, dispatch]);
-
 
   return <h3>로딩중입니다.</h3>;
 }

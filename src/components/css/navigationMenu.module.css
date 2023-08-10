@@ -1,8 +1,9 @@
 .menu {
+  display: flex;
   position: absolute;
   width: 100%;
   top: 180px;
-  display: flex;
+  justify-content: center;
 }
 
 .menu div {
@@ -13,7 +14,7 @@
 }
 
 .menu Button {
-  background-color: white;
+  background-color: #fafafa;
   border: none;
   font-size: 28px;
   font-weight: 700;

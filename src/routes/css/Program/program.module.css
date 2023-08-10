@@ -3,7 +3,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 980px;
+  width: 1180px;
 }
 
 .box {
@@ -18,35 +18,35 @@
   cursor: pointer;
 }
 
-.first_button {
+.firstButton {
   border: 1px solid lightgray;
   border-radius: 10px;
   padding: 10px;
   margin-top: 270px;
-  width: 980px;
+  width: 1180px;
 }
 
-.second_button {
+.secondButton {
   margin-top: 10px;
   border: 1px solid lightgray;
   border-radius: 10px;
   padding: 10px;
 
-  width: 980px;
+  width: 1180px;
 }
 
-.first_button span {
+.firstButton span {
   margin-left: 10px;
   margin-right: 40px;
 }
 
-.second_button span {
+.secondButton span {
   margin-left: 10px;
   margin-right: 24px;
 }
 
-.first_button Button,
-.second_button Button {
+.firstButton Button,
+.secondButton Button {
   margin-left: 20px;
   cursor: pointer;
 
@@ -56,16 +56,16 @@
   border: 1px solid gray;
 }
 
-.first_button Button:focus,
-.second_button Button:focus {
+.firstButton Button:focus,
+.secondButton Button:focus {
   background-color: #66c109;
   color: white;
   border: 1px solid gray;
   border: none;
 }
 
-.first_button Button[data-checked="true"],
-.second_button Button:focus {
+.firstButton Button[data-checked="true"],
+.secondButton Button:focus {
   background-color: #66c109;
   color: white;
   border: 1px solid gray;

@@ -1,12 +1,11 @@
-import Navigation from "../../components/js/navigation";
+import Navigation from "../../../components/js/navigation";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import menu from "../../components/css/navigation_menu.module.css";
+import menu from "../../../components/css/navigationMenu.module.css";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import write from "../css/posting_write.module.css";
-import { writeBoardApi } from "../../apis/boardApi";
+import { useState } from "react";
+import write from "../../css/Board/postingWrite.module.css";
+import { writeBoardApi } from "../../../apis/boardApi";
 import { useSelector } from "react-redux";
 import { Editor } from "@toast-ui/react-editor";
 import "@toast-ui/editor/dist/toastui-editor.css";
@@ -16,17 +15,17 @@ import { useRef } from "react";
 function Write() {
   const navigate = useNavigate();
 
-  // 로그인 한 사용자의 user_id받기
-  const state_userid = useSelector((state) => state.rootReducer.user.user_id);
+  // 로그인 한 사용자의 정보받기
+  const token = useSelector((state) => state.rootReducer.user.userToken);
 
+  // post로 보내기 위하여 입력한 정보들 board에 저장하기
   const [board, setBoard] = useState({
-    // user_id: state_userid,
     title: "",
     content: "",
     category: "자유",
   });
 
-  const { title, content } = board;
+  const { title } = board;
 
   const onChange = (event) => {
     const { value, name } = event.target;
@@ -38,16 +37,17 @@ function Write() {
 
   // content는 toast ui로 입력받는다.(엔터 적용되게 하기 위해)
   const editorRef = useRef();
-  const toastui = (e) => {
+  const toastUi = (e) => {
     setBoard({
       ...board,
       content: editorRef.current?.getInstance().getHTML(),
     });
   };
 
+  // 글쓰기 함수
   const writeBoard = async () => {
     try {
-      await writeBoardApi(board).then((res) => {
+      await writeBoardApi(board, token).then((res) => {
         console.log(res);
         alert("글이 등록되었습니다.");
         navigate("/posting");
@@ -57,6 +57,7 @@ function Write() {
     }
   };
 
+  // 뒤로가기 함수
   const backBoard = () => {
     navigate("/posting");
   };
@@ -67,14 +68,12 @@ function Write() {
         position: "relative",
         display: "flex",
         flexDirection: "column",
-        width: "980px",
-        // marginLeft: "230px",
-        // marginRight: "230px",
+        width: "1180px",
+
         margin: "0 auto",
       }}
     >
       <Navigation />
-
       {/* 메뉴 부분 */}
       <div className={menu.menu}>
         <div>
@@ -104,6 +103,7 @@ function Write() {
         </div>
       </div>
 
+      {/* 글쓰는 메인 부분 */}
       <div className={write.total}>
         <div
           style={{
@@ -118,7 +118,7 @@ function Write() {
           게시판 새 글 작성하기
         </div>
 
-        <div className={write.total_top}>
+        <div className={write.totalTop}>
           <span>카테고리</span>
           {/* 카테고리 선택 부분 */}
           <div className={write.cate}>
@@ -181,10 +181,10 @@ function Write() {
           height="340px"
           initialEditType="wysiwyg"
           useCommandShortcut={false}
-          onChange={toastui}
+          onChange={toastUi}
         ></Editor>
 
-        <div className={write.button_div}>
+        <div className={write.buttonDiv}>
           <Button onClick={writeBoard}>올리기</Button>
           <Button onClick={backBoard}>취소</Button>
         </div>
