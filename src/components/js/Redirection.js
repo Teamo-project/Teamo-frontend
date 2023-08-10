@@ -29,7 +29,7 @@ function Redirection() {
       )
       .then((res) => {
         localStorage.setItem("token", accessToken);
-
+        console.log(res);
         dispatch(
           login({
             userId: res.data.id,

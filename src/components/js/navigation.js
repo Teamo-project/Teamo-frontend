@@ -1,13 +1,15 @@
-import man_logo from "../img/man.png";
+import man_logo from "../img/user.png";
 import woman_logo from "../img/woman.png";
 import navigation from "../css/navigation.module.css";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { useState } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/slices/userSlice";
 import profile from "../img/Profile.png";
 import log from "../img/Logout.png";
+import { useState } from "react";
 
 // 제일 위 로고쪽 부분
 function Navigation(prop) {
@@ -28,7 +30,7 @@ function Navigation(prop) {
 
   return (
     <div>
-      <div style={{ position: "relative", width: "980px", display: "flex" }}>
+      <div style={{ position: "relative", width: "1180px", display: "flex" }}>
         <img className={navigation.man} src={man_logo} alt="holo_img" />
 
         <div className={navigation.logobox}>
