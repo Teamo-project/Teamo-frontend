@@ -3,26 +3,27 @@ import { createSlice } from "@reduxjs/toolkit";
 export const userSlice = createSlice({
   name: "user",
   initialState: {
-    user_token: "",
-    user_id: "",
-    user_name: "",
-    user_img: "",
-    user_email: "",
+    userToken: "",
+    userId: "",
+    userName: "",
+    userImg: "",
+    userEmail: "",
   },
   reducers: {
     login: (state, action) => {
-      state.user_token = action.payload.user_token;
-      state.user_id = action.payload.user_id;
-      state.user_name = action.payload.user_name;
-      state.user_img = action.payload.user_img;
-      state.user_email = action.payload.user_email;
+      state.userToken = action.payload.userToken;
+      state.userId = action.payload.userId;
+      state.userName = action.payload.userName;
+      state.userImg = action.payload.userImg;
+
+      state.userEmail = action.payload.userEmail;
     },
     logout: (state) => {
-      state.user_token = "";
-      state.user_id = "";
-      state.user_name = "";
-      state.user_img = "";
-      state.user_email = "";
+      state.userToken = "";
+      state.userId = "";
+      state.userName = "";
+      state.userImg = "";
+      state.userEmail = "";
     },
   },
 });

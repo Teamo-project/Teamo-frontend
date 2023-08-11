@@ -28,18 +28,18 @@
 }
 
 .comment {
-  width: 980px;
+  width: 960px;
   height: 24px;
   padding: 10px;
   font-size: 1rem;
   margin-bottom: 5px;
 }
 
-.caption_btn {
+.captionBtn {
   margin-top: 10px;
   width: 980px;
 }
-.caption_btn Button {
+.captionBtn Button {
   width: 50px;
   margin-left: 20px;
   cursor: pointer;

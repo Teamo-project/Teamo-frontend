@@ -4,25 +4,26 @@ import post from "../css/createPost.module.css";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import menu from "../../components/css/navigationMenu.module.css";
 import { Button } from "react-bootstrap";
-import { useSelector } from "react-redux";
-function CreatePost() {
-  const accessToken = localStorage.token;
-  console.log(accessToken);
-  const registor = useSelector((state) => state.rootReducer.user.userName);
+function EditPost() {
   const [mainText, setMainText] = useState("");
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
-  const [recruit, setRecruit] = useState("");
+  const [count, setCount] = useState("");
+  const [info, setInfo] = useState({
+    title: "",
+    description: "",
+    category: "",
+    limited: "",
+  });
   const today = new Date();
   const navigate = useNavigate();
   const registDay =
     today.getFullYear() + "." + (today.getMonth() + 1) + "." + today.getDate();
-  const handleRecruit = (e) => {
-    setRecruit(e.target.value);
-  };
+
   const handleMainText = (e) => {
     setMainText(e.target.value);
   };
@@ -33,20 +34,45 @@ function CreatePost() {
     setCategory(e.target.value);
     console.log(title, mainText, category);
   };
-
+  useEffect(() => {
+    axios
+      .put(
+        "http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring/1",
+        {
+          title: "법률 멘토링",
+          description: "abcde",
+          category: "법률",
+          limited: 5,
+        },
+        {
+          headers: {
+            Authorization: "Bearer debug",
+          },
+        }
+      )
+      .then(function (res) {
+        setInfo({
+          title: res.data.title,
+          description: res.data.description,
+          category: res.data.category,
+          limited: res.data.limited,
+        });
+        setCount(res.data.count);
+      });
+  }, []);
   const posting = () => {
-    axios //멘토링 게시글 생성
+    axios
       .post(
         "http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring",
         {
           title: title,
           description: mainText,
           category: category,
-          limited: recruit,
+          limited: 5,
         },
         {
           headers: {
-            Authorization: `Bearer ${accessToken}`,
+            Authorization: "Bearer debug",
           },
         }
       )
@@ -75,7 +101,6 @@ function CreatePost() {
   };
   return (
     <div>
-      {console.log(registor, "zz")}
       <div
         style={{
           position: "relative",
@@ -120,18 +145,19 @@ function CreatePost() {
           <div className={post.postTitle}>
             <input
               onChange={handleTitle}
-              placeholder="제목을 입력해주세요"
+              placeholder={info.title}
               className={post.titleText}
             ></input>
           </div>
           <hr className={post.line}></hr>
           <div className={post.subTitleBox}>
-            {subTitleBack("등록자명", 0)} {subTitleBack(registor, 1)}
+            {subTitleBack("등록자명", 0)} {subTitleBack("최원서", 1)}
             {subTitleBack("등록일", 0)} {subTitleBack(registDay, 1)}
           </div>
           <hr className={post.line}></hr>
           <div className={post.subTitleBox}>
-            {subTitleBack("분류", 0)}
+            {subTitleBack("", 0)} {subTitleBack("", 1)}
+            {subTitleBack("분류", 0)}{" "}
             <select
               onClick={handleCategory}
               className={post.subTitle}
@@ -143,26 +169,6 @@ function CreatePost() {
               <option value={"법률"}>법률</option>
               <option value={"상담"}>상담</option>
               <option value={"기타"}>기타</option>
-            </select>
-            {subTitleBack("모집 ", 0)}
-            <select
-              onClick={handleRecruit}
-              className={post.subTitle}
-              style={{ width: "270px" }}
-            >
-              <option value="" disabled selected>
-                ㅣ눤 선택
-              </option>
-              <option value={"1"}>1</option>
-              <option value={"2"}>2</option>
-              <option value={"3"}>3</option>
-              <option value={"4"}>4</option>
-              <option value={"5"}>5</option>
-              <option value={"6"}>6</option>
-              <option value={"7"}>7</option>
-              <option value={"8"}>8</option>
-              <option value={"9"}>9</option>
-              <option value={"10"}>10</option>
             </select>
           </div>
           <hr className={post.line}></hr>
@@ -176,14 +182,14 @@ function CreatePost() {
           </div>
 
           <button className={post.createBtn} onClick={posting}>
-            작성하기
+            수정하기
           </button>
         </div>
 
         {isPopup ? "POPUP" : ""}
+        <Footer />
       </div>
-      <Footer />
     </div>
   );
 }
-export default CreatePost;
+export default EditPost;
