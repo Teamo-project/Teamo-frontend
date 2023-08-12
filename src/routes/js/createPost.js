@@ -5,7 +5,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import menu from "../../components/css/navigation_menu.module.css";
+import menu from "../../components/css/navigationMenu.module.css";
 import { Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
 function CreatePost() {
