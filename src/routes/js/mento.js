@@ -3,7 +3,7 @@ import mentoStyle from "../css/mento.module.css";
 import Posts from "../../components/js/mentoPosts";
 import Footer from "../../components/js/footer";
 import { Link } from "react-router-dom";
-import menu from "../../components/css/navigation_menu.module.css";
+import menu from "../../components/css/navigationMenu.module.css";
 import { Button } from "react-bootstrap";
 import axios from "axios";
 import Pagination from "react-js-pagination";
