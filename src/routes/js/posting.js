@@ -1,5 +1,5 @@
 import Navigation from "../../components/js/navigation";
-import menu from "../../components/css/navigation_menu.module.css";
+import menu from "../../components/css/navigationMenu.module.css";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import post from "../css/posting.module.css";
