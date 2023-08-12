@@ -1,7 +1,6 @@
 import Navigation from "../../components/js/navigation";
 import Footer from "../../components/js/footer";
 import post from "../css/post.module.css";
-import applyPopup from "../../components/js/applyPopup";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
@@ -141,26 +140,61 @@ function ViewPost() {
 
           <div className={post.mainText}>
             {info.description}
-            <div className={post.recruitment}>모집인원 3 / {info.limited}</div>
+            {isPopup ? (
+              <div className={post.applyPopup}>
+                <p className={post.applyTitle}>신청 양식</p>
+                <div className={post.applyInputBox}>
+                  <input
+                    className={post.applyInput}
+                    placeholder={"이름"}
+                  ></input>
+                  <input
+                    className={post.applyInput}
+                    placeholder={"주소"}
+                  ></input>
+                  <input
+                    className={post.applyInput}
+                    placeholder={"전화번호"}
+                  ></input>
+                </div>
+                <button className={post.applyBtn}>신청버튼</button>
+              </div>
+            ) : (
+              ""
+            )}
+            <div className={post.recruitment}>
+              모집인원 {info.count} / {info.limited}
+            </div>
           </div>
+
           <div className={post.mentoring}>
             <p className={post.mentoringText}>멘토링 연결 신청</p>
 
             <button className={post.mentoringBtn} onClick={handlePopup}>
               신청하러가기
             </button>
-            <Link to="/editpost">
+
+            {console.log(accessToken)}
+            {accessToken == undefined ? (
+              ""
+            ) : (
+              <Link to="/editpost">
+                <button className={post.mentoringBtn} onClick={editRequest}>
+                  Edit
+                </button>
+              </Link>
+            )}
+            {accessToken == undefined ? (
+              ""
+            ) : (
               <button className={post.mentoringBtn} onClick={editRequest}>
-                Edit
+                접수 마감
               </button>
-            </Link>
-            <button className={post.mentoringBtn} onClick={editRequest}>
-              접수 마감
-            </button>
+            )}
           </div>
         </div>
-        {isPopup ? "POPUP" : ""}
       </div>
+
       <Footer />
     </div>
   );

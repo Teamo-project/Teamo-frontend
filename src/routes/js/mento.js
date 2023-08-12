@@ -5,45 +5,33 @@ import Footer from "../../components/js/footer";
 import { Link } from "react-router-dom";
 import menu from "../../components/css/navigation_menu.module.css";
 import { Button } from "react-bootstrap";
-import axios from "axios";
+
 import Pagination from "react-js-pagination";
 import { useState } from "react";
 function Mento() {
   const [page, setPage] = useState(1);
 
-  function postBtn(num, center) {
-    console.log(center);
-    return center ? (
-      <button
-        style={{ backgroundColor: "#66c109" }}
-        className={mentoStyle.pageBtn}
-      >
-        {num}
-      </button>
-    ) : (
-      <button className={mentoStyle.pageBtn}>{num}</button>
+  function returnPages(page) {
+    console.log(page, "returnPages");
+    return (
+      <div>
+        <Posts index={0} page={page} />
+        <Posts index={1} page={page} />
+        <Posts index={2} page={page} />
+        <Posts index={3} page={page} />
+        <Posts index={4} page={page} />
+        <Posts index={5} page={page} />
+        <Posts index={6} page={page} />
+        <Posts index={7} page={page} />
+        <Posts index={8} page={page} />
+        <Posts index={9} page={page} />
+      </div>
     );
   }
-  const pages = (
-    <div>
-      <Posts index={0} page={page} />
-      <Posts index={1} page={page} />
-      <Posts index={2} page={page} />
-      <Posts index={3} page={page} />
-      <Posts index={4} page={page} />
-      <Posts index={5} page={page} />
-      <Posts index={6} page={page} />
-      <Posts index={7} page={page} />
-      <Posts index={8} page={page} />
-      <Posts index={9} page={page} />
-    </div>
-  );
   const handlePageChange = (page) => {
     setPage(page);
-    {
-      pages;
-    }
     console.log(page);
+    returnPages(page);
   };
   return (
     <div>
@@ -106,8 +94,7 @@ function Mento() {
             </div>
           </div>
           <hr className={mentoStyle.line} />
-
-          {pages}
+          {returnPages(page)}
           <div className={mentoStyle.buttonBox}>
             <Link to={"/createpost"} className={mentoStyle.wirteBtn}>
               <p style={{ margin: "auto" }}>글쓰기</p>

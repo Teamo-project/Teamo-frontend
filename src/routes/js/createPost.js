@@ -10,7 +10,7 @@ import { Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
 function CreatePost() {
   const accessToken = localStorage.token;
-  console.log(accessToken);
+
   const registor = useSelector((state) => state.rootReducer.user.userName);
   const [mainText, setMainText] = useState("");
   const [title, setTitle] = useState("");
@@ -31,7 +31,6 @@ function CreatePost() {
   };
   const handleCategory = (e) => {
     setCategory(e.target.value);
-    console.log(title, mainText, category);
   };
 
   const posting = () => {
@@ -75,7 +74,6 @@ function CreatePost() {
   };
   return (
     <div>
-      {console.log(registor, "zz")}
       <div
         style={{
           position: "relative",
@@ -151,7 +149,7 @@ function CreatePost() {
               style={{ width: "270px" }}
             >
               <option value="" disabled selected>
-                ㅣ눤 선택
+                인원 선택
               </option>
               <option value={"1"}>1</option>
               <option value={"2"}>2</option>
