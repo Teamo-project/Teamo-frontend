@@ -6,7 +6,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-
 import menu from "../../components/css/navigationMenu.module.css";
 import { Button } from "react-bootstrap";
 function EditPost() {
