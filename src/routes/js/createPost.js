@@ -45,7 +45,7 @@ function CreatePost() {
         },
         {
           headers: {
-            Authorization: `Bearer ${accessToken}`,
+            Authorization: `Bearer debug`,
           },
         }
       )
