@@ -5,7 +5,7 @@ import applyPopup from "../../components/js/applyPopup";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
-import menu from "../../components/css/navigation_menu.module.css";
+import menu from "../../components/css/navigationMenu.module.css";
 import { Button } from "react-bootstrap";
 
 function ViewPost() {
