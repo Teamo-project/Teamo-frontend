@@ -15,6 +15,8 @@ import Update from "./routes/js/Board/updateBoard";
 import Modifycomment from "./routes/js/Board/updateCommentBoard";
 import Program from "./routes/js/Program/program";
 
+import SignUp from "./routes/js/signup";
+
 function App() {
   return (
     <div style={{ minWidth: "1440px", backgroundColor: "#FAFAFA" }}>
@@ -22,9 +24,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/login" element={<Login />}></Route>
+          <Route path="/signup" element={<SignUp />}></Route>
           <Route path="/program" element={<Program />}></Route>
           <Route path="/posting" element={<Posting />}></Route>
-
           <Route path="/posting/write" element={<Write />}></Route>
           <Route path="/posting/:postingId" element={<BoardDetail />}></Route>
 

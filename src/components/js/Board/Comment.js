@@ -4,11 +4,11 @@ import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { deleteCommentApi } from "../../../apis/boardApi";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 // 해당 댓글 내용 보여주기(Board 아래)
 function Comment({ id, postId, creatorId, content, createDate }) {
   const navigate = useNavigate();
-
   //로그인 한 user의 정보 받기
   const state_userid = useSelector((state) => state.rootReducer.user.userId);
   const token = useSelector((state) => state.rootReducer.user.userToken);
@@ -23,7 +23,7 @@ function Comment({ id, postId, creatorId, content, createDate }) {
     try {
       let deleteConfirm = window.confirm("댓글을 삭제 하시겠습니까?");
       if (deleteConfirm) {
-        (await deleteCommentApi(postId, id, token)).then((res) => {
+        await deleteCommentApi(postId, id, token).then((res) => {
           alert("댓글이 삭제되었습니다.");
           navigate(`/posting/${postId}`);
         });
@@ -41,8 +41,10 @@ function Comment({ id, postId, creatorId, content, createDate }) {
         borderBottom: "1px solid lightgray",
         padding: "16px 0px 16px 14px",
         width: "980px",
-        height: "90px",
+
+        height: "100px",
         marginLeft: "100px",
+        border: "1px solid #c9c9c9",
       }}
     >
       <div style={{ display: "flex" }}>
@@ -53,12 +55,12 @@ function Comment({ id, postId, creatorId, content, createDate }) {
       </div>
       <div style={{ marginTop: "8px" }}>{content}</div>
       <div style={{ width: "980px", display: "flex", position: "relative" }}>
-        <div style={{ marginTop: "12px", fontSize: "0.9rem" }}>
-          {createDate}
+        <div style={{ marginTop: "12px", fontSize: "0.9rem", width: "200px" }}>
+          {createDate.substring(0, 10)} {createDate.substring(11, 19)}
         </div>
         {/* 해당 댓글의 작성자와 로그인한 사용자의 정보가 같을경우에만 수정,삭제 */}
         {state_userid === creatorId ? (
-          <div className={board.caption_btn}>
+          <div className={board.captionBtn}>
             <Button
               onClick={moveToupdateComment}
               style={{ marginLeft: "580px" }}
@@ -68,7 +70,7 @@ function Comment({ id, postId, creatorId, content, createDate }) {
             <Button onClick={deleteComment}>삭제</Button>
           </div>
         ) : (
-          <div className={board.caption_btn}></div>
+          <div className={board.captionBtn}></div>
         )}
       </div>
     </div>

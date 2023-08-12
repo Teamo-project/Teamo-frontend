@@ -19,7 +19,6 @@ function Home() {
     try {
       const resp = await getBoardListApi(`1`);
       setBoardlist(resp.data.content);
-      console.log(resp.data);
     } catch (err) {
       console.error(err);
     }

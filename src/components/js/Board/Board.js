@@ -71,11 +71,13 @@ function Board({ id, title, boardContent, creatorId, createDate, category }) {
         ? alert("로그인을 진행해주세요.")
         : await writeCommentApi(newComment, token).then((res) => {
             alert("댓글이 작성되었습니다.");
-            navigate(`/posting/${id}`);
+
             setNewComment({
               ...newComment,
               content: "",
             });
+
+            navigate(`/posting/${id}`);
           });
     } catch (err) {
       console.log(err);
@@ -105,7 +107,9 @@ function Board({ id, title, boardContent, creatorId, createDate, category }) {
         position: "relative",
         marginTop: "-30px",
         width: "1180px",
-        height: "1440px",
+
+        height: "1500px",
+
         background: "#fff",
         boxShadow: "0px 4px 4px 0px rgba(102, 193, 9, 0.2)",
         borderRadius: "16px",
@@ -237,32 +241,29 @@ function Board({ id, title, boardContent, creatorId, createDate, category }) {
       </div>
       <div style={{ height: "740px" }}>
         {/* 해당 게시물의 작성된 댓글들 보여주는 부분 */}
+
         {commentlist.map((event) => {
-          <Comment
-            id={event.id}
-            content={event.content}
-            postId={event.postId}
-            creatorId={event.creatorId}
-            createDate={event.createDate}
-          />;
+          return (
+            <Comment
+              id={event.id}
+              content={event.content}
+              postId={event.postId}
+              creatorId={event.creatorId}
+              createDate={event.createDate}
+            />
+          );
         })}
       </div>
-      <Comment
-        id={1}
-        content="werqer"
-        postId={26}
-        creatorId={13}
-        createDate="2022-03-02"
-      />
-      ;{/* 페이지네이션 처리 */}
+
+      {/* 페이지네이션 처리 */}
       <div
         style={{
           display: "flex",
-          margin: "0 auto",
+          margin: "0px auto",
           width: "450px",
           height: "60px",
           justifyContent: "center",
-          marginTop: "14px",
+          marginTop: "84px",
         }}
       >
         <Pagination

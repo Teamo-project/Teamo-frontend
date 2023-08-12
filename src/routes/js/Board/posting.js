@@ -27,10 +27,9 @@ function Posting() {
   const [totalitemSearch, setTotalitemSearch] = useState();
   const getboardlistSearch = async () => {
     try {
-      const resp = await getBoardListApi(`${page}&title=${search}`);
+      const resp = await getBoardListApi(`${page}&title=${search}&`);
       setBoardlistSearch(resp.data.content);
       setTotalitemSearch(resp.data.totalElements);
-      console.log(totalitemSearch);
     } catch (err) {
       console.log(err);
     }
@@ -74,7 +73,8 @@ function Posting() {
     setSearch(event.target.value);
   };
   // 해당 검색어 포함한 게시물 보여주도록 하기
-  const onSearch = () => {
+
+  const onSearch = (event) => {
     setNumber("5");
     setPage(1);
     getboardlistSearch();
@@ -99,7 +99,6 @@ function Posting() {
       const resp = await getBoardListApi(`${page}`);
       setBoardlist(resp.data.content);
       setTotalitem(resp.data.totalElements);
-      console.log(totalitem);
     } catch (err) {
       console.log(err);
     }
@@ -112,7 +111,6 @@ function Posting() {
       const resp = await getBoardListApi(`${page}&category=자유`);
       setBoardlistFree(resp.data.content);
       setTotalitemFree(resp.data.totalElements);
-      console.log(totalitemFree);
     } catch (err) {
       console.log(err);
     }
@@ -125,7 +123,6 @@ function Posting() {
       const resp = await getBoardListApi(`${page}&category=질문`);
       setBoardlistQuestion(resp.data.content);
       setTotalitemQuestion(resp.data.totalElements);
-      console.log(totalitemQuestion);
     } catch (err) {
       console.log(err);
     }
@@ -138,7 +135,6 @@ function Posting() {
       const resp = await getBoardListApi(`${page}&category=정보`);
       setBoardlistInformation(resp.data.content);
       setTotalitemInformation(resp.data.totalElements);
-      console.log(totalitemInformation);
     } catch (err) {
       console.log(err);
     }
@@ -151,7 +147,6 @@ function Posting() {
       const resp = await getBoardListApi(`${page}&category=구인구직`);
       setBoardlistJob(resp.data.content);
       setTotalitemJob(resp.data.totalElements);
-      console.log(totalitemJob);
     } catch (err) {
       console.log(err);
     }

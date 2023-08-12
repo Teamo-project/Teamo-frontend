@@ -212,18 +212,31 @@ function Update_caption({
             <Button
               onClick={updateComment}
               style={{
-                marginLeft: "850px",
+                marginLeft: "830px",
                 backgroundColor: "#66c109",
 
                 borderRadius: "6px",
                 border: " none",
                 height: "25px",
                 width: "55px",
+                cursor: "pointer",
               }}
             >
               저장
             </Button>
-            <Button onClick={backDetail}>취소</Button>
+            <Button
+              style={{
+                marginLeft: "10px",
+                width: "55px",
+                height: "25px",
+                borderRadius: "6px",
+                border: "none",
+                cursor: "pointer",
+              }}
+              onClick={backDetail}
+            >
+              취소
+            </Button>
           </div>
         </div>
       </div>

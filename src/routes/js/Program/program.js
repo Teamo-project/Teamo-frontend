@@ -17,13 +17,13 @@ import ProgramEtc from "../../../components/js/Program/etc";
 function Program() {
   // 해당 항목의 프로그램들을 가져오기 위해서 number 변수를 설정해준다.
   const [number, setNumber] = useState("0");
-  const total_button = () => {
+  const totalButton = () => {
     setNumber("0");
   };
-  const public_button = () => {
+  const publicButton = () => {
     setNumber("1");
   };
-  const private_button = () => {
+  const privateButton = () => {
     setNumber("2");
   };
   const number3 = () => {
@@ -87,13 +87,13 @@ function Program() {
       {/* 프로그램의 주관사 선택 부분 */}
       <div className={post.firstButton}>
         <span>주관사</span>
-        <Button onClick={total_button} data-checked={number === "0"}>
+        <Button onClick={totalButton} data-checked={number === "0"}>
           전체
         </Button>
-        <Button onClick={public_button} data-checked={number === "1"}>
+        <Button onClick={publicButton} data-checked={number === "1"}>
           공공
         </Button>
-        <Button onClick={private_button} data-checked={number === "2"}>
+        <Button onClick={privateButton} data-checked={number === "2"}>
           민간
         </Button>
       </div>

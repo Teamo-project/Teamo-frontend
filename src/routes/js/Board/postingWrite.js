@@ -48,7 +48,6 @@ function Write() {
   const writeBoard = async () => {
     try {
       await writeBoardApi(board, token).then((res) => {
-        console.log(res);
         alert("글이 등록되었습니다.");
         navigate("/posting");
       });
