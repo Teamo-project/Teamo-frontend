@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/slices/userSlice";
 import profile from "../img/Profile.png";
 import log from "../img/Logout.png";
-import { useState } from "react";
+
 
 // 제일 위 로고쪽 부분
 function Navigation(prop) {
