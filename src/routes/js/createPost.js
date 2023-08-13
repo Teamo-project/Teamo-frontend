@@ -34,28 +34,32 @@ function CreatePost() {
   };
 
   const posting = () => {
-    axios //멘토링 게시글 생성
-      .post(
-        "http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring",
-        {
-          title: title,
-          description: mainText,
-          category: category,
-          limited: recruit,
-        },
-        {
-          headers: {
-            Authorization: `Bearer debug`,
+    if (title == "" || category == "" || recruit == "" || mainText == "") {
+      alert("모두 기입 후 작성 완료버튼을 눌러주세요");
+    } else {
+      axios //멘토링 게시글 생성
+        .post(
+          "http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring",
+          {
+            title: title,
+            description: mainText,
+            category: category,
+            limited: recruit,
           },
-        }
-      )
-      .then(function (res) {
-        console.log(res);
-        navigate("/postlist");
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+          {
+            headers: {
+              Authorization: `Bearer debug`,
+            },
+          }
+        )
+        .then(function (res) {
+          console.log(res);
+          navigate("/postlist");
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
   };
   function subTitleBack(input, flag) {
     return flag == "1" ? (
