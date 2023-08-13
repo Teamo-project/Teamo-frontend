@@ -41,6 +41,7 @@ function Comment({ id, postId, creatorId, content, createDate }) {
         borderBottom: "1px solid lightgray",
         padding: "16px 0px 16px 14px",
         width: "980px",
+
         height: "100px",
         marginLeft: "100px",
         border: "1px solid #c9c9c9",

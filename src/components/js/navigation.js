@@ -4,15 +4,18 @@ import navigation from "../css/navigation.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { useState } from "react";
+
 import Mypage from "../../routes/js/mypage";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/slices/userSlice";
 import profile from "../img/Profile.png";
 import log from "../img/Logout.png";
 
+
 // 제일 위 로고쪽 부분
 function Navigation(prop) {
   const token = useSelector((state) => state.rootReducer.user.userToken);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -54,6 +57,7 @@ function Navigation(prop) {
               style={{ display: "flex", width: "270px", alignItems: "center" }}
             >
               <img src={profile} className={navigation.myimg} />
+
               <Link to="/mypage" style={{ textDecoration: "none" }}>
                 <Button className={navigation.mybutton}>마이페이지</Button>
               </Link>

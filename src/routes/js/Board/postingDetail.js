@@ -6,6 +6,7 @@ import axios from "axios";
 import Board from "../../../components/js/Board/Board";
 import { useEffect, useState } from "react";
 import { getBoardDetailApi } from "../../../apis/boardApi";
+
 // 게시물 상세 페이지
 function BoardDetail() {
   const { postingId } = useParams();
@@ -17,6 +18,7 @@ function BoardDetail() {
     try {
       const resp = await getBoardDetailApi(postingId);
       setBoard(resp.data);
+      console.log(resp.data);
     } catch (err) {
       console.log(err);
     }

@@ -73,6 +73,7 @@ function Posting() {
     setSearch(event.target.value);
   };
   // 해당 검색어 포함한 게시물 보여주도록 하기
+
   const onSearch = (event) => {
     setNumber("5");
     setPage(1);

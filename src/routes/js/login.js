@@ -60,6 +60,7 @@ function Login() {
             <img className={login.man} src={man_logo} />
             <p className={login.txt}>홀로서기</p>
           </Link>
+
         </div>
         <div className={login.loginInput}>
           <input
@@ -93,6 +94,7 @@ function Login() {
             계정이 없으신가요?
             <Button onClick={onSignUp}>회원가입</Button>
           </span>
+
         </div>
         <div className={login.lineBox}>
           <hr className={login.line} />

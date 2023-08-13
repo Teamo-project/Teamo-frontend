@@ -1,4 +1,5 @@
 function applyPopup() {
-  return window.open("/login", "popup", "width =430px, height=500px");
+  console.log("팝업");
+  return <div style={{ position: "absolute" }}>그래그래 그래마요ㅘㅇ</div>;
 }
 export default applyPopup;

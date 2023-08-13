@@ -5,12 +5,13 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+
 import menu from "../../components/css/navigationMenu.module.css";
 import { Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
 function CreatePost() {
   const accessToken = localStorage.token;
-  console.log(accessToken);
+
   const registor = useSelector((state) => state.rootReducer.user.userName);
   const [mainText, setMainText] = useState("");
   const [title, setTitle] = useState("");
@@ -31,32 +32,35 @@ function CreatePost() {
   };
   const handleCategory = (e) => {
     setCategory(e.target.value);
-    console.log(title, mainText, category);
   };
 
   const posting = () => {
-    axios //멘토링 게시글 생성
-      .post(
-        "http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring",
-        {
-          title: title,
-          description: mainText,
-          category: category,
-          limited: recruit,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
+    if (title == "" || category == "" || recruit == "" || mainText == "") {
+      alert("모두 기입 후 작성 완료버튼을 눌러주세요");
+    } else {
+      axios //멘토링 게시글 생성
+        .post(
+          "http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring",
+          {
+            title: title,
+            description: mainText,
+            category: category,
+            limited: recruit,
           },
-        }
-      )
-      .then(function (res) {
-        console.log(res);
-        navigate("/postlist");
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+          {
+            headers: {
+              Authorization: `Bearer debug`,
+            },
+          }
+        )
+        .then(function (res) {
+          console.log(res);
+          navigate("/postlist");
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
   };
   function subTitleBack(input, flag) {
     return flag == "1" ? (
@@ -75,7 +79,6 @@ function CreatePost() {
   };
   return (
     <div>
-      {console.log(registor, "zz")}
       <div
         style={{
           position: "relative",
@@ -151,7 +154,7 @@ function CreatePost() {
               style={{ width: "270px" }}
             >
               <option value="" disabled selected>
-                ㅣ눤 선택
+                인원 선택
               </option>
               <option value={"1"}>1</option>
               <option value={"2"}>2</option>

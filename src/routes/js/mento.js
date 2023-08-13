@@ -3,48 +3,58 @@ import mentoStyle from "../css/mento.module.css";
 import Posts from "../../components/js/mentoPosts";
 import Footer from "../../components/js/footer";
 import { Link } from "react-router-dom";
+
 import menu from "../../components/css/navigationMenu.module.css";
 import { Button } from "react-bootstrap";
-import axios from "axios";
 import Pagination from "react-js-pagination";
 import { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
 function Mento() {
   const [page, setPage] = useState(1);
+  const [search, setSearch] = useState("");
 
-  function postBtn(num, center) {
-    console.log(center);
-    return center ? (
-      <button
-        style={{ backgroundColor: "#66c109" }}
-        className={mentoStyle.pageBtn}
-      >
-        {num}
-      </button>
-    ) : (
-      <button className={mentoStyle.pageBtn}>{num}</button>
-    );
-  }
-  const pages = (
-    <div>
-      <Posts index={0} page={page} />
-      <Posts index={1} page={page} />
-      <Posts index={2} page={page} />
-      <Posts index={3} page={page} />
-      <Posts index={4} page={page} />
-      <Posts index={5} page={page} />
-      <Posts index={6} page={page} />
-      <Posts index={7} page={page} />
-      <Posts index={8} page={page} />
-      <Posts index={9} page={page} />
-    </div>
-  );
+  const onChangeSearch = (e) => {
+    e.preventDefault();
+    setSearch(e.target.value);
+  };
+  const onSearch = (e) => {
+    e.preventDefault();
+    if (search === null || search === "") {
+      //전체리스트
+    } else {
+      //필터로 검색 구현
+    }
+  };
+  const accessToken = localStorage.token;
+
+  const handleCategory = () => {};
+  const [boardList, setBoardList] = useState([]);
+
   const handlePageChange = (page) => {
     setPage(page);
-    // {
-    //   pages;
-    // }
+
     console.log(page);
   };
+  useEffect(() => {
+    axios
+      .get(
+        `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring/list?page=${page}`,
+        {
+          headers: {
+            Authorization: "Bearer debug",
+          },
+        }
+      )
+      .then(function (res) {
+        console.log(res);
+        setBoardList(res.data.content);
+      })
+      .catch(function (res) {
+        console.log(res);
+      });
+  }, [page]);
+
   return (
     <div>
       <div
@@ -91,7 +101,10 @@ function Mento() {
         <div className={mentoStyle.searchBox}>
           <div className={mentoStyle.searchBoxContnet}>
             <select className={mentoStyle.classify}>
-              <option>분류</option>
+              <option onChange={handleCategory}>분류</option>
+              <option>법률</option>
+              <option>상담</option>
+              <option>기타</option>
             </select>
             <input className={mentoStyle.search}></input>
             <button className={mentoStyle.searchBtn}>검색</button>
@@ -107,29 +120,35 @@ function Mento() {
           </div>
           <hr className={mentoStyle.line} />
 
-          {pages}
+          {boardList.map((ele) => {
+            return (
+              <Posts
+                category={ele.category}
+                title={ele.title}
+                id={ele.id}
+                createDate={ele.createDate.slice(0, 10)}
+                creatorName={ele.creatorName}
+                count={ele.count}
+              />
+            );
+          })}
+
           <div className={mentoStyle.buttonBox}>
             <Link to={"/createpost"} className={mentoStyle.wirteBtn}>
               <p style={{ margin: "auto" }}>글쓰기</p>
             </Link>
           </div>
-
           <div className={mentoStyle.pageNum}>
             <Pagination
               activePage={page}
               itemsCountPerPage={10}
-              totalItemsCount={450}
+              totalItemsCount={30}
               pageRangeDisplayed={5}
               prevPageText={"‹"}
               nextPageText={"›"}
               onChange={handlePageChange}
               className={mentoStyle.pagination}
             />
-            {/* {postBtn("◀")}
-            {postBtn("1")}
-            {postBtn("2", true)}
-            {postBtn("3")}
-            {postBtn("▶")} */}
           </div>
         </div>
       </div>

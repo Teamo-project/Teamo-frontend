@@ -17,6 +17,7 @@ export const writeBoardApi = (board, token) => {
 export const getBoardDetailApi = (payload) => {
   return axios.get(
     // v1/posting/:id이렇게 바꾸기
+
     `${url}/v1/posting/${payload}`,
     {
       headers: { Authorization: `Bearer debug` },

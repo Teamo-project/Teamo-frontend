@@ -71,10 +71,12 @@ function Board({ id, title, boardContent, creatorId, createDate, category }) {
         ? alert("로그인을 진행해주세요.")
         : await writeCommentApi(newComment, token).then((res) => {
             alert("댓글이 작성되었습니다.");
+
             setNewComment({
               ...newComment,
               content: "",
             });
+
             navigate(`/posting/${id}`);
           });
     } catch (err) {
@@ -105,7 +107,9 @@ function Board({ id, title, boardContent, creatorId, createDate, category }) {
         position: "relative",
         marginTop: "-30px",
         width: "1180px",
+
         height: "1500px",
+
         background: "#fff",
         boxShadow: "0px 4px 4px 0px rgba(102, 193, 9, 0.2)",
         borderRadius: "16px",

@@ -109,11 +109,6 @@
   cursor: pointer;
 }
 
-.pagination {
-  justify-content: center;
-  margin-top: 15px;
-}
-
 ul {
   display: flex;
   list-style: none;
@@ -132,25 +127,14 @@ li {
   font-size: 1rem;
 }
 
-li:first-child {
-  border-radius: 5px 0 0 5px;
-}
-
-li:last-child {
-  border-radius: 0 5px 5px 0;
-}
-
 li a {
   text-decoration: none;
   color: black;
   font-size: 1rem;
 }
 
-li.active a {
+li:active {
   color: white;
-}
-
-li.active {
   background-color: #337ab7;
 }
 

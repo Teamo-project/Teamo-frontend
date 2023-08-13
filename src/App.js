@@ -14,8 +14,11 @@ import Write from "./routes/js/Board/postingWrite";
 import Update from "./routes/js/Board/updateBoard";
 import Modifycomment from "./routes/js/Board/updateCommentBoard";
 import Program from "./routes/js/Program/program";
+
 import SignUp from "./routes/js/signup";
+
 import FirstGoogle from "./routes/js/firstGoogleLogin";
+
 function App() {
   return (
     <div style={{ minWidth: "1440px", backgroundColor: "#FAFAFA" }}>
@@ -34,6 +37,7 @@ function App() {
           <Route path="/posting/:postingId" element={<BoardDetail />}></Route>
 
           <Route path="/oauth2/redirect" element={<Redirection />}></Route>
+
           <Route path="/update/:postingId" element={<Update />}></Route>
           <Route
             path="/update/:postId/comment/:commentId"
