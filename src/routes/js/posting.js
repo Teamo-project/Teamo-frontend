@@ -159,6 +159,7 @@ function Posting() {
               <Button>프로그램</Button>
             </Link>
           </div>
+
           <div>
             <Link to="/postlist" style={{ textDecoration: "none" }}>
               <Button>멘토멘티</Button>

@@ -10,11 +10,12 @@ import axios from "axios";
 
 function Login() {
   const navigate = useNavigate();
+  const nowURL = new URL(window.location.href);
 
+  console.log(nowURL.origin);
   // 구글 로그인 연결
   const GoogleLogin = () => {
-    window.location.href =
-      "http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorize/google?redirect_uri=http://localhost:3000/oauth2/redirect";
+    window.location.href = `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorize/google?redirect_uri=${nowURL.origin}/oauth2/redirect`;
   };
 
   // 이메일과 비밀번호로 로그인
@@ -60,7 +61,6 @@ function Login() {
             <img className={login.man} src={man_logo} />
             <p className={login.txt}>홀로서기</p>
           </Link>
-
         </div>
         <div className={login.loginInput}>
           <input
@@ -94,7 +94,6 @@ function Login() {
             계정이 없으신가요?
             <Button onClick={onSignUp}>회원가입</Button>
           </span>
-
         </div>
         <div className={login.lineBox}>
           <hr className={login.line} />
