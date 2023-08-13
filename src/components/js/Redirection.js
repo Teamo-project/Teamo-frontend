@@ -1,4 +1,4 @@
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -10,7 +10,7 @@ import jwtDecode from "jwt-decode";
 function Redirection() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const toMain = useNavigate;
+
   const searchParams = new URLSearchParams(window.location.search);
   const urlParams = new URL(window.location.href).searchParams;
   const accessToken = urlParams.get("accessToken");
