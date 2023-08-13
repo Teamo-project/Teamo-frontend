@@ -14,7 +14,7 @@ function Redirection() {
   const urlParams = new URL(window.location.href).searchParams;
   const accessToken = urlParams.get("accessToken");
   const userId = urlParams.get("userId");
-  const userInfo = JSON.parse(jwtDecode(accessToken).USER);
+  let userInfo = "";
   const signup = async () => {
     try {
       await axios
@@ -27,7 +27,7 @@ function Redirection() {
           }
         )
         .then(() => {
-          console.log(userInfo);
+          userInfo = JSON.parse(jwtDecode(accessToken).USER);
           localStorage.setItem("token", accessToken);
           dispatch(
             login({

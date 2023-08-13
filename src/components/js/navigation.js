@@ -10,19 +10,30 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/slices/userSlice";
 import profile from "../img/Profile.png";
 import log from "../img/Logout.png";
-
-
+import axios from "axios";
 // 제일 위 로고쪽 부분
 function Navigation(prop) {
   const token = useSelector((state) => state.rootReducer.user.userToken);
-
+  const accessToken = localStorage.getItem("token");
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const LogOut = () => {
-    localStorage.removeItem("token");
-    dispatch(logout());
-    navigate("/");
+    axios
+      .get(
+        "http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/user/logout",
+        {
+          headers: { Authorization: `Bearer ${accessToken}` },
+        }
+      )
+      .then((res) => {
+        localStorage.removeItem("token");
+        dispatch(logout());
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const [btnActive, setBtnActive] = useState(prop.re);
