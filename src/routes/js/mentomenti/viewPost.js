@@ -1,10 +1,10 @@
-import Navigation from "../../components/js/navigation";
-import Footer from "../../components/js/footer";
-import post from "../css/post.module.css";
+import Navigation from "../../../components/js/navigation";
+import Footer from "../../../components/js/footer";
+import post from "../../css/post.module.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
-import menu from "../../components/css/navigationMenu.module.css";
+import menu from "../../../components/css/navigationMenu.module.css";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 function ViewPost() {
@@ -87,24 +87,30 @@ function ViewPost() {
       });
   };
   const applyRequest = () => {
-    axios
-      .post(
-        "http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentee/2",
-        {
-          description: description,
-        },
-        {
-          headers: { Authorization: "Bearer debug" },
-        }
-      )
-      .then((res) => {
-        console.log(res);
-
-        navigate("/postlist");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (description == "") {
+      alert("지원동기를 입력하십시오.");
+    } else {
+      axios
+        .post(
+          "http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentee/2",
+          {
+            description: description,
+          },
+          {
+            headers: { Authorization: "Bearer debug" },
+          }
+        )
+        .then((res) => {
+          console.log(res);
+          navigate("/postlist");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+  const handlePopupCancel = () => {
+    setIsPopup(false);
   };
   return (
     <div>
@@ -112,6 +118,9 @@ function ViewPost() {
         <div>
           <div className={post.popupBackground}></div>
           <div className={post.applyPopup}>
+            <button onClick={handlePopupCancel} className={post.popupCancel}>
+              x
+            </button>
             <p className={post.applyTitle}>멘티 지원</p>
             <div className={post.applyInputBox}>
               <div

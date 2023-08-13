@@ -4,6 +4,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../redux/slices/userSlice";
 import { useEffect, useState } from "react";
+import jwtDecode from "jwt-decode";
 
 // 구글로그인 화면
 function Redirection() {
@@ -52,14 +53,12 @@ function Redirection() {
   };
 
   useEffect(() => {
-
     if (accessToken === null) {
       alert("구글을 통한 회원가입을 위하여 추가정보를 기입해주세요.");
       navigate(`/signup/Google/${userId}`);
     } else {
       console.log(accessToken);
       signup();
-
 
       console.log(`엑세스토큰 : ${accessToken} 을 저장했습니다.`);
     }
