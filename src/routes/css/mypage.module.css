@@ -1,6 +1,6 @@
 .profile {
   width: 485px;
-  height: 625px;
+  height: 291px;
   flex-shrink: 0;
   border-radius: 16px;
   background: #fff;
@@ -15,21 +15,21 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  width: 90px;
-  height: 33px;
+  width: 107px;
+  height: 53px;
   margin: 16px 0px 8px 37px;
 }
 
 .userBox {
   color: #000;
-  font-size: 16px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   width: 257px;
-  height: 95px;
+  height: 114px;
   margin-left: 26px;
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
 .mento {

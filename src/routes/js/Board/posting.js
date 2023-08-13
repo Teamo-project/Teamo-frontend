@@ -94,6 +94,7 @@ function Posting() {
   //전체
   const [boardlist, setBoardlist] = useState([]);
   const [totalitem, setTotalitem] = useState();
+
   const getboardlist = async () => {
     try {
       const resp = await getBoardListApi(`${page}`);
@@ -1029,7 +1030,7 @@ function Posting() {
                     ? totalitemJob
                     : totalitemSearch
                 }
-                pageRangeDisplayed={3}
+                pageRangeDisplayed={5}
                 prevPageText={"‹"}
                 nextPageText={"›"}
                 onChange={handlePageChange}

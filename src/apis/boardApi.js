@@ -44,7 +44,7 @@ export const writeCommentApi = (payload, token) => {
 };
 
 export const getCommentListApi = (postingId, page) => {
-  return axios.get(`${url}/v1/reply/list?Id=${postingId}&page=${page}`, {
+  return axios.get(`${url}/v1/reply/${postingId}/list?&page=${page}`, {
     headers: { Authorization: "Bearer debug" },
   });
 };

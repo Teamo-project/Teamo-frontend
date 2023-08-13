@@ -7,12 +7,33 @@ import mypage from "../css/mypage.module.css";
 import { useEffect, useState } from "react";
 import { getBoardListApi } from "../../apis/boardApi";
 import { useSelector } from "react-redux";
+import axios from "axios";
 
 // 첫 웹사이트 메인페이지
 function Mypage() {
+  const token = useSelector((state) => state.rootReducer.user.userToken);
+  const [user, setUser] = useState({});
+
+  const getUserInfo = async () => {
+    try {
+      const resp = await axios.get(
+        `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/user/info`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      setUser(resp.data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   const userImg = useSelector((state) => state.rootReducer.user.userImg);
   const userName = useSelector((state) => state.rootReducer.user.userName);
   const userEmail = useSelector((state) => state.rootReducer.user.userEmail);
+  const age = 30;
+  const phone = "010-4470-2175";
+  const region = "서울 경기";
 
   // 홈화면에 보이기 위한 조건에 맞는 게시물 리스트 가져오기
   const [boardlist, setBoardlist] = useState([]);
@@ -84,7 +105,7 @@ function Mypage() {
       >
         <div className={mypage.profile}>
           <div className={mypage.profileTop}>프로필</div>
-          <div style={{ display: "flex" }}>
+          <div style={{ display: "flex", marginTop: "54px" }}>
             <div>
               <img
                 src={userImg}
@@ -101,9 +122,10 @@ function Mypage() {
             </div>
             <div className={mypage.userBox}>
               <div style={{ fontSize: "18px" }}>{userName}</div>
-              <div style={{ fontSize: "14px", marginTop: "10px" }}>
-                {userEmail}
-              </div>
+
+              <div style={{ marginTop: "16px" }}>나이 : {age}세</div>
+              <div>전화 번호 : {phone}</div>
+              <div>주 거주 지역 : {region}</div>
             </div>
           </div>
         </div>

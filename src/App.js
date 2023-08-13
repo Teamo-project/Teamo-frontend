@@ -17,6 +17,8 @@ import Program from "./routes/js/Program/program";
 
 import SignUp from "./routes/js/signup";
 
+import FirstGoogle from "./routes/js/firstGoogleLogin";
+
 function App() {
   return (
     <div style={{ minWidth: "1440px", backgroundColor: "#FAFAFA" }}>
@@ -25,6 +27,10 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
+          <Route
+            path="/signup/Google/:userId"
+            element={<FirstGoogle />}
+          ></Route>
           <Route path="/program" element={<Program />}></Route>
           <Route path="/posting" element={<Posting />}></Route>
           <Route path="/posting/write" element={<Write />}></Route>

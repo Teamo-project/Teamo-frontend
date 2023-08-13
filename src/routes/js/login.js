@@ -6,6 +6,7 @@ import googleLogo from "../img/googleLogo.png";
 import naverLogo from "../img/naverLogo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import axios from "axios";
 
 function Login() {
   const navigate = useNavigate();
@@ -33,7 +34,17 @@ function Login() {
   };
 
   const onLogin = () => {
-    alert("로그인~~");
+    axios
+      .post(
+        "http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/user/login",
+        user
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        alert("로그인을 다시 진행해주세요.");
+      });
   };
 
   const onSignUp = () => {
@@ -60,7 +71,7 @@ function Login() {
             onChange={onChange}
           />
           <input
-            type="text"
+            type="password"
             placeholder="비밀번호"
             name="password"
             value={password}
