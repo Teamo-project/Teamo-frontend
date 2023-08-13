@@ -11,8 +11,7 @@ import axios from "axios";
 function Login() {
   const navigate = useNavigate();
   const nowURL = new URL(window.location.href);
-
-  console.log(nowURL.origin);
+  console.log(nowURL.origin, "zz");
   // 구글 로그인 연결
   const GoogleLogin = () => {
     window.location.href = `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorize/google?redirect_uri=${nowURL.origin}/oauth2/redirect`;
