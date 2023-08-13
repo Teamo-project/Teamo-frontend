@@ -1,10 +1,10 @@
-import Navigation from "../../components/js/navigation";
-import mentoStyle from "../css/mento.module.css";
-import Posts from "../../components/js/mentoPosts";
+import Navigation from "../../../components/js/navigation";
+import mentoStyle from "../../css/mento.module.css";
+import Posts from "../../../components/js/mentoPosts";
 
 import { Link } from "react-router-dom";
-import home from "../css/home.module.css";
-import menu from "../../components/css/navigationMenu.module.css";
+import home from "../../css/home.module.css";
+import menu from "../../../components/css/navigationMenu.module.css";
 import { Button } from "react-bootstrap";
 import Pagination from "react-js-pagination";
 import { useState } from "react";

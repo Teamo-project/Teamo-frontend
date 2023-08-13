@@ -1,12 +1,12 @@
-import Navigation from "../../components/js/navigation";
-import Footer from "../../components/js/footer";
-import post from "../css/createPost.module.css";
+import Navigation from "../../../components/js/navigation";
+import Footer from "../../../components/js/footer";
+import post from "../../css/createPost.module.css";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-import menu from "../../components/css/navigationMenu.module.css";
+import menu from "../../../components/css/navigationMenu.module.css";
 import { Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
 function CreatePost() {

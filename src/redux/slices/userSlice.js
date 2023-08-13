@@ -8,6 +8,10 @@ export const userSlice = createSlice({
     userName: "",
     userImg: "",
     userEmail: "",
+    userGender: "",
+    userAge: "",
+    userPhone: "",
+    userRegion: "",
   },
   reducers: {
     login: (state, action) => {
@@ -15,8 +19,11 @@ export const userSlice = createSlice({
       state.userId = action.payload.userId;
       state.userName = action.payload.userName;
       state.userImg = action.payload.userImg;
-
       state.userEmail = action.payload.userEmail;
+      state.userGender = action.payload.userGender;
+      state.userAge = action.payload.userAge;
+      state.userPhone = action.payload.userPhone;
+      state.userRegion = action.payload.userRegion;
     },
     logout: (state) => {
       state.userToken = "";
@@ -24,6 +31,10 @@ export const userSlice = createSlice({
       state.userName = "";
       state.userImg = "";
       state.userEmail = "";
+      state.userGender = "";
+      state.userAge = "";
+      state.userPhone = "";
+      state.userRegion = "";
     },
   },
 });

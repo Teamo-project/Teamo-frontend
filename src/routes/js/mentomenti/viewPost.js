@@ -1,10 +1,10 @@
-import Navigation from "../../components/js/navigation";
-import Footer from "../../components/js/footer";
-import post from "../css/post.module.css";
+import Navigation from "../../../components/js/navigation";
+import Footer from "../../../components/js/footer";
+import post from "../../css/post.module.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
-import menu from "../../components/css/navigationMenu.module.css";
+import menu from "../../../components/css/navigationMenu.module.css";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 function ViewPost() {
