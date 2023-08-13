@@ -27,26 +27,31 @@ function ViewPost() {
   });
 
   useEffect(() => {
-    axios
-      .get(
-        `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring/${postingId}`
-      )
-      .then(function (res) {
-        console.log(res.data);
-        setInfo({
-          title: res.data.title,
-          description: res.data.description,
-          category: res.data.category,
-          limited: res.data.limited,
-          name: res.data.mentorInfo.name,
-          count: res.data.count,
-          createDate: res.data.createDate.slice(0, 10),
+    if (accessToken == "") {
+      alert("로그인을 진행해주세요!");
+      navigate("/login");
+    } else {
+      axios
+        .get(
+          `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring/${postingId}`
+        )
+        .then(function (res) {
+          console.log(res.data);
+          setInfo({
+            title: res.data.title,
+            description: res.data.description,
+            category: res.data.category,
+            limited: res.data.limited,
+            name: res.data.mentorInfo.name,
+            count: res.data.count,
+            createDate: res.data.createDate.slice(0, 10),
+          });
+          console.log(info, "zzz");
+        })
+        .catch(function (err) {
+          console.log(err);
         });
-        console.log(info, "zzz");
-      })
-      .catch(function (err) {
-        console.log(err);
-      });
+    }
   }, []);
 
   function subTitleBack(input, flag) {

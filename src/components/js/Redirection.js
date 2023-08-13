@@ -1,7 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { Buffer } from "buffer";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { login } from "../../redux/slices/userSlice";
 import { useEffect, useState } from "react";
 import jwtDecode from "jwt-decode";
@@ -15,7 +14,7 @@ function Redirection() {
   const urlParams = new URL(window.location.href).searchParams;
   const accessToken = urlParams.get("accessToken");
   const userId = urlParams.get("userId");
-
+  const userInfo = JSON.parse(jwtDecode(accessToken).USER);
   const signup = async () => {
     try {
       await axios
@@ -27,24 +26,23 @@ function Redirection() {
             },
           }
         )
-        .then((res) => {
-          console.log(res, "res값");
-          console.log(jwtDecode(accessToken));
+        .then(() => {
+          console.log(userInfo);
           localStorage.setItem("token", accessToken);
           dispatch(
             login({
-              userId: res.data.id,
+              userId: userInfo.id,
               userToken: accessToken,
-              userEmail: res.data.email,
-              userImg: res.data.img,
-              userName: res.data.name,
-              userGender: res.data.gender,
-              userAge: res.data.age,
-              userPhone: res.data.phone,
-              userRegion: res.data.region,
+              userEmail: userInfo.email,
+              userImg: userInfo.img,
+              userName: userInfo.name,
+              userGender: userInfo.gender,
+              userAge: userInfo.age,
+              userPhone: userInfo.phone,
+              userRegion: userInfo.region,
             })
           );
-          //navigate("/");
+          navigate("/");
         });
     } catch (err) {
       alert("oAuth token expired");

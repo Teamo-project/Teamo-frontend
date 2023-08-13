@@ -4,10 +4,10 @@ import Login from "./routes/js/login";
 import Redirection from "./components/js/Redirection";
 import Posting from "./routes/js/Board/posting";
 import Mypage from "./routes/js/mypage";
-import Mento from "./routes/js/mentomenti/mento";
-import CreatePost from "./routes/js/mentomenti/createPost";
-import ViewPost from "./routes/js/mentomenti/viewPost";
-import EditPost from "./routes/js/mentomenti/editPost";
+import Mento from "./routes/js/mentormentee/mento";
+import CreatePost from "./routes/js/mentormentee/createPost";
+import ViewPost from "./routes/js/mentormentee/viewPost";
+import EditPost from "./routes/js/mentormentee/editPost";
 
 import BoardDetail from "./routes/js/Board/postingDetail";
 import Write from "./routes/js/Board/postingWrite";
