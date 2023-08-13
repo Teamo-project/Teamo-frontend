@@ -1,36 +1,29 @@
-import Navigation from "../../components/js/navigation";
+import Navigation from "../../../components/js/navigation";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import menu from "../../components/css/navigation_menu.module.css";
-import pro_list from "../../components/js/program_public";
+import menu from "../../../components/css/navigationMenu.module.css";
 import { useState } from "react";
-import post from "../css/program.module.css";
-import { useNavigate } from "react-router-dom";
-import Program_total from "../../components/js/Program/program_total";
-import Program_pub from "../../components/js/Program/program_pub";
-import Program_private from "../../components/js/Program/program_private";
-import Program_house from "../../components/js/Program/house";
-import Program_cash from "../../components/js/Program/cash";
-import Program_job from "../../components/js/Program/job";
-import Program_fur_education from "../../components/js/Program/fur_education";
-import Program_etc from "../../components/js/Program/etc";
+import post from "../../css/Program/program.module.css";
+import ProgramTotal from "../../../components/js/Program/programTotal";
+import ProgramPub from "../../../components/js/Program/programPub";
+import ProgramPrivate from "../../../components/js/Program/programPrivate";
+import ProgramHouse from "../../../components/js/Program/house";
+import ProgramCash from "../../../components/js/Program/cash";
+import ProgramJob from "../../../components/js/Program/job";
+import ProgramFurEducation from "../../../components/js/Program/furEducation";
+import ProgramEtc from "../../../components/js/Program/etc";
 
 // 지원 프로그램 페이지
 function Program() {
-  // program에 모든 프로그램들 리스트 가져오기
-  const [program, setProgram] = useState(pro_list);
-
-  const navigate = useNavigate();
-
   // 해당 항목의 프로그램들을 가져오기 위해서 number 변수를 설정해준다.
   const [number, setNumber] = useState("0");
-  const total_button = () => {
+  const totalButton = () => {
     setNumber("0");
   };
-  const public_button = () => {
+  const publicButton = () => {
     setNumber("1");
   };
-  const private_button = () => {
+  const privateButton = () => {
     setNumber("2");
   };
   const number3 = () => {
@@ -55,9 +48,8 @@ function Program() {
         position: "relative",
         display: "flex",
         flexDirection: "column",
-        width: "980px",
-        // marginLeft: "230px",
-        // marginRight: "230px",
+        width: "1180px",
+
         margin: "0 auto",
       }}
     >
@@ -93,20 +85,20 @@ function Program() {
       </div>
 
       {/* 프로그램의 주관사 선택 부분 */}
-      <div className={post.first_button}>
+      <div className={post.firstButton}>
         <span>주관사</span>
-        <Button onClick={total_button} data-checked={number === "0"}>
+        <Button onClick={totalButton} data-checked={number === "0"}>
           전체
         </Button>
-        <Button onClick={public_button} data-checked={number === "1"}>
+        <Button onClick={publicButton} data-checked={number === "1"}>
           공공
         </Button>
-        <Button onClick={private_button} data-checked={number === "2"}>
+        <Button onClick={privateButton} data-checked={number === "2"}>
           민간
         </Button>
       </div>
       {/* 프로그램의 카테고리 선택 부분 */}
-      <div className={post.second_button}>
+      <div className={post.secondButton}>
         <span>카테고리</span>
         <Button onClick={number3} data-checked={number === "3"}>
           주거
@@ -126,23 +118,65 @@ function Program() {
       </div>
 
       {/* 해당하는 프로그램들 나오도록 하기 */}
-      <div style={{ width: "980px" }}>
+      <div
+        style={{
+          borderRadius: "16px",
+          margin: "20px",
+          width: "1180px",
+          height: "1262px",
+          backgroundColor: "white",
+          overflowY: "scroll",
+        }}
+      >
+        <div
+          style={{
+            marginLeft: "100px",
+            width: "980px",
+            borderBottom: "1px solid #444",
+            paddingBottom: "10px",
+          }}
+        >
+          <div
+            style={{
+              color: "#444",
+              fontSize: "26px",
+              fontStyle: "normal",
+              fontWeight: "700",
+              lineHeight: "normal",
+              marginTop: "26px",
+            }}
+          >
+            지원 프로그램
+          </div>
+          <div
+            style={{
+              marginTop: "5px",
+              color: "#ADADAD",
+              fontSize: "12px",
+              fontStyle: "normal",
+              fontWeight: "700",
+              lineHeight: "normal",
+            }}
+          >
+            정부 기관에서 주관하는 자립 지원 정보들을 확인하실 수 있습니다.
+          </div>
+        </div>
         {number === "0" ? (
-          <Program_total />
+          <ProgramTotal />
         ) : number === "1" ? (
-          <Program_pub />
+          <ProgramPub />
         ) : number === "2" ? (
-          <Program_private />
+          <ProgramPrivate />
         ) : number === "3" ? (
-          <Program_house />
+          <ProgramHouse />
         ) : number === "4" ? (
-          <Program_job />
+          <ProgramJob />
         ) : number === "5" ? (
-          <Program_cash />
+          <ProgramCash />
         ) : number === "6" ? (
-          <Program_fur_education />
+          <ProgramFurEducation />
         ) : (
-          <Program_etc />
+          <ProgramEtc />
         )}
       </div>
     </div>

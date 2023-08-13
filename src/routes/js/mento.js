@@ -3,7 +3,8 @@ import mentoStyle from "../css/mento.module.css";
 import Posts from "../../components/js/mentoPosts";
 import Footer from "../../components/js/footer";
 import { Link } from "react-router-dom";
-import menu from "../../components/css/navigation_menu.module.css";
+
+import menu from "../../components/css/navigationMenu.module.css";
 import { Button } from "react-bootstrap";
 import Pagination from "react-js-pagination";
 import { useState } from "react";
@@ -32,6 +33,7 @@ function Mento() {
 
   const handlePageChange = (page) => {
     setPage(page);
+
     console.log(page);
   };
   useEffect(() => {

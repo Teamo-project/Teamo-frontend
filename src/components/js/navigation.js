@@ -1,23 +1,28 @@
-import man_logo from "../img/man.png";
+import man_logo from "../img/user.png";
 import woman_logo from "../img/woman.png";
 import navigation from "../css/navigation.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { useState } from "react";
+
+import Mypage from "../../routes/js/mypage";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/slices/userSlice";
 import profile from "../img/Profile.png";
 import log from "../img/Logout.png";
 
+
 // 제일 위 로고쪽 부분
 function Navigation(prop) {
   const token = useSelector((state) => state.rootReducer.user.userToken);
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const LogOut = () => {
     localStorage.removeItem("token");
     dispatch(logout());
+    navigate("/");
   };
 
   const [btnActive, setBtnActive] = useState(prop.re);
@@ -28,7 +33,7 @@ function Navigation(prop) {
 
   return (
     <div>
-      <div style={{ position: "relative", width: "980px", display: "flex" }}>
+      <div style={{ position: "relative", width: "1180px", display: "flex" }}>
         <img className={navigation.man} src={man_logo} alt="holo_img" />
 
         <div className={navigation.logobox}>
@@ -52,7 +57,8 @@ function Navigation(prop) {
               style={{ display: "flex", width: "270px", alignItems: "center" }}
             >
               <img src={profile} className={navigation.myimg} />
-              <Link to="/" style={{ textDecoration: "none" }}>
+
+              <Link to="/mypage" style={{ textDecoration: "none" }}>
                 <Button className={navigation.mybutton}>마이페이지</Button>
               </Link>
               <div style={{ padding: "8px" }}>/</div>

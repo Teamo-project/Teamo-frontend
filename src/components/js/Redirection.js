@@ -29,13 +29,15 @@ function Redirection() {
       )
       .then((res) => {
         localStorage.setItem("token", accessToken);
-
+        console.log(res);
         dispatch(
           login({
             userId: res.data.id,
             userToken: accessToken,
             userEmail: res.data.email,
-            userImage: res.data.img,
+
+            userImg: res.data.img,
+
             userName: res.data.name,
           })
         );
