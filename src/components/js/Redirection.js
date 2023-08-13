@@ -4,6 +4,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../redux/slices/userSlice";
 import { useEffect, useState } from "react";
+import jwtDecode from "jwt-decode";
 
 // 구글로그인 화면
 function Redirection() {
@@ -29,15 +30,13 @@ function Redirection() {
       )
       .then((res) => {
         localStorage.setItem("token", accessToken);
-        console.log(res);
+        console.log(accessToken, jwtDecode(accessToken));
         dispatch(
           login({
             userId: res.data.id,
             userToken: accessToken,
             userEmail: res.data.email,
-
             userImg: res.data.img,
-
             userName: res.data.name,
           })
         );
@@ -46,7 +45,7 @@ function Redirection() {
         alert("oAuth token expired");
       });
 
-    navigate("/");
+    // navigate("/");
     console.log(`엑세스토큰 : ${accessToken} 을 저장했습니다.`);
   }, [accessToken, dispatch]);
 
