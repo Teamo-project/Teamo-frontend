@@ -3,6 +3,7 @@ import google from "../css/FirstGoogleSignUp.module.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import axios from "axios";
+import { isDisabled } from "@testing-library/user-event/dist/utils";
 
 function FirstGoogle() {
   const userId = useParams();
@@ -11,11 +12,11 @@ function FirstGoogle() {
     userId: userId.userId,
     phone: "",
     gender: "남",
-    region: "서울경기",
+    region: "",
     age: "",
     role: "",
   });
-  console.log(user);
+
   const { phone, gender, region, age, mentomenti } = user;
   const onChange = (event) => {
     const { value, name } = event.target;
@@ -51,10 +52,14 @@ function FirstGoogle() {
   };
 
   const sumbitGoogle = () => {
-    if (user.age === "") {
+    if (user.region === "") {
+      alert("지역을 선택해주세요.");
+    } else if (user.age === "") {
       alert("나이를 입력해주세요.");
     } else if (user.phone === "") {
       alert("전화번호를 입력해주세요.");
+    } else if (user.role === "") {
+      alert("멘토/멘티를 선택해주세요.");
     } else {
       onChangePhone();
       submit();

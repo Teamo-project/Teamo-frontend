@@ -36,7 +36,7 @@ function CreatePost() {
 
   const posting = () => {
     if (title == "" || category == "" || recruit == "" || mainText == "") {
-      alert("모두 기입 후 작성 완료버튼을 눌러주세요");
+      alert("정보를 모두 기입 후 작성 완료버튼을 눌러주세요");
     } else {
       axios //멘토링 게시글 생성
         .post(
