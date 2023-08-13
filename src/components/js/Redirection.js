@@ -1,6 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/slices/userSlice";
 import { useEffect, useState } from "react";
@@ -15,7 +14,7 @@ function Redirection() {
   const urlParams = new URL(window.location.href).searchParams;
   const accessToken = urlParams.get("accessToken");
   const userId = urlParams.get("userId");
-
+  const userInfo = JSON.parse(jwtDecode(accessToken).USER);
   const signup = async () => {
     try {
       await axios
@@ -28,7 +27,6 @@ function Redirection() {
           }
         )
         .then(() => {
-          const userInfo = JSON.parse(jwtDecode(accessToken).USER);
           console.log(userInfo);
           localStorage.setItem("token", accessToken);
           dispatch(
@@ -44,7 +42,7 @@ function Redirection() {
               userRegion: userInfo.region,
             })
           );
-          //navigate("/");
+          navigate("/");
         });
     } catch (err) {
       alert("oAuth token expired");
