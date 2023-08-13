@@ -11,12 +11,15 @@ function FirstGoogle() {
     userId: userId.userId,
     phone: "",
     gender: "남",
-    region: "서울",
+    region: "서울경기",
     age: "",
+    role: "",
   });
-  const { phone, gender, region, age } = user;
+  console.log(user);
+  const { phone, gender, region, age, mentomenti } = user;
   const onChange = (event) => {
     const { value, name } = event.target;
+
     setUser({
       ...user,
       [name]: value,
@@ -32,6 +35,7 @@ function FirstGoogle() {
 
   const submit = async () => {
     try {
+      console.log(user);
       await axios
         .post(
           "http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/auth/join/plus",
@@ -98,8 +102,17 @@ function FirstGoogle() {
                 name="region"
                 onChange={onChange}
               >
+                <option value="">지역</option>
                 <option value="서울">서울</option>
+                <option value="인천">인천</option>
                 <option value="경기">경기</option>
+                <option value="충청북도">충청북도</option>
+                <option value="충청남도">충청남도</option>
+                <option value="경상북도">경상북도</option>
+                <option value="경상남도">경상남도</option>
+                <option value="전라북도">전라북도</option>
+                <option value="전라남도">전라남도</option>
+                <option value="강원도">강원도</option>
               </select>
             </div>
             <div style={{ marginTop: "40px" }}>
@@ -128,12 +141,40 @@ function FirstGoogle() {
                 className={google.textInput}
               />
             </div>
+            <div style={{ marginTop: "40px" }}>
+              <span style={{ width: "100px", display: "inline-block" }}>
+                멘토/멘티 :{" "}
+              </span>
+              <button
+                value="mentor"
+                onClick={onChange}
+                name="role"
+                className={google.mentomenti}
+              >
+                멘토
+              </button>
+              <button
+                value="mentee"
+                onClick={onChange}
+                name="role"
+                className={google.mentomenti}
+                style={{ marginLeft: "35px" }}
+              >
+                멘티
+              </button>
+            </div>
           </div>
-          <div style={{ marginTop: "60px" }}>
+          <div
+            style={{
+              marginTop: "50px",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
             <Button
               onClick={sumbitGoogle}
               style={{
-                width: "90px",
+                width: "300px",
                 height: "35px",
                 backgroundColor: "#66c109",
                 color: "white",

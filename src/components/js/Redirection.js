@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-
+import { Buffer } from "buffer";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../redux/slices/userSlice";
 import { useEffect, useState } from "react";
@@ -18,7 +18,6 @@ function Redirection() {
 
   const signup = async () => {
     try {
-      console.log(accessToken);
       await axios
         .get(
           "http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/user/info",
@@ -29,7 +28,8 @@ function Redirection() {
           }
         )
         .then((res) => {
-          console.log(res);
+          console.log(res, "res값");
+          console.log(jwtDecode(accessToken));
           localStorage.setItem("token", accessToken);
           dispatch(
             login({
@@ -44,11 +44,12 @@ function Redirection() {
               userRegion: res.data.region,
             })
           );
-          navigate("/");
+          //navigate("/");
         });
     } catch (err) {
       alert("oAuth token expired");
       console.log(err);
+      throw new Error(err);
     }
   };
 
