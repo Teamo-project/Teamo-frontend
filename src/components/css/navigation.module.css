@@ -1,8 +1,7 @@
 .man {
-  width: 70px;
-  height: 128px;
+  width: 60px;
+  height: 136px;
   position: absolute;
-  left: -94px;
 }
 
 .logobox {
@@ -10,7 +9,7 @@
   width: 265px;
   height: 59px;
   top: 80px;
-  left: -24px;
+  left: 60px;
 }
 
 .holo {
@@ -18,18 +17,17 @@
   font-size: 24px;
   font-weight: 700;
   line-height: 29px;
-  letter-spacing: 0.1em;
+  letter-spacing: 2.4px;
   text-align: left;
+  margin-bottom: 6px;
   color: #66c109;
 }
 
 .content {
-  width: 100%;
-
   font-size: 18px;
   font-weight: 700;
   line-height: 21px;
-  letter-spacing: 0.1em;
+  letter-spacing: 1.8px;
   text-align: left;
   color: #555555;
 }
@@ -38,14 +36,14 @@
   position: absolute;
   width: 20px;
   height: 40px;
-  top: 65px;
-  left: 220px;
+  top: 74px;
+  left: 306px;
 }
 
 .login {
   border: none;
   color: #66c109;
-  background-color: white;
+  background-color: #fafafa;
   font-size: 18px;
   font-weight: 700;
   line-height: 21px;
@@ -69,7 +67,7 @@
 .mybutton {
   border: none;
   color: #66c109;
-  background-color: white;
+  background-color: #fafafa;
   color: #66c109;
   font-family: Pretendard;
   font-size: 18px;
@@ -77,7 +75,9 @@
   font-weight: 700;
   line-height: normal;
 }
-
+.mybutton:hover {
+  cursor: pointer;
+}
 .myimg {
   display: flex;
 

@@ -1,26 +1,27 @@
-import Navigation from "../../components/js/navigation";
+import Navigation from "../../../components/js/navigation";
 import { Button } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
-import menu from "../../components/css/navigation_menu.module.css";
-import axios from "axios";
-import Board from "../../components/js/Board";
+import menu from "../../../components/css/navigationMenu.module.css";
 import { useEffect, useState } from "react";
-import { getBoardDetailApi } from "../../apis/boardApi";
+import UpdateCommentBoard from "../../../components/js/Board/updateComment";
+import { getBoardDetailApi } from "../../../apis/boardApi";
 
-// 게시물 상세 페이지
-function BoardDetail() {
-  const { posting_id } = useParams();
+// 댓글 수정 페이지
+function Modifycomment() {
+  const { postId, commentId } = useParams();
 
+  // 게시물 정보 받기
   const [board, setBoard] = useState({});
 
   const getBoard = async () => {
     try {
-      const resp = await getBoardDetailApi(posting_id);
+      const resp = await getBoardDetailApi(postId);
       setBoard(resp.data);
     } catch (err) {
       console.log(err);
     }
   };
+
   useEffect(() => {
     getBoard();
   }, []);
@@ -31,9 +32,7 @@ function BoardDetail() {
         position: "relative",
         display: "flex",
         flexDirection: "column",
-        width: "980px",
-        // marginLeft: "230px",
-        // marginRight: "230px",
+        width: "1180px",
         margin: "0 auto",
       }}
     >
@@ -67,25 +66,27 @@ function BoardDetail() {
           </Link>
         </div>
       </div>
+
+      {/* 수정페이지의 게시물 부분 */}
       <div
-        style={{
-          width: "980px",
-          marginTop: "300px",
-          display: "flex",
-        }}
+        style={{ marginTop: "50px", display: "flex", justifyContent: "center" }}
       >
-        {/* 해당 게시물 Detail 보이도록 하는 부분 */}
-        <Board
-          posting_id={board.posting_id}
-          title={board.title}
-          content={board.content}
-          user_id={board.user_id}
-          createDate={board.createDate}
-          category={board.category}
-        />
+        {board.id ? (
+          <UpdateCommentBoard
+            id={board.id}
+            title={board.title}
+            boardContent={board.content}
+            creatorId={board.creatorId}
+            createDate={board.createDate}
+            category={board.category}
+            commentId={commentId}
+          />
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
 }
 
-export default BoardDetail;
+export default Modifycomment;

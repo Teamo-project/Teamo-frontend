@@ -1,0 +1,24 @@
+.googlebox {
+  margin: 200px auto;
+  padding: 30px;
+  width: 460px;
+  height: 480px;
+  border-radius: 16px;
+  background-color: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(102, 193, 9, 0.2);
+  font-size: 18px;
+}
+
+.selectRegion {
+  margin-top: 40px;
+  width: 80px;
+  height: 34px;
+  font-size: 16px;
+  padding-left: 12px;
+}
+
+.textInput {
+  width: 300px;
+  height: 34px;
+  padding-left: 10px;
+}

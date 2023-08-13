@@ -3,7 +3,7 @@
   height: 700px;
   border-top: solid 1px #989898;
   border-bottom: solid 1px #989898;
-  margin: 150px auto 0;
+  margin: 300px auto 200px;
 }
 .titleText {
   margin-left: 20px;
@@ -107,4 +107,82 @@
   border: none;
   border-radius: 10px;
   margin-top: 70px;
+}
+.popupBackground {
+  width: 100%;
+  height: 100%;
+
+  background: rgba(100, 100, 100, 0.5);
+}
+.applyPopup {
+  background-color: #fff;
+  width: 633px;
+  height: 816px;
+  border: 1px solid #000;
+  position: absolute;
+  margin-left: 405px;
+  margin-top: 406px;
+  z-index: 1000;
+}
+.applyBtn {
+  margin: 42px auto;
+  background-color: #66c109;
+  display: flex;
+  width: 425px;
+  height: 41px;
+
+  justify-content: center;
+  align-items: center;
+  border: 0px;
+  color: #fff;
+  text-align: center;
+  font-family: Jost;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: capitalize;
+}
+.applyBtn:hover {
+  cursor: pointer;
+}
+.applyTitle {
+  color: #000;
+  font-family: Jost;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  width: 160px;
+  height: 19px;
+  flex-shrink: 0;
+  margin-top: 38px;
+  margin-left: 52px;
+  margin-bottom: 21px;
+}
+.applyInput {
+  width: 428px;
+  height: 45px;
+  margin-top: 3px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background: #fff;
+}
+.applyInputBox {
+  position: flex;
+}
+.popupText {
+  color: #333;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  display: inline;
+}
+
+.inputDiv {
+  width: 433px;
+  margin-top: 11px;
+  margin-left: 100px;
 }

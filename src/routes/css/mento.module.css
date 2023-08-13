@@ -1,11 +1,9 @@
 .searchBox {
   display: flex;
-  width: 100vw;
+  width: 100%;
   height: 100px;
-  margin-top: 150px;
+  margin-top: 250px;
   background-color: #d9d9d9;
-  text-align: center;
-  justify-content: center;
 }
 .searchBoxContnet {
   margin: auto;
@@ -32,6 +30,7 @@
   width: 980px;
 }
 .posts {
+  margin-top: 70px;
   font-weight: 700;
   font-size: 15px;
   color: #545454;
@@ -107,6 +106,44 @@
   box-shadow: -2px 5px 13px rgba(161, 83, 255, 0.15);
   border-radius: 20px;
   border: 0px;
-
   cursor: pointer;
+}
+
+ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #e2e2e2;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+}
+
+li a {
+  text-decoration: none;
+  color: black;
+  font-size: 1rem;
+}
+
+li:active {
+  color: white;
+  background-color: #337ab7;
+}
+
+li a:hover {
+  color: #66c109;
+}
+
+.page-selection {
+  width: 48px;
+  height: 30px;
+  color: #ffffff;
 }

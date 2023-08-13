@@ -1,24 +1,26 @@
 import { Link } from "react-router-dom";
 import mentoStyle from "../../routes/css/mento.module.css";
-function posts() {
+
+function Posts(postInfo) {
   return (
     <div>
       <div className={mentoStyle.postsContent}>
         <div className={mentoStyle.postsContents}>
-          <flex style={{ marginRight: "42px" }}>1</flex> <flex> 법률</flex>
-          <Link to="/viewpost" className={mentoStyle.linkPage}>
-            <span>지원 멘티 모집</span>
+          <flex style={{ marginRight: "42px" }}>{postInfo.id}</flex>{" "}
+          <flex> {postInfo.category}</flex>
+          <Link to={`/viewpost/${postInfo.id}`} className={mentoStyle.linkPage}>
+            <span>{postInfo.title}</span>
           </Link>
         </div>
 
         <div className={mentoStyle.postsContents}>
-          <flex style={{ marginRight: "30px" }}>김남진</flex>{" "}
-          <flex style={{ marginRight: "30px" }}>23.07.25</flex>{" "}
-          <flex style={{ marginRight: "15px" }}>21</flex>
+          <flex style={{ marginRight: "30px" }}>{postInfo.creatorName}</flex>{" "}
+          <flex style={{ marginRight: "30px" }}>{postInfo.createDate}</flex>{" "}
+          <flex style={{ marginRight: "15px" }}>{postInfo.count}</flex>
         </div>
       </div>
       <hr className={mentoStyle.line2}></hr>
     </div>
   );
 }
-export default posts;
+export default Posts;

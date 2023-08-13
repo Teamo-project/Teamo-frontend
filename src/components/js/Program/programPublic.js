@@ -1,10 +1,10 @@
 // 지원 프로그램 리스트들 정리
-const pro_list = [
+const prolist = [
   {
     who: "공공",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=387&act=&searchValueList4=A&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=1",
     category: "기타",
-    category_description: "언어능력",
+    categoryDescription: "언어능력",
     deadline: "2023.08.18",
     title: "읽기 능력 향상 앱 지원",
     content:
@@ -16,7 +16,7 @@ const pro_list = [
     who: "공공",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=386&act=&searchValueList4=A&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=1",
     category: "기타",
-    category_description: "정신건강",
+    categoryDescription: "정신건강",
     deadline: "2023.11.30",
     title: "청년의 마음건강 '함께 잇길'",
     content:
@@ -28,7 +28,7 @@ const pro_list = [
     who: "공공",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=377&act=&searchValueList4=A&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=1",
     category: "진학",
-    category_description: "진학",
+    categoryDescription: "진학",
     deadline: "2023.08.13",
     title: "IBK 자립준비청년 장학금취업지원",
     content:
@@ -40,7 +40,7 @@ const pro_list = [
     who: "공공",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=381&act=&searchValueList4=A&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=1",
     category: "금융",
-    category_description: "금융",
+    categoryDescription: "금융",
     deadline: "2023.08.11",
     title: "버라이어티 메이터스 살롱",
     content:
@@ -52,7 +52,7 @@ const pro_list = [
     who: "공공",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=375&act=&searchValueList4=A&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=1",
     category: "금융",
-    category_description: "금융",
+    categoryDescription: "금융",
     deadline: "2023.12.31",
     title: "강남구청 자립준비청년 지원사업",
     content: "강남 구청에서 강남구 거주 예비 자립 준비 청년을 지원하여 줍니다",
@@ -64,7 +64,7 @@ const pro_list = [
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=376&act=&searchValueList4=A&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=1",
 
     category: "진학",
-    category_description: "진학",
+    categoryDescription: "진학",
     deadline: "2023.08.07",
     title: "상반기 군산시 학자금 이자지원 사업",
     content:
@@ -77,7 +77,7 @@ const pro_list = [
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=374&act=&searchValueList4=A&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=1",
 
     category: "기타",
-    category_description: "멘토링",
+    categoryDescription: "멘토링",
     deadline: "2023.08.10",
     title: "바람개비서포터즈 14기 3차 모집",
     content:
@@ -90,7 +90,7 @@ const pro_list = [
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=373&act=&searchValueList4=A&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=1",
 
     category: "취업",
-    category_description: "취업",
+    categoryDescription: "취업",
     deadline: "2023.08.21",
     title: "기업탐방형 일경험프로그램 공연예술분야",
     content:
@@ -103,7 +103,7 @@ const pro_list = [
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=362&act=&searchValueList4=A&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=1",
 
     category: "주거",
-    category_description: "주거",
+    categoryDescription: "주거",
     deadline: "2023.09.27",
     title: "유스타트 주택청약종합저축 지원사업",
     content: "자립준비 청년의 주거복지를 위한 주택청약, 종합저축 납입금 지원",
@@ -114,7 +114,7 @@ const pro_list = [
     who: "공공",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=354&act=&searchValueList4=A&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=2",
     category: "취업",
-    category_description: "취업",
+    categoryDescription: "취업",
     deadline: "2023.12.31",
     title: "청년도전지원사업",
     content:
@@ -126,7 +126,7 @@ const pro_list = [
     who: "공공",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=351&act=&searchValueList4=A&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=2",
     category: "금융",
-    category_description: "금융",
+    categoryDescription: "금융",
     deadline: "2023.12.31",
     title: "「배움마켓」 자립정착금 필수 교육",
     content:
@@ -138,7 +138,7 @@ const pro_list = [
     who: "공공",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=323&act=&searchValueList4=A&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=3",
     category: "진학",
-    category_description: "진학",
+    categoryDescription: "진학",
     deadline: "2023.08.13",
     title: "한국관관공사 호텔분야취업연계 추가모집",
     content:
@@ -150,7 +150,7 @@ const pro_list = [
     who: "공공",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=320&act=&searchValueList4=A&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=3",
     category: "취업",
-    category_description: "취업",
+    categoryDescription: "취업",
     deadline: "2023.12.31",
     title: "청년면접정장 대여사업",
     content: "미취업 구직중인 청년을 위하여 면접정장을 대여해 줍니다.",
@@ -161,7 +161,7 @@ const pro_list = [
     who: "공공",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=318&act=&searchValueList4=A&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=3",
     category: "취업",
-    category_description: "취업",
+    categoryDescription: "취업",
     deadline: "2023.12.31",
     title: "취준꾸러미 참여자모집",
     content:
@@ -173,7 +173,7 @@ const pro_list = [
     who: "공공",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=312&act=&searchValueList4=A&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=3",
     category: "취업",
-    category_description: "취업",
+    categoryDescription: "취업",
     deadline: "2023.10.24",
     title: "청년도전 지원사업",
     agency: "고용노동부 한국고용정부",
@@ -185,7 +185,7 @@ const pro_list = [
     who: "공공",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=305&act=&searchValueList4=A&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=4",
     category: "기타",
-    category_description: "정신건강",
+    categoryDescription: "정신건강",
     deadline: "2023.11.30",
     title: "청년내일상담소",
     content:
@@ -197,7 +197,7 @@ const pro_list = [
     who: "공공",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=297&act=&searchValueList4=A&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=4",
     category: "취업",
-    category_description: "취업",
+    categoryDescription: "취업",
     deadline: "2023.12.29",
     title: "청년 희망날개 지원사업",
     content: "면접정장 상하의 및 구두 대여",
@@ -208,7 +208,7 @@ const pro_list = [
     who: "공공",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=289&act=&searchValueList4=A&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=4",
     category: "진학",
-    category_description: "진학",
+    categoryDescription: "진학",
     deadline: "2023.12.31",
     title: "미래내일경험사업 안내",
     content:
@@ -220,7 +220,7 @@ const pro_list = [
     who: "공공",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=291&act=&searchValueList4=A&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=4",
     category: "기타",
-    category_description: "정신건강",
+    categoryDescription: "정신건강",
     deadline: "2023.12.31",
     title: "청년의 마음건강 '함께 잇길'",
     content:
@@ -232,7 +232,7 @@ const pro_list = [
     who: "공공",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=284&act=&searchValueList4=A&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=5",
     category: "취업",
-    category_description: "취업",
+    categoryDescription: "취업",
     deadline: "2023.12.31",
     title: "한국도로공사 휴게소 일자리연계",
     content:
@@ -244,7 +244,7 @@ const pro_list = [
     who: "공공",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=256&act=&searchValueList4=A&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=5",
     category: "취업",
-    category_description: "취업",
+    categoryDescription: "취업",
     deadline: "2023.11.30",
     title: "인천 청년 자격증 응시료 지원",
     content:
@@ -256,7 +256,7 @@ const pro_list = [
     who: "공공",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=250&act=&searchValueList4=A&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=6",
     category: "주거",
-    category_description: "주거",
+    categoryDescription: "주거",
     deadline: "2023.08.21",
     title: "(충북)청년월세특별지원",
     content:
@@ -268,7 +268,7 @@ const pro_list = [
     who: "공공",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=248&act=&searchValueList4=A&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=6",
     category: "취업",
-    category_description: "취업",
+    categoryDescription: "취업",
     deadline: "2023.12.31",
     title: "청년취업희망디딤돌",
     content:
@@ -280,7 +280,7 @@ const pro_list = [
     who: "공공",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=238&act=&searchValueList4=A&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=6",
     category: "기타",
-    category_description: "정신건강",
+    categoryDescription: "정신건강",
     deadline: "2023.11.15",
     title: "청년정착상담소 참여자 모집",
     content:
@@ -292,7 +292,7 @@ const pro_list = [
     who: "공공",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=235&act=&searchValueList4=A&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=6",
     category: "주거",
-    category_description: "주거",
+    categoryDescription: "주거",
     deadline: "2023.12.31",
     title: "(세종)청년 월세 특별지원",
     content: "세종에 사는 청년을 위하여 월세 지원 사업을 진행합니다.",
@@ -303,7 +303,7 @@ const pro_list = [
     who: "공공",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=234&act=&searchValueList4=A&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=6",
     category: "주거",
-    category_description: "주거",
+    categoryDescription: "주거",
     deadline: "2023.08.21",
     title: "(전북) 청년월세 한시 특별지원 모집",
     content: "12개월 간 월 최대 20만원 임차료를 지원해주는 사업을 합니다.",
@@ -314,7 +314,7 @@ const pro_list = [
     who: "공공",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=232&act=&searchValueList4=A&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=6",
     category: "취업",
-    category_description: "취업",
+    categoryDescription: "취업",
     deadline: "2023.08.31",
     title: "(순창)지역사회 맞춤형 평생직업교육",
     content:
@@ -326,7 +326,7 @@ const pro_list = [
     who: "공공",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=229&act=&searchValueList4=A&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=7",
     category: "주거",
-    category_description: "주거",
+    categoryDescription: "주거",
     deadline: "2023.12.31",
     title: "(세종) 주택임차보증금 이자지원사업",
     content:
@@ -338,7 +338,7 @@ const pro_list = [
     who: "공공",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=197&act=&searchValueList4=A&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=7",
     category: "주거",
-    category_description: "주거",
+    categoryDescription: "주거",
     deadline: "2023.12.31",
     title: "경기도 자립준비청년 주거기반 자립지원",
     content:
@@ -350,7 +350,7 @@ const pro_list = [
     who: "공공",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=202&act=&searchValueList4=A&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=7",
     category: "주거",
-    category_description: "주거",
+    categoryDescription: "주거",
     deadline: "2023.11.30",
     title: "청년 주택임차보증금 이자 지원 사업",
     content:
@@ -362,7 +362,7 @@ const pro_list = [
     who: "공공",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=171&act=&searchValueList4=A&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=8",
     category: "취업",
-    category_description: "취업",
+    categoryDescription: "취업",
     deadline: "2023.12.31",
     title: "디지털 교육분야 사업 안내",
     content:
@@ -374,7 +374,7 @@ const pro_list = [
     who: "민간",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=384&act=&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=1",
     category: "취업",
-    category_description: "취업",
+    categoryDescription: "취업",
     deadline: "2023.08.11",
     title: "전라북도 취업연계형 디지털부트캠프",
     content:
@@ -386,7 +386,7 @@ const pro_list = [
     who: "민간",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=378&act=&searchValueList4=B&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=1",
     category: "금융",
-    category_description: "금융",
+    categoryDescription: "금융",
     deadline: "2023.08.06",
     title: "한국콜마와 함께하는 장학금 지원사업",
     content:
@@ -398,7 +398,7 @@ const pro_list = [
     who: "민간",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=372&act=&searchValueList4=B&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=1",
     category: "주거",
-    category_description: "주거",
+    categoryDescription: "주거",
     deadline: "2023.08.11",
     title: "주거환경개선 꿈꾸는 그루터기 꿈터",
     content:
@@ -410,7 +410,7 @@ const pro_list = [
     who: "민간",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=364&act=&searchValueList4=B&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=1",
     category: "금융",
-    category_description: "금융",
+    categoryDescription: "금융",
     deadline: "2023.12.31",
     title: "두나무 넥스트 JOB 창업지원사업",
     content:
@@ -422,7 +422,7 @@ const pro_list = [
     who: "민간",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=363&act=&searchValueList4=B&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=1",
     category: "기타",
-    category_description: "모임",
+    categoryDescription: "모임",
     deadline: "2023.08.02",
     title: "청년들의 자립이야기 청자기 3.5기",
     content:
@@ -434,7 +434,7 @@ const pro_list = [
     who: "민간",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=361&act=&searchValueList4=B&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=2",
     category: "기타",
-    category_description: "여행",
+    categoryDescription: "여행",
     deadline: "2023.08.04",
     title: "자립준비청년과 함께하는 독도비전트립",
     content:
@@ -446,7 +446,7 @@ const pro_list = [
     who: "민간",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=360&act=&searchValueList4=B&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=2",
     category: "취업",
-    category_description: "취업",
+    categoryDescription: "취업",
     deadline: "2023.08.06",
     title: "희망디딤돌 자립준비청년 취업지원사업",
     content:
@@ -458,7 +458,7 @@ const pro_list = [
     who: "민간",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=358&act=&searchValueList4=B&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=2",
     category: "취업",
-    category_description: "취업",
+    categoryDescription: "취업",
     deadline: "2023.08.08",
     title: "CJ도너스캠프 꿈키움 아카데미",
     content:
@@ -470,7 +470,7 @@ const pro_list = [
     who: "민간",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=355&act=&searchValueList4=B&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=2",
     category: "취업",
-    category_description: "취업",
+    categoryDescription: "취업",
     deadline: "2023.07.31",
     title: "디지털마케팅 실무역량강화 및 취업연계",
     content:
@@ -482,7 +482,7 @@ const pro_list = [
     who: "민간",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=281&act=&searchValueList4=B&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=4",
     category: "기타",
-    category_description: "정신건강",
+    categoryDescription: "정신건강",
     deadline: "2023.11.30",
     title: "감정코칭 지원 사업",
     content:
@@ -494,7 +494,7 @@ const pro_list = [
     who: "민간",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=258&act=&searchValueList4=B&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=5",
     category: "주거",
-    category_description: "주거",
+    categoryDescription: "주거",
     deadline: "2023.12.31",
     title: "삼성희망 디딤돌 센터",
     content:
@@ -506,7 +506,7 @@ const pro_list = [
     who: "민간",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=217&act=&searchValueList4=B&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=5",
     category: "주거",
-    category_description: "주거",
+    categoryDescription: "주거",
     deadline: "2023.12.10",
     title: "'나의 첫 살림' 사업",
     content:
@@ -518,7 +518,7 @@ const pro_list = [
     who: "민간",
     url: "https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=175&act=&searchValueList4=B&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=6",
     category: "기타",
-    category_description: "교육",
+    categoryDescription: "교육",
     deadline: "2023.12.31",
     title: "엘-아띠 2기 대상자 모집",
     content:
@@ -528,4 +528,4 @@ const pro_list = [
   },
 ];
 
-export default pro_list;
+export default prolist;
