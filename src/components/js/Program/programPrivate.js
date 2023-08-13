@@ -1,10 +1,10 @@
-import pro_list from "../../js/program_public";
-import post from "../../../routes/css/program.module.css";
+import prolist from "./programPublic";
+import post from "../../../routes/css/Program/program.module.css";
 import { useState } from "react";
 
 // 주관사 민간인 프로그램 보이기
-function Program_private() {
-  const [program, setProgram] = useState(pro_list);
+function ProgramPrivate() {
+  const [program, setProgram] = useState(prolist);
   return (
     <div className={post.post}>
       {program.map((event) => {
@@ -15,7 +15,7 @@ function Program_private() {
               style={{
                 textDecoration: "none",
                 color: "black",
-                width: "428px",
+                width: "480px",
                 height: "242px",
                 border: "1px solid #f1f1f1",
                 backgroundColor: "#f1f1f1",
@@ -47,21 +47,21 @@ function Program_private() {
                       border: "1px solid #66c109",
                       color: "#66C109",
                       fontSize: "0.8rem",
-                      width: "128px",
+                      width: "143px",
                       height: "24px",
                       justifyContent: "center",
                       alignItems: "center",
                     }}
                   >
-                    자립 지원 / {event.category_description}
+                    자립 지원 / {event.categoryDescription}
                   </div>
                   <div
                     style={{
-                      width: "114px",
+                      width: "154px",
                       height: "14px",
                       color: "#ADADAD",
                       fontSize: "12px",
-                      marginRight: "10px",
+                      marginRight: "-16px",
                     }}
                   >
                     마감일자 {event.deadline}
@@ -122,4 +122,4 @@ function Program_private() {
   );
 }
 
-export default Program_private;
+export default ProgramPrivate;

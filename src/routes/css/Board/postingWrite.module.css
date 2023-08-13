@@ -1,4 +1,7 @@
 .total {
+  display: flex;
+  flex-direction: column;
+  margin-left: 100px;
   border: 1px solid gray;
   margin-top: 300px;
   width: 980px;
@@ -8,12 +11,13 @@
   margin-bottom: 100px;
 }
 
-.total_top {
+.totalTop {
   display: flex;
   margin-top: 20px;
   margin-left: 10px;
 }
-.total_top span {
+
+.totalTop span {
   font-size: 1.1rem;
 }
 
@@ -51,11 +55,11 @@
   color: rgb(159, 157, 157);
 }
 
-.button_div {
+.buttonDiv {
   margin-top: 15px;
 }
 
-.button_div Button {
+.buttonDiv Button {
   width: 80px;
   height: 35px;
   margin-left: 10px;

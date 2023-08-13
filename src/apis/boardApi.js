@@ -1,96 +1,68 @@
 import axios from "axios";
 
-export const getBoardListApi = () => {
-  return axios.get(
-    `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/posting/list`,
-    {
-      headers: { Authorization: "Bearer debug" },
-    }
-  );
+const url = "http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080";
+
+export const getBoardListApi = (payload) => {
+  return axios.get(`${url}/v1/posting/list?page=${payload}`, {
+    headers: { Authorization: "Bearer debug" },
+  });
 };
 
-export const writeBoardApi = (board) => {
-  return axios.post(
-    "http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/posting",
-    board,
-    {
-      headers: { Authorization: "Bearer debug" },
-    }
-  );
+export const writeBoardApi = (board, token) => {
+  return axios.post(`${url}/v1/posting`, board, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
 };
 
 export const getBoardDetailApi = (payload) => {
   return axios.get(
-    // v1/posting/detail/:id이렇게 바꾸기
-    `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/posting/detail/${payload}`,
+    // v1/posting/:id이렇게 바꾸기
+
+    `${url}/v1/posting/${payload}`,
     {
-      headers: { Authorization: "Bearer debug" },
+      headers: { Authorization: `Bearer debug` },
     }
   );
 };
 
-export const deleteBoardApi = (payload) => {
-  return axios.delete(
-    `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/posting/${payload}`,
-    {
-      headers: { Authorization: "Bearer debug" },
-    }
-  );
+export const deleteBoardApi = (id, token) => {
+  return axios.delete(`${url}/v1/posting/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
 };
 
-export const updateBoardApi = (payload) => {
-  return axios.put(
-    `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/posting/${payload.posting_id}`,
-    payload,
-    {
-      headers: { Authorization: "Bearer debug" },
-    }
-  );
+export const updateBoardApi = (payload, token) => {
+  return axios.put(`${url}/v1/posting/${payload.id}`, payload, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
 };
 
-export const writeCommentApi = (payload) => {
-  return axios.post(
-    `https://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/posting/${payload.post_id}/comment`,
-    payload,
-    {
-      headers: { Authorization: "Bearer debug" },
-    }
-  );
+export const writeCommentApi = (payload, token) => {
+  return axios.post(`${url}/v1/reply/${payload.postId}`, payload, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
 };
 
-export const getCommentListApi = (payload) => {
-  return axios.get(
-    `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/posting/${payload}/comment`,
-    {
-      headers: { Authorization: "Bearer debug" },
-    }
-  );
+export const getCommentListApi = (postingId, page) => {
+  return axios.get(`${url}/v1/reply/list?Id=${postingId}&page=${page}`, {
+    headers: { Authorization: "Bearer debug" },
+  });
 };
 
-export const getCommentApi = (posting_id, comment_id) => {
-  return axios.get(
-    `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/posting/${posting_id}/comment/${comment_id}`,
-    {
-      headers: { Authorization: "Bearer debug" },
-    }
-  );
+export const getCommentApi = (postId, id) => {
+  return axios.get(`${url}/v1/reply/${postId}/${id}`, {
+    headers: { Authorization: "Bearer debug" },
+  });
 };
 
-export const deleteCommentApi = (post_id, comment_id) => {
-  return axios.delete(
-    `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/posting/${post_id}/comment/${comment_id}`,
-    {
-      headers: { Authorization: "Bearer debug" },
-    }
-  );
+export const deleteCommentApi = (postId, id, token) => {
+  return axios.delete(`${url}/v1/reply/${postId}/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
 };
 
-export const updateCommentApi = (payload) => {
-  return axios.put(
-    `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/posting/${payload.post_id}/comment/${payload.comment_id}`,
-    payload,
-    {
-      headers: { Authorization: "Bearer debug" },
-    }
-  );
+export const updateCommentApi = (payload, token) => {
+  return axios.put(`${url}/v1/reply/${payload.postId}/${payload.id}`, payload, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
 };
