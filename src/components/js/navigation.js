@@ -4,7 +4,7 @@ import navigation from "../css/navigation.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { useEffect, useState } from "react";
-
+import axios from "axios";
 import Mypage from "../../routes/js/mypage";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/slices/userSlice";
@@ -15,7 +15,7 @@ import log from "../img/Logout.png";
 function Navigation(prop) {
   const token = useSelector((state) => state.persistedReducer.user.userToken);
   const user = useSelector((state) => state.persistedReducer.user.userId);
-
+  const accessToken = localStorage.getItem("token");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const LogOut = () => {
