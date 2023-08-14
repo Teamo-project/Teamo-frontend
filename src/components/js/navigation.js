@@ -3,21 +3,21 @@ import woman_logo from "../img/woman.png";
 import navigation from "../css/navigation.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Mypage from "../../routes/js/mypage";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/slices/userSlice";
 import profile from "../img/Profile.png";
 import log from "../img/Logout.png";
-import axios from "axios";
+
 // 제일 위 로고쪽 부분
 function Navigation(prop) {
-  const token = useSelector((state) => state.rootReducer.user.userToken);
-  const accessToken = localStorage.getItem("token");
+  const token = useSelector((state) => state.persistedReducer.user.userToken);
+  const user = useSelector((state) => state.persistedReducer.user.userId);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const LogOut = () => {
     axios
       .get(
@@ -41,6 +41,10 @@ function Navigation(prop) {
   const handleActive = (re) => {
     setBtnActive(re);
   };
+
+  useEffect(() => {
+    console.log(token);
+  }, []);
 
   return (
     <div>

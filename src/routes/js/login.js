@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import login from "../css/login.module.css";
+import logincss from "../css/login.module.css";
 import man_logo from "../../components/img/user.png";
 import kakagoLogo from "../img/kakaoLogo.png";
 import googleLogo from "../img/googleLogo.png";
@@ -7,11 +7,17 @@ import naverLogo from "../img/naverLogo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/slices/userSlice";
 
 function Login() {
   const navigate = useNavigate();
+
   const nowURL = new URL(window.location.href);
   console.log(nowURL.origin, "zz");
+
+  const dispatch = useDispatch();
+
   // 구글 로그인 연결
   const GoogleLogin = () => {
     window.location.href = `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorize/google?redirect_uri=${nowURL.origin}/oauth2/redirect`;
@@ -32,6 +38,39 @@ function Login() {
       [name]: value,
     });
   };
+  const signup = async (token) => {
+    try {
+      console.log(token);
+      await axios
+        .get(
+          "http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/user/info",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+        .then((res) => {
+          dispatch(
+            login({
+              userId: res.data.id,
+              userToken: token,
+              userEmail: res.data.email,
+              userImg: res.data.img,
+              userName: res.data.name,
+              userGender: res.data.gender,
+              userAge: res.data.age,
+              userPhone: res.data.phone,
+              userRegion: res.data.region,
+            })
+          );
+          navigate("/");
+        });
+    } catch (err) {
+      alert("oAuth token expired");
+      console.log(err);
+    }
+  };
 
   const onLogin = () => {
     axios
@@ -40,7 +79,15 @@ function Login() {
         user
       )
       .then((res) => {
-        console.log(res);
+        if (res.status === 500) {
+          alert(
+            "이메일 또는 비밀번호가 잘못되었습니다. 다시 로그인을 진행해주세요."
+          );
+        } else if (res.status === 200) {
+          const token = res.data.accessToken;
+          localStorage.setItem("token", token);
+          signup(token);
+        }
       })
       .catch((err) => {
         alert("로그인을 다시 진행해주세요.");
@@ -54,14 +101,14 @@ function Login() {
   return (
     <div style={{ width: "100%" }}>
       {/* 로그인 박스 부분 */}
-      <div className={login.loginBox}>
-        <div className={login.logo}>
+      <div className={logincss.loginBox}>
+        <div className={logincss.logo}>
           <Link to={"/"}>
-            <img className={login.man} src={man_logo} />
-            <p className={login.txt}>홀로서기</p>
+            <img className={logincss.man} src={man_logo} />
+            <p className={logincss.txt}>홀로서기</p>
           </Link>
         </div>
-        <div className={login.loginInput}>
+        <div className={logincss.loginInput}>
           <input
             type="text"
             placeholder="이메일"
@@ -77,7 +124,7 @@ function Login() {
             onChange={onChange}
           />
         </div>
-        <div className={login.button}>
+        <div className={logincss.button}>
           <Button onClick={onLogin}>로그인</Button>
 
           <span
@@ -94,23 +141,29 @@ function Login() {
             <Button onClick={onSignUp}>회원가입</Button>
           </span>
         </div>
-        <div className={login.lineBox}>
-          <hr className={login.line} />
-          <hr className={login.line2} />
+        <div className={logincss.lineBox}>
+          <hr className={logincss.line} />
+          <hr className={logincss.line2} />
         </div>
       </div>
 
       {/* SNS 로그인 부분 */}
-      <div className={login.btnBox}>
-        <button type="button" className={`${login.Button} ${login.kakao}`}>
-          <div className={login.buttonText}>
-            <img className={login.btnLogo} src={kakagoLogo}></img>
-            <div className={login.buttonText2}>카카오로 로그인하기</div>
+      <div className={logincss.btnBox}>
+        <button
+          type="button"
+          className={`${logincss.Button} ${logincss.kakao}`}
+        >
+          <div className={logincss.buttonText}>
+            <img className={logincss.btnLogo} src={kakagoLogo}></img>
+            <div className={logincss.buttonText2}>카카오로 로그인하기</div>
           </div>
         </button>
-        <button type="button" className={`${login.Button} ${login.naver}`}>
-          <div className={login.buttonText}>
-            <img className={login.btnLogo} src={naverLogo}></img>
+        <button
+          type="button"
+          className={`${logincss.Button} ${logincss.naver}`}
+        >
+          <div className={logincss.buttonText}>
+            <img className={logincss.btnLogo} src={naverLogo}></img>
 
             <div>네이버로 로그인하기</div>
           </div>
@@ -118,10 +171,10 @@ function Login() {
         <button
           onClick={GoogleLogin}
           type="button"
-          className={`${login.Button} ${login.google}`}
+          className={`${logincss.Button} ${logincss.google}`}
         >
-          <div className={login.buttonText}>
-            <img className={login.btnLogo} src={googleLogo}></img>
+          <div className={logincss.buttonText}>
+            <img className={logincss.btnLogo} src={googleLogo}></img>
 
             <div>구글로 로그인하기</div>
           </div>

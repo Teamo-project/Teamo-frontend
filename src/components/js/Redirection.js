@@ -57,6 +57,7 @@ function Redirection() {
       navigate(`/signup/Google/${userId}`);
     } else {
       console.log(accessToken);
+
       signup();
 
       console.log(`엑세스토큰 : ${accessToken} 을 저장했습니다.`);

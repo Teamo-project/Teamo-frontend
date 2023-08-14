@@ -12,7 +12,9 @@ function FirstGoogle() {
     userId: userId.userId,
     phone: "",
     gender: "남",
-    region: "",
+
+    region: "서울",
+
     age: "",
     role: "",
   });

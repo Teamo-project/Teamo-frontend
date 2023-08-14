@@ -11,7 +11,7 @@ function ProgramCash() {
         if (event.category === "금융") {
           return (
             <a
-              href="https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=374&act=&searchValueList2=1&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=2"
+              href={event.url}
               style={{
                 textDecoration: "none",
                 color: "black",
@@ -22,6 +22,7 @@ function ProgramCash() {
                 margin: "10px 30px",
                 borderRadius: "16px",
               }}
+              target="_blank"
             >
               <div
                 style={{

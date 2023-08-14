@@ -10,8 +10,10 @@ import { useEffect } from "react";
 function Comment({ id, postId, creatorId, content, createDate }) {
   const navigate = useNavigate();
   //로그인 한 user의 정보 받기
-  const state_userid = useSelector((state) => state.rootReducer.user.userId);
-  const token = useSelector((state) => state.rootReducer.user.userToken);
+  const state_userid = useSelector(
+    (state) => state.persistedReducer.user.userId
+  );
+  const token = useSelector((state) => state.persistedReducer.user.userToken);
 
   // 댓글 수정 부분
   const moveToupdateComment = () => {

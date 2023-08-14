@@ -16,7 +16,7 @@ function Write() {
   const navigate = useNavigate();
 
   // 로그인 한 사용자의 정보받기
-  const token = useSelector((state) => state.rootReducer.user.userToken);
+  const token = useSelector((state) => state.persistedReducer.user.userToken);
 
   // post로 보내기 위하여 입력한 정보들 board에 저장하기
   const [board, setBoard] = useState({
@@ -91,12 +91,12 @@ function Write() {
           </Link>
         </div>
         <div>
-          <Link to="/" style={{ textDecoration: "none" }}>
+          <Link to="/postlist" style={{ textDecoration: "none" }}>
             <Button>멘토멘티</Button>
           </Link>
         </div>
         <div>
-          <Link to="/" style={{ textDecoration: "none" }}>
+          <Link to="/inquire" style={{ textDecoration: "none" }}>
             <Button>문의</Button>
           </Link>
         </div>
