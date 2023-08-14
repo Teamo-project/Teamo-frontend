@@ -14,7 +14,7 @@ import Write from "./routes/js/Board/postingWrite";
 import Update from "./routes/js/Board/updateBoard";
 import Modifycomment from "./routes/js/Board/updateCommentBoard";
 import Program from "./routes/js/Program/program";
-
+import Inquire from "./routes/js/inquire";
 import SignUp from "./routes/js/signup";
 
 import FirstGoogle from "./routes/js/firstGoogleLogin";
@@ -48,6 +48,7 @@ function App() {
           <Route path="/createpost" element={<CreatePost />}></Route>
           <Route path="/viewpost/:postingId" element={<ViewPost />}></Route>
           <Route path="/editpost" element={<EditPost />}></Route>
+          <Route path="/inquire" element={<Inquire />}></Route>
         </Routes>
       </Router>
     </div>

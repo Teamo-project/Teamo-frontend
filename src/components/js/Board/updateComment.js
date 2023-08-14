@@ -22,8 +22,10 @@ function Update_caption({
   const navigate = useNavigate();
 
   // 로그인 한 user의 정보 저장
-  const state_userid = useSelector((state) => state.rootReducer.user.userId);
-  const token = useSelector((state) => state.rootReducer.user.userToken);
+  const state_userid = useSelector(
+    (state) => state.persistedReducer.user.userId
+  );
+  const token = useSelector((state) => state.persistedReducer.user.userToken);
 
   // 해당 댓글 수정을 위해 new_comment 오브젝트 선언
   const [new_comment, setNew_comment] = useState({

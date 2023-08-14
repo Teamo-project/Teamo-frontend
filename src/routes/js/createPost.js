@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 function CreatePost() {
   const accessToken = localStorage.token;
 
-  const registor = useSelector((state) => state.rootReducer.user.userName);
+  const registor = useSelector((state) => state.persistedReducer.user.userName);
   const [mainText, setMainText] = useState("");
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
@@ -85,8 +85,7 @@ function CreatePost() {
           display: "flex",
           flexDirection: "column",
           width: "980px",
-          // marginLeft: "230px",
-          // marginRight: "230px",
+
           margin: "0 auto",
         }}
       >
@@ -113,7 +112,7 @@ function CreatePost() {
             </Link>
           </div>
           <div>
-            <Link to="/" style={{ textDecoration: "none" }}>
+            <Link to="/inquire" style={{ textDecoration: "none" }}>
               <Button>문의</Button>
             </Link>
           </div>

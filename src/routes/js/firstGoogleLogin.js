@@ -11,7 +11,7 @@ function FirstGoogle() {
     userId: userId.userId,
     phone: "",
     gender: "남",
-    region: "서울",
+    region: "서울경기",
     age: "",
   });
   const { phone, gender, region, age } = user;
@@ -98,8 +98,7 @@ function FirstGoogle() {
                 name="region"
                 onChange={onChange}
               >
-                <option value="서울">서울</option>
-                <option value="경기">경기</option>
+                <option value="서울경기">서울경기</option>
               </select>
             </div>
             <div style={{ marginTop: "40px" }}>

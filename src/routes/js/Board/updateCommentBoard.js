@@ -56,12 +56,12 @@ function Modifycomment() {
           </Link>
         </div>
         <div>
-          <Link to="/" style={{ textDecoration: "none" }}>
+          <Link to="/postlist" style={{ textDecoration: "none" }}>
             <Button>멘토멘티</Button>
           </Link>
         </div>
         <div>
-          <Link to="/" style={{ textDecoration: "none" }}>
+          <Link to="/inquire" style={{ textDecoration: "none" }}>
             <Button>문의</Button>
           </Link>
         </div>

@@ -13,7 +13,7 @@ import { useSelector } from "react-redux";
 function Posting() {
   const navigate = useNavigate();
 
-  const token = useSelector((state) => state.rootReducer.user.userToken);
+  const token = useSelector((state) => state.persistedReducer.user.userToken);
 
   //페이징을 위한 page 변수선언
   const [page, setPage] = useState(1);
@@ -194,12 +194,12 @@ function Posting() {
             </Link>
           </div>
           <div>
-            <Link to="/" style={{ textDecoration: "none" }}>
+            <Link to="/postlist" style={{ textDecoration: "none" }}>
               <Button>멘토멘티</Button>
             </Link>
           </div>
           <div>
-            <Link to="/" style={{ textDecoration: "none" }}>
+            <Link to="/inquire" style={{ textDecoration: "none" }}>
               <Button>문의</Button>
             </Link>
           </div>

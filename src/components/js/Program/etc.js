@@ -11,7 +11,8 @@ function ProgramEtc() {
         if (event.category === "기타") {
           return (
             <a
-              href="https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=374&act=&searchValueList2=1&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=2"
+              href={event.url}
+              target="_blank"
               style={{
                 textDecoration: "none",
                 color: "black",

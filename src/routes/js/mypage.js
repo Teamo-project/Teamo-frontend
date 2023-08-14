@@ -11,7 +11,7 @@ import axios from "axios";
 
 // 첫 웹사이트 메인페이지
 function Mypage() {
-  const token = useSelector((state) => state.rootReducer.user.userToken);
+  const token = useSelector((state) => state.persistedReducer.user.userToken);
   const [user, setUser] = useState({});
 
   const getUserInfo = async () => {
@@ -28,9 +28,11 @@ function Mypage() {
     }
   };
 
-  const userImg = useSelector((state) => state.rootReducer.user.userImg);
-  const userName = useSelector((state) => state.rootReducer.user.userName);
-  const userEmail = useSelector((state) => state.rootReducer.user.userEmail);
+  const userImg = useSelector((state) => state.persistedReducer.user.userImg);
+  const userName = useSelector((state) => state.persistedReducer.user.userName);
+  const userEmail = useSelector(
+    (state) => state.persistedReducer.user.userEmail
+  );
   const age = 30;
   const phone = "010-4470-2175";
   const region = "서울 경기";
@@ -84,12 +86,12 @@ function Mypage() {
             </Link>
           </div>
           <div>
-            <Link to="/" style={{ textDecoration: "none" }}>
+            <Link to="/postlist" style={{ textDecoration: "none" }}>
               <Button>멘토멘티</Button>
             </Link>
           </div>
           <div>
-            <Link to="/" style={{ textDecoration: "none" }}>
+            <Link to="/inquire" style={{ textDecoration: "none" }}>
               <Button>문의</Button>
             </Link>
           </div>

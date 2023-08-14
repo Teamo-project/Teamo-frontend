@@ -5,6 +5,7 @@ import menu from "../../components/css/navigationMenu.module.css";
 import home from "../css/home.module.css";
 import { useEffect, useState } from "react";
 import { getBoardListApi } from "../../apis/boardApi";
+import { useSelector } from "react-redux";
 
 // 첫 웹사이트 메인페이지
 function Home() {
@@ -57,12 +58,15 @@ function Home() {
     }
   };
 
+  const name = useSelector((state) => state.persistedReducer.user.userName);
+
   useEffect(() => {
     getboardlist();
     getboardlistFree();
     getboardlistInformation();
     getboardlistQuestion();
     getboardlistJob();
+    console.log(name);
   }, []);
 
   return (
@@ -109,7 +113,7 @@ function Home() {
             </Link>
           </div>
           <div>
-            <Link to="/" style={{ textDecoration: "none" }}>
+            <Link to="/inquire" style={{ textDecoration: "none" }}>
               <Button>문의</Button>
             </Link>
           </div>
@@ -131,6 +135,7 @@ function Home() {
           <div className={home.programPro}>
             <a
               href="https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=374&act=&searchValueList2=1&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=2"
+              target="_blank"
               style={{ textDecoration: "none", color: "black" }}
             >
               <div
@@ -227,6 +232,7 @@ function Home() {
             </a>
             <a
               href="https://jaripon.ncrc.or.kr/home/kor/support/projectMng/edit.do?menuPos=1&idx=377&act=&searchValueList2=1&searchValue5=&searchValue6=0&searchKeyword=&searchValue1=A&pageIndex=1"
+              target="_blank"
               style={{ textDecoration: "none", color: "black" }}
             >
               <div

@@ -1,17 +1,17 @@
 import { combineReducers } from "@reduxjs/toolkit";
 import userSlice from "./slices/userSlice";
-// import { persistReducer } from "redux-persist";
-// import storage from "redux-persist/lib/storage";
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
-// const persistConfig = {
-// key: "root",
-// storage,
-// whitelist: ["userSlice"],
-// };
+const persistConfig = {
+  key: "root",
+  storage,
+  whitelist: ["user"],
+};
 
 const rootReducer = combineReducers({
   user: userSlice,
 });
-// export default persistReducer(persistConfig, rootReducer);
+export default persistReducer(persistConfig, rootReducer);
 
-export default rootReducer;
+// export default rootReducer;

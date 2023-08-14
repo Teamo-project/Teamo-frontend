@@ -135,7 +135,7 @@ function EditPost() {
             </Link>
           </div>
           <div>
-            <Link to="/" style={{ textDecoration: "none" }}>
+            <Link to="/inquire" style={{ textDecoration: "none" }}>
               <Button>문의</Button>
             </Link>
           </div>

@@ -6,6 +6,6 @@ import rootReducer from "./combineReducer";
 
 export default configureStore({
   reducer: {
-    rootReducer,
+    persistedReducer,
   },
 });

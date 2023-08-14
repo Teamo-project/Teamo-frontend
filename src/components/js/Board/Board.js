@@ -16,8 +16,10 @@ import Pagination from "react-js-pagination";
 function Board({ id, title, boardContent, creatorId, createDate, category }) {
   const navigate = useNavigate();
   // 로그인한 사용자의 userid와 게시물의 작성자 userid가 갔을 경우에만 수정,삭제 가능하게
-  const state_userid = useSelector((state) => state.rootReducer.user.userId);
-  const token = useSelector((state) => state.rootReducer.user.userToken);
+  const state_userid = useSelector(
+    (state) => state.persistedReducer.user.userId
+  );
+  const token = useSelector((state) => state.persistedReducer.user.userToken);
 
   // 페이지네이션을 위한 페이지 처리
   const [page, setPage] = useState(1);
@@ -99,7 +101,7 @@ function Board({ id, title, boardContent, creatorId, createDate, category }) {
 
   useEffect(() => {
     getCommentlist();
-  }, [page]);
+  }, [page, writeComment]);
 
   return (
     <div
