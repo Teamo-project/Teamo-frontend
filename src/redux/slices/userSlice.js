@@ -37,6 +37,7 @@ export const userSlice = createSlice({
       state.userAge = "";
       state.userPhone = "";
       state.userRegion = "";
+      state.userRole = "";
     },
   },
 });

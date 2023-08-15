@@ -12,14 +12,12 @@ function FirstGoogle() {
     userId: userId.userId,
     phone: "",
     gender: "남",
-
     region: "서울",
-
     age: "",
     role: "",
   });
 
-  const { phone, gender, region, age, mentomenti } = user;
+  const { phone, gender, region, age, role } = user;
   const onChange = (event) => {
     const { value, name } = event.target;
 
@@ -27,6 +25,7 @@ function FirstGoogle() {
       ...user,
       [name]: value,
     });
+    console.log(user);
   };
 
   const onChangePhone = () => {
