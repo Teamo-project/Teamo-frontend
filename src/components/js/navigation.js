@@ -5,7 +5,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { useEffect, useState } from "react";
 
+
 import Mypage from "../../routes/js/User/mypage";
+
+import axios from "axios";
+
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/slices/userSlice";
 import profile from "../img/Profile.png";
@@ -16,7 +20,7 @@ import axios from "axios";
 function Navigation(prop) {
   const token = useSelector((state) => state.persistedReducer.user.userToken);
   const user = useSelector((state) => state.persistedReducer.user.userId);
-
+  const accessToken = localStorage.getItem("token");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const LogOut = () => {

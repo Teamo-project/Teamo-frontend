@@ -8,15 +8,21 @@ import { Link, useParams } from "react-router-dom";
 import menu from "../../../components/css/navigationMenu.module.css";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { isRejected } from "@reduxjs/toolkit";
+import { useSelector } from "react-redux";
 function ViewPost() {
+  const userRole = useSelector((state) => state.persistedReducer.user.userRole);
+  console.log(userRole);
   const navigate = useNavigate();
   const accessToken = localStorage.token;
   const postingId = useParams().postingId;
   const [description, setDescription] = useState("");
   const [isPopup, setIsPopup] = useState(false);
-  const [count, setCount] = useState("");
+  const [searchInput, setSearchInput] = useState("");
+  const [mentees, setMentees] = useState([]);
   console.log(postingId);
   const [info, setInfo] = useState({
+    isReceipt: "",
     title: "",
     description: "",
     category: "",
@@ -33,11 +39,16 @@ function ViewPost() {
     } else {
       axios
         .get(
-          `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring/${postingId}`
+          `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring/${postingId}`,
+          {
+            headers: { Authorization: `Bearer ${accessToken}` },
+          }
         )
         .then(function (res) {
-          console.log(res.data);
+          setMentees(res.data.menteees);
+          console.log(mentees);
           setInfo({
+            isReceipt: res.data.isReceipt,
             title: res.data.title,
             description: res.data.description,
             category: res.data.category,
@@ -46,7 +57,6 @@ function ViewPost() {
             count: res.data.count,
             createDate: res.data.createDate.slice(0, 10),
           });
-          console.log(info, "zzz");
         })
         .catch(function (err) {
           console.log(err);
@@ -65,45 +75,54 @@ function ViewPost() {
   }
 
   const handlePopup = () => {
-    setIsPopup(!isPopup);
+    if (accessToken === undefined) {
+      alert("로그인 해주세요.");
+      navigate("/login");
+    } else setIsPopup(!isPopup);
   };
   const handleDescription = (e) => {
     setDescription(e.target.value);
   };
-  const editRequest = () => {
+  const deleteRequest = () => {
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      axios
+        .delete(
+          `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring/${postingId}`
+        )
+        .then((res) => {
+          navigate("/postlist");
+          alert("삭제되었습니다.");
+        });
+    } else {
+      alert("취소합니다.");
+    }
+  };
+  const endRequest = () => {
     axios
-      .put(
-        "http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring/1",
-        {
-          title: "법률 멘토링",
-          description: "abcde",
-          category: "법률",
-          limited: 5,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
+      .patch(
+        `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring/${postingId}/receipt`
       )
-      .then(function (res) {
-        console.log(res.data);
-        setCount(res.data.count);
-        console.log(res.data);
+      .then(() => {
+        setInfo({ isReceipt: false });
+        console.log(info);
+        navigate("/postlist");
+        alert("마감되었습니다.");
       });
   };
   const applyRequest = () => {
-    if (description == "") {
+    if (info.isReceipt === false) {
+      alert("마감되었습니다.");
+    } else if (description === "") {
       alert("지원동기를 입력하십시오.");
     } else {
       axios
         .post(
-          "http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentee/2",
+          `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentee/${postingId}`,
           {
             description: description,
           },
           {
-            headers: { Authorization: "Bearer debug" },
+            headers: { Authorization: `Bearer ${accessToken}` },
           }
         )
         .then((res) => {
@@ -111,7 +130,7 @@ function ViewPost() {
           navigate("/postlist");
         })
         .catch((err) => {
-          console.log(err);
+          alert(err.response.data.message);
         });
     }
   };
@@ -182,7 +201,7 @@ function ViewPost() {
       ) : (
         ""
       )}
-      {console.log(postingId)}
+      {console.log(info.isReceipt)}
       <div
         style={{
           position: "relative",
@@ -229,54 +248,70 @@ function ViewPost() {
           </div>
           <hr className={post.line}></hr>
           <div className={post.subTitleBox}>
-            {subTitleBack("등록자명", 0)} {subTitleBack(info.title, 1)}
+            {subTitleBack("등록자명", 0)} {subTitleBack(info.name, 1)}
             {subTitleBack("등록일", 0)} {subTitleBack(info.createDate, 1)}
           </div>
           <hr className={post.line}></hr>
           <div className={post.subTitleBox}>
             {subTitleBack("분류", 0)} {subTitleBack(info.category, 1)}
-            {subTitleBack("조회수", 0)} {subTitleBack("조회수 어카쥥", 1)}
+            {subTitleBack("마감여부", 0)}{" "}
+            {subTitleBack(info.isReceipt == true ? "모집중" : "마감", 1)}
           </div>
           <hr className={post.line}></hr>
 
           <div className={post.mainText}>
             {info.description}
-
-            <div className={post.recruitment}>
-              모집인원 {info.count} / {info.limited}
-            </div>
+            {info.isReceipt == true ? (
+              <div className={post.recruitment}>
+                모집인원 {info.count} / {info.limited}
+              </div>
+            ) : (
+              ""
+            )}
           </div>
 
           <div className={post.mentoring}>
             <p className={post.mentoringText}>멘토링 연결 신청</p>
-
             <button className={post.mentoringBtn} onClick={handlePopup}>
               신청하러가기
             </button>
 
             {console.log(accessToken)}
-            {accessToken == undefined ? (
+            {accessToken == undefined || userRole == "mentee" ? (
               ""
             ) : (
-              <Link to="/editpost">
-                <button className={post.mentoringBtn} onClick={editRequest}>
-                  Edit
-                </button>
+              <Link to={`/editpost/${postingId}`}>
+                <button className={post.mentoringBtn}>Edit</button>
               </Link>
             )}
-            {accessToken == undefined ? (
+            {accessToken == undefined || userRole == "mentee" ? (
               ""
             ) : (
-              <button className={post.mentoringBtn} onClick={editRequest}>
+              <button className={post.mentoringBtn} onClick={endRequest}>
                 접수 마감
               </button>
             )}
+            {accessToken == undefined || userRole == "mentee" ? (
+              ""
+            ) : (
+              <button className={post.mentoringBtn} onClick={deleteRequest}>
+                삭제하기
+              </button>
+            )}
           </div>
+          <p>신청한 멘티</p>
+          {mentees === undefined
+            ? ""
+            : mentees.map((ele) => {
+                console.log(ele.menteeName);
+                return (
+                  <button className={post.menteeBtn}>{ele.menteeName}</button>
+                );
+              })}
         </div>
       </div>
 
       {/* <Footer /> */}
-
       <div className={home.footer}>
         <div className={home.footerLeft}>
           <Link to="/" style={{ textDecoration: "none" }}>

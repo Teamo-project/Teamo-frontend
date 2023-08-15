@@ -12,6 +12,7 @@ export const userSlice = createSlice({
     userAge: "",
     userPhone: "",
     userRegion: "",
+    userRole: "",
   },
   reducers: {
     login: (state, action) => {
@@ -24,6 +25,7 @@ export const userSlice = createSlice({
       state.userAge = action.payload.userAge;
       state.userPhone = action.payload.userPhone;
       state.userRegion = action.payload.userRegion;
+      state.userRole = action.payload.userRole;
     },
     logout: (state) => {
       state.userToken = "";

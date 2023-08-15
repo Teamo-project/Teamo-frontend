@@ -197,3 +197,12 @@
 .popupCancel:hover {
   cursor: pointer;
 }
+.menteeBtn {
+  width: 200px;
+  height: 50px;
+  background-color: #fff;
+  border: 1px solid #333;
+}
+.menteeBtn:hover {
+  cursor: pointer;
+}

@@ -1,5 +1,5 @@
 import Navigation from "../../../components/js/navigation";
-import Footer from "../../../components/js/footer";
+
 import post from "../../css/createPost.module.css";
 import { useState } from "react";
 import axios from "axios";
@@ -49,7 +49,7 @@ function CreatePost() {
           },
           {
             headers: {
-              Authorization: `Bearer debug`,
+              Authorization: `Bearer ${accessToken}`,
             },
           }
         )

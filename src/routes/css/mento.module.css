@@ -45,6 +45,7 @@
 }
 .postsTopName {
   word-spacing: 10px;
+  margin-left: 10px;
 }
 .postsTopRegistInfo {
   word-spacing: 10px;
@@ -55,7 +56,6 @@
   margin: 15px auto 0px;
   display: flex;
   justify-content: space-between;
-  font-family: "Jost";
 }
 .postsContents {
   margin-left: 10px;
@@ -64,6 +64,11 @@
   margin-left: 35px;
   color: #545454;
   text-decoration: none;
+}
+.span {
+  width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .line2 {
   background: #e7e7e7;

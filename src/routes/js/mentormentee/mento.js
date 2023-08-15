@@ -10,11 +10,15 @@ import Pagination from "react-js-pagination";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
+import { useSelector } from "react-redux";
 function Mento() {
+  const userRole = useSelector((state) => state.persistedReducer.user.userRole);
+  const [contentList, setContentList] = useState([]);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
-
-  const onChangeSearch = (e) => {
+  const accessToken = localStorage.getItem("token");
+  const [totalElem, setTotalElem] = useState(0);
+  const handleSearch = (e) => {
     e.preventDefault();
     setSearch(e.target.value);
   };
@@ -26,8 +30,7 @@ function Mento() {
       //필터로 검색 구현
     }
   };
-  const accessToken = localStorage.token;
-
+  console.log(accessToken);
   const handleCategory = () => {};
   const [boardList, setBoardList] = useState([]);
 
@@ -48,15 +51,25 @@ function Mento() {
       )
       .then(function (res) {
         console.log(res);
+
+        setContentList(res.data.content);
+        console.log("contentList", contentList);
         setBoardList(res.data.content);
+        setTotalElem(res.data.totalElements);
       })
       .catch(function (res) {
         console.log(res);
       });
   }, [page]);
-
+  const searchList = () => {
+    const filtered = contentList.filter((itemList) => {
+      console.log("HI", itemList.title.includes(search));
+    });
+    filtered();
+  };
   return (
     <div>
+      {searchList}
       <div
         style={{
           position: "relative",
@@ -104,7 +117,10 @@ function Mento() {
               <option>상담</option>
               <option>기타</option>
             </select>
-            <input className={mentoStyle.search}></input>
+            <input
+              onChange={handleSearch}
+              className={mentoStyle.search}
+            ></input>
             <button className={mentoStyle.searchBtn}>검색</button>
           </div>
         </div>
@@ -113,7 +129,7 @@ function Mento() {
           <div className={mentoStyle.postsTop}>
             <div className={mentoStyle.postsTopName}>순번 | 분류 | 제목</div>
             <div className={mentoStyle.postsTopRegistInfo}>
-              등록자명 | 등록일 | 조회수
+              등록자명 | 등록일 | 마감여부
             </div>
           </div>
           <hr className={mentoStyle.line} />
@@ -127,20 +143,25 @@ function Mento() {
                 createDate={ele.createDate.slice(0, 10)}
                 creatorName={ele.creatorName}
                 count={ele.count}
+                isReceipt={ele.isReceipt}
               />
             );
           })}
 
           <div className={mentoStyle.buttonBox}>
-            <Link to={"/createpost"} className={mentoStyle.wirteBtn}>
-              <p style={{ margin: "auto" }}>글쓰기</p>
-            </Link>
+            {accessToken === null || userRole == "mentee" ? (
+              ""
+            ) : (
+              <Link to={"/createpost"} className={mentoStyle.wirteBtn}>
+                <p style={{ margin: "auto" }}>글쓰기</p>
+              </Link>
+            )}
           </div>
           <div className={mentoStyle.pageNum}>
             <Pagination
               activePage={page}
               itemsCountPerPage={10}
-              totalItemsCount={30}
+              totalItemsCount={totalElem}
               pageRangeDisplayed={5}
               prevPageText={"‹"}
               nextPageText={"›"}

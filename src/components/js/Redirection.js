@@ -28,6 +28,7 @@ function Redirection() {
         )
         .then(() => {
           userInfo = JSON.parse(jwtDecode(accessToken).USER);
+          console.log(userInfo);
           localStorage.setItem("token", accessToken);
           dispatch(
             login({
@@ -40,9 +41,10 @@ function Redirection() {
               userAge: userInfo.age,
               userPhone: userInfo.phone,
               userRegion: userInfo.region,
+              userRole: userInfo.role,
             })
           );
-          navigate("/");
+          //navigate("/");
         });
     } catch (err) {
       alert("oAuth token expired");

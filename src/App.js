@@ -49,7 +49,7 @@ function App() {
           <Route path="/postlist" element={<Mento />}></Route>
           <Route path="/createpost" element={<CreatePost />}></Route>
           <Route path="/viewpost/:postingId" element={<ViewPost />}></Route>
-          <Route path="/editpost" element={<EditPost />}></Route>
+          <Route path="/editpost/:postingId" element={<EditPost />}></Route>
           <Route path="/inquire" element={<Inquire />}></Route>
         </Routes>
       </Router>
