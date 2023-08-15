@@ -8,8 +8,8 @@ import { Button } from "react-bootstrap";
 import Pagination from "react-js-pagination";
 import { useState } from "react";
 import { useEffect } from "react";
-import axios from "axios";
 import { useSelector } from "react-redux";
+import { viewPostList } from "../../../apis/mentorMentee";
 function Mento() {
   const userRole = useSelector((state) => state.persistedReducer.user.userRole);
   const [page, setPage] = useState(1);
@@ -19,25 +19,8 @@ function Mento() {
   const [totalElem, setTotalElem] = useState(0);
   const accessToken = localStorage.getItem("token");
 
-  function getUrl() {
-    if (searchText === "" && searchCategory === "")
-      return `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring/list?page=${page}`;
-    else if (searchText != "" && searchCategory === "")
-      return `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring/list?page=${page}&title=${searchText}`;
-    else if (searchText === "" && searchCategory != "")
-      return `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring/list?page=${page}&category=${searchCategory}`;
-    else
-      return `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring/list?page=${page}&category=${searchCategory}&title=${searchText}`;
-  }
-
   useEffect(() => {
-    console.log("url", getUrl());
-    axios
-      .get(getUrl(), {
-        headers: {
-          Authorization: "Bearer debug",
-        },
-      })
+    viewPostList(searchText, searchCategory, accessToken, page)
       .then(function (res) {
         console.log(res.data.totalElements);
         setTotalElem(res.data.totalElements);
@@ -149,7 +132,7 @@ function Mento() {
           })}
 
           <div className={mentoStyle.buttonBox}>
-            {accessToken === null || userRole == "mentee" ? (
+            {accessToken === null || userRole === "mentee" ? (
               ""
             ) : (
               <Link to={"/createpost"} className={mentoStyle.wirteBtn}>

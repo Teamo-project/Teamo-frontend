@@ -2,13 +2,14 @@ import Navigation from "../../../components/js/navigation";
 
 import post from "../../css/createPost.module.css";
 import { useState } from "react";
-import axios from "axios";
+
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import home from "../../css/home.module.css";
 import menu from "../../../components/css/navigationMenu.module.css";
 import { Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import { createPost } from "../../../apis/mentorMentee";
 function CreatePost() {
   const accessToken = localStorage.token;
 
@@ -35,24 +36,18 @@ function CreatePost() {
   };
 
   const posting = () => {
-    if (title == "" || category == "" || recruit == "" || mainText == "") {
+    if (title === "" || category === "" || recruit === "" || mainText === "") {
       alert("정보를 모두 기입 후 작성 완료버튼을 눌러주세요");
     } else {
-      axios //멘토링 게시글 생성
-        .post(
-          "http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring",
-          {
-            title: title,
-            description: mainText,
-            category: category,
-            limited: recruit,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          }
-        )
+      createPost(
+        {
+          title: title,
+          description: mainText,
+          category: category,
+          limited: recruit,
+        },
+        accessToken
+      )
         .then(function (res) {
           console.log(res);
           navigate("/postlist");
@@ -73,10 +68,7 @@ function CreatePost() {
   }
 
   const [isPopup, setIsPopup] = useState(false);
-  const handlePopup = () => {
-    console.log(isPopup);
-    setIsPopup(!isPopup);
-  };
+
   return (
     <div>
       <div

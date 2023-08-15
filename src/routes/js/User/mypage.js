@@ -10,12 +10,14 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import nullUserImg from "../../../components/img/user_img.png";
 import passwordImg from "../../../components/img/Password.png";
-
+import MentorPost from "../../../components/js/Mypage/MentorPost";
+import MenteePost from "../../../components/js/Mypage/MenteePost";
 // 첫 웹사이트 메인페이지
 function Mypage() {
   const token = useSelector((state) => state.persistedReducer.user.userToken);
   const [user, setUser] = useState({});
-
+  const userRole = useSelector((state) => state.persistedReducer.user.userRole);
+  const [MentoringPost, setMentoringPost] = useState({});
   const getUserInfo = async () => {
     try {
       const resp = await axios.get(
@@ -45,6 +47,23 @@ function Mypage() {
       }
     }
   };
+
+  useEffect(() => {
+    axios
+      .get(
+        "http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring/my",
+        { headers: { Authorization: `Bearer ${token}` } }
+      )
+      .then((res) => {
+        console.log(res, "in axios");
+        setMentoringPost(res.data.content);
+        console.log(MentoringPost);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   useEffect(() => {
     getUserInfo();
   }, []);
@@ -210,7 +229,14 @@ function Mypage() {
           </div>
         </div>
 
-        <div className={mypage.mento}></div>
+        <div className={mypage.mento}>
+          {console.log(MentoringPost)}
+          {userRole == "mentor" ? (
+            <MentorPost postingInfo={MentoringPost} />
+          ) : (
+            <MenteePost />
+          )}
+        </div>
       </div>
 
       {/* 가장 아래 footer부분 */}
