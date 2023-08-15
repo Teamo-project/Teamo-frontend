@@ -17,6 +17,7 @@ function Redirection() {
   let userInfo = "";
   const signup = async () => {
     try {
+
       await UserInfo(accessToken).then(() => {
         userInfo = JSON.parse(jwtDecode(accessToken).USER);
         console.log(userInfo);
@@ -37,6 +38,7 @@ function Redirection() {
         );
         navigate("/");
       });
+
     } catch (err) {
       alert("oAuth token expired");
       console.log(err);
