@@ -353,6 +353,7 @@ function Home() {
                     style={{ textDecoration: "none", color: "black" }}
                   >
                     <div
+                      key={v.id}
                       style={{
                         paddingLeft: "10px",
                         width: "320px",
@@ -389,7 +390,7 @@ function Home() {
 
                   {boardlistFree.slice(0, 4).map((v) => {
                     return (
-                      <div>
+                      <div key={v.id}>
                         <Link
                           to={`/posting/${v.id}`}
                           style={{
@@ -430,7 +431,7 @@ function Home() {
 
                   {boardlistQuestion.slice(0, 4).map((v) => {
                     return (
-                      <div>
+                      <div key={v.id}>
                         <Link
                           to={`/posting/${v.id}`}
                           style={{ textDecoration: "none", color: "black" }}
@@ -471,7 +472,7 @@ function Home() {
 
                   {boardlistInformation.slice(0, 4).map((v) => {
                     return (
-                      <div>
+                      <div key={v.id}>
                         <Link
                           to={`/posting/${v.id}`}
                           style={{ textDecoration: "none", color: "black" }}
@@ -511,7 +512,7 @@ function Home() {
 
                   {boardlistJob.slice(0, 4).map((v) => {
                     return (
-                      <div>
+                      <div key={v.id}>
                         <Link
                           to={`/posting/${v.id}`}
                           style={{ textDecoration: "none", color: "black" }}

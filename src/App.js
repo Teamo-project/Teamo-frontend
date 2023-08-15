@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./routes/js/home";
-import Login from "./routes/js/login";
+import Login from "./routes/js/User/login";
 import Redirection from "./components/js/Redirection";
 import Posting from "./routes/js/Board/posting";
-import Mypage from "./routes/js/mypage";
+import Mypage from "./routes/js/User/mypage";
 import Mento from "./routes/js/mentormentee/mento";
 import CreatePost from "./routes/js/mentormentee/createPost";
 import ViewPost from "./routes/js/mentormentee/viewPost";
@@ -15,9 +15,10 @@ import Update from "./routes/js/Board/updateBoard";
 import Modifycomment from "./routes/js/Board/updateCommentBoard";
 import Program from "./routes/js/Program/program";
 import Inquire from "./routes/js/inquire";
-import SignUp from "./routes/js/signup";
+import SignUp from "./routes/js/User/signup";
+import ChangeInfo from "./routes/js/User/changeUserInfo";
 
-import FirstGoogle from "./routes/js/firstGoogleLogin";
+import FirstGoogle from "./routes/js/User/firstGoogleLogin";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
             element={<Modifycomment />}
           ></Route>
           <Route path="/mypage" element={<Mypage />}></Route>
+          <Route path="/changeInfo" element={<ChangeInfo />}></Route>
           <Route path="/postlist" element={<Mento />}></Route>
           <Route path="/createpost" element={<CreatePost />}></Route>
           <Route path="/viewpost/:postingId" element={<ViewPost />}></Route>

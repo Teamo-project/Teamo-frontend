@@ -38,6 +38,7 @@ function Comment({ id, postId, creatorId, content, createDate }) {
   // 댓글 한개의 BOX를 반환
   return (
     <div
+      key={id}
       style={{
         borderTop: "1px solid lightgray",
         borderBottom: "1px solid lightgray",

@@ -1,12 +1,12 @@
-import Navigation from "../../components/js/navigation";
+import Navigation from "../../../components/js/navigation";
 import { Button } from "react-bootstrap";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import signup from "../css/signup.module.css";
-import menu from "../../components/css/navigationMenu.module.css";
+import signup from "../../css/signup.module.css";
+import menu from "../../../components/css/navigationMenu.module.css";
 import { useEffect, useState } from "react";
-import { getBoardDetailApi } from "../../apis/boardApi";
+import { getBoardDetailApi } from "../../../apis/boardApi";
 import axios from "axios";
-import home from "../css/home.module.css";
+import home from "../../css/home.module.css";
 // 게시물 상세 페이지
 
 function BoardDetail() {
@@ -227,7 +227,10 @@ function BoardDetail() {
     });
 
     const regex = /^[0-9\b]{0,11}$/;
-    if (regex.test(e.target.value)) {
+    if (phoneCurrent === "") {
+      setIsphone(false);
+      setPhonetext("*전화번호를 입력해주세요.");
+    } else if (regex.test(e.target.value)) {
       setIsphone(true);
       setPhonetext("");
     } else {
@@ -243,7 +246,10 @@ function BoardDetail() {
       age: ageCurrent,
     });
     const regex = /^[0-9\b]{0,3}$/;
-    if (regex.test(e.target.value)) {
+    if (ageCurrent === "") {
+      setIsage(false);
+      setAgetext("*나이를 입력해주세요.");
+    } else if (regex.test(e.target.value)) {
       setIsage(true);
       setAgetext("");
     } else {
@@ -500,7 +506,7 @@ function BoardDetail() {
                   lineHeight: "20px",
                 }}
               >
-                비밀번호(8~16자의 영문,숫자 포함)
+                비밀번호(8~16자의 영문,숫자만 포함)
               </div>
               <input
                 type="text"

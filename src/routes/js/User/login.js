@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import logincss from "../css/login.module.css";
-import man_logo from "../../components/img/user.png";
-import kakagoLogo from "../img/kakaoLogo.png";
-import googleLogo from "../img/googleLogo.png";
-import naverLogo from "../img/naverLogo.png";
+import logincss from "../../css/login.module.css";
+import man_logo from "../../../components/img/user.png";
+import kakagoLogo from "../../img/kakaoLogo.png";
+import googleLogo from "../../img/googleLogo.png";
+import naverLogo from "../../img/naverLogo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { login } from "../../redux/slices/userSlice";
+import { login } from "../../../redux/slices/userSlice";
 
 function Login() {
   const navigate = useNavigate();
@@ -51,6 +51,7 @@ function Login() {
           }
         )
         .then((res) => {
+          console.log(res.data.img);
           dispatch(
             login({
               userId: res.data.id,
