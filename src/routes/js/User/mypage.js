@@ -5,11 +5,10 @@ import menu from "../../../components/css/navigationMenu.module.css";
 import home from "../../css/home.module.css";
 import mypage from "../../css/mypage.module.css";
 import { useEffect, useState } from "react";
-import { getBoardListApi } from "../../../apis/boardApi";
 import { useSelector } from "react-redux";
-import axios from "axios";
-import nullUserImg from "../../../components/img/user_img.png";
+import NullUserImg from "../../../components/img/user_img.png";
 import passwordImg from "../../../components/img/Password.png";
+import { DeleteUser, UserInfo } from "../../../apis/UserApi";
 
 // 첫 웹사이트 메인페이지
 function Mypage() {
@@ -18,12 +17,7 @@ function Mypage() {
 
   const getUserInfo = async () => {
     try {
-      const resp = await axios.get(
-        `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/user/info`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      const resp = await UserInfo(token);
       setUser(resp.data);
     } catch (err) {
       console.error(err);
@@ -33,13 +27,9 @@ function Mypage() {
     const deleteAlert = alert("회원탈퇴를 하시겠습니까?");
     if (deleteAlert) {
       try {
-        await axios
-          .delete(
-            `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/user/withdraw/?userId=${user.id}`
-          )
-          .then((res) => {
-            console.log(res);
-          });
+        await DeleteUser(user.id).then((res) => {
+          console.log(res);
+        });
       } catch (err) {
         console.log(err);
       }
@@ -117,8 +107,8 @@ function Mypage() {
                 }}
               >
                 <img
-                  src={user.img === null ? nullUserImg : user.img}
-                  alt="userimg"
+                  src={user.img !== "" ? user.img : NullUserImg}
+                  alt="User"
                   style={{
                     width: "40px",
                     height: "40px",
