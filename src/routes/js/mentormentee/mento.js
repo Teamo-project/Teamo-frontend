@@ -1,7 +1,6 @@
 import Navigation from "../../../components/js/navigation";
 import mentoStyle from "../../css/mento.module.css";
 import Posts from "../../../components/js/mentoPosts";
-
 import { Link } from "react-router-dom";
 import home from "../../css/home.module.css";
 import menu from "../../../components/css/navigationMenu.module.css";
@@ -13,63 +12,58 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 function Mento() {
   const userRole = useSelector((state) => state.persistedReducer.user.userRole);
-  const [contentList, setContentList] = useState([]);
   const [page, setPage] = useState(1);
-  const [search, setSearch] = useState("");
-  const accessToken = localStorage.getItem("token");
-  const [totalElem, setTotalElem] = useState(0);
-  const handleSearch = (e) => {
-    e.preventDefault();
-    setSearch(e.target.value);
-  };
-  const onSearch = (e) => {
-    e.preventDefault();
-    if (search === null || search === "") {
-      //전체리스트
-    } else {
-      //필터로 검색 구현
-    }
-  };
-  console.log(accessToken);
-  const handleCategory = () => {};
+  const [searchText, setSearchText] = useState("");
+  const [searchCategory, setSearchCategory] = useState("");
   const [boardList, setBoardList] = useState([]);
+  const [totalElem, setTotalElem] = useState(0);
+  const accessToken = localStorage.getItem("token");
+
+  function getUrl() {
+    if (searchText === "" && searchCategory === "")
+      return `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring/list?page=${page}`;
+    else if (searchText != "" && searchCategory === "")
+      return `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring/list?page=${page}&title=${searchText}`;
+    else if (searchText === "" && searchCategory != "")
+      return `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring/list?page=${page}&category=${searchCategory}`;
+    else
+      return `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring/list?page=${page}&category=${searchCategory}&title=${searchText}`;
+  }
+
+  useEffect(() => {
+    console.log("url", getUrl());
+    axios
+      .get(getUrl(), {
+        headers: {
+          Authorization: "Bearer debug",
+        },
+      })
+      .then(function (res) {
+        console.log(res.data.totalElements);
+        setTotalElem(res.data.totalElements);
+        setBoardList(res.data.content);
+      })
+      .catch(function (res) {
+        console.log(res);
+      });
+  }, [page, searchText, searchCategory]);
+
+  const handleSearchText = (e) => {
+    e.preventDefault();
+    setSearchText(e.target.value);
+  };
+  const handleSearchCategory = (e) => {
+    setSearchCategory(e.target.value);
+  };
 
   const handlePageChange = (page) => {
     setPage(page);
 
     console.log(page);
   };
-  useEffect(() => {
-    axios
-      .get(
-        `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring/list?page=${page}`,
-        {
-          headers: {
-            Authorization: "Bearer debug",
-          },
-        }
-      )
-      .then(function (res) {
-        console.log(res);
 
-        setContentList(res.data.content);
-        console.log("contentList", contentList);
-        setBoardList(res.data.content);
-        setTotalElem(res.data.totalElements);
-      })
-      .catch(function (res) {
-        console.log(res);
-      });
-  }, [page]);
-  const searchList = () => {
-    const filtered = contentList.filter((itemList) => {
-      console.log("HI", itemList.title.includes(search));
-    });
-    filtered();
-  };
   return (
     <div>
-      {searchList}
       <div
         style={{
           position: "relative",
@@ -111,14 +105,17 @@ function Mento() {
       <div>
         <div className={mentoStyle.searchBox}>
           <div className={mentoStyle.searchBoxContnet}>
-            <select className={mentoStyle.classify}>
-              <option onChange={handleCategory}>분류</option>
-              <option>법률</option>
-              <option>상담</option>
-              <option>기타</option>
+            <select
+              className={mentoStyle.classify}
+              onChange={handleSearchCategory}
+            >
+              <option>분류</option>
+              <option value="법률">법률</option>
+              <option value="상담">상담</option>
+              <option value="기타">기타</option>
             </select>
             <input
-              onChange={handleSearch}
+              onChange={handleSearchText}
               className={mentoStyle.search}
             ></input>
             <button className={mentoStyle.searchBtn}>검색</button>
@@ -128,7 +125,10 @@ function Mento() {
           <hr className={mentoStyle.line} style={{ marginTop: "60px" }} />
           <div className={mentoStyle.postsTop}>
             <div className={mentoStyle.postsTopName}>순번 | 분류 | 제목</div>
-            <div className={mentoStyle.postsTopRegistInfo}>
+            <div
+              className={mentoStyle.postsTopRegistInfo}
+              style={{ marginRight: "20px" }}
+            >
               등록자명 | 등록일 | 마감여부
             </div>
           </div>

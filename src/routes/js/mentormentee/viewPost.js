@@ -18,7 +18,7 @@ function ViewPost() {
   const postingId = useParams().postingId;
   const [description, setDescription] = useState("");
   const [isPopup, setIsPopup] = useState(false);
-  const [searchInput, setSearchInput] = useState("");
+
   const [mentees, setMentees] = useState([]);
   console.log(postingId);
   const [info, setInfo] = useState({
@@ -126,7 +126,7 @@ function ViewPost() {
           }
         )
         .then((res) => {
-          console.log(res);
+          alert("지원이 완료되었습니다!");
           navigate("/postlist");
         })
         .catch((err) => {
@@ -271,17 +271,26 @@ function ViewPost() {
           </div>
 
           <div className={post.mentoring}>
-            <p className={post.mentoringText}>멘토링 연결 신청</p>
-            <button className={post.mentoringBtn} onClick={handlePopup}>
-              신청하러가기
-            </button>
+            {userRole === "mentee" ? (
+              <div>
+                <p className={post.mentoringText}>멘토링 연결 신청</p>
+                <button className={post.mentoringBtn} onClick={handlePopup}>
+                  신청하러가기
+                </button>
+              </div>
+            ) : (
+              ""
+            )}
 
             {console.log(accessToken)}
             {accessToken == undefined || userRole == "mentee" ? (
               ""
             ) : (
-              <Link to={`/editpost/${postingId}`}>
-                <button className={post.mentoringBtn}>Edit</button>
+              <Link
+                to={`/editpost/${postingId}`}
+                style={{ textDecoration: "none" }}
+              >
+                <button className={post.mentoringBtn}>수정하기</button>
               </Link>
             )}
             {accessToken == undefined || userRole == "mentee" ? (
@@ -299,15 +308,24 @@ function ViewPost() {
               </button>
             )}
           </div>
-          <p>신청한 멘티</p>
-          {mentees === undefined
-            ? ""
-            : mentees.map((ele) => {
-                console.log(ele.menteeName);
-                return (
-                  <button className={post.menteeBtn}>{ele.menteeName}</button>
-                );
-              })}
+          {userRole === "mentor" ? (
+            <div className={post.mentoring} style={{ marginRight: "10px" }}>
+              <p style={{ marginLeft: "20px" }}>신청한 멘티</p>
+
+              {mentees === undefined
+                ? ""
+                : mentees.map((ele) => {
+                    console.log(ele.menteeName);
+                    return (
+                      <button className={post.menteeBtn}>
+                        {ele.menteeName}
+                      </button>
+                    );
+                  })}
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
 
