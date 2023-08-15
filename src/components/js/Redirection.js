@@ -1,9 +1,9 @@
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/slices/userSlice";
 import { useEffect, useState } from "react";
 import jwtDecode from "jwt-decode";
+import { UserInfo } from "../../apis/UserApi";
 
 // 구글로그인 화면
 function Redirection() {
@@ -17,35 +17,28 @@ function Redirection() {
   let userInfo = "";
   const signup = async () => {
     try {
-      await axios
-        .get(
-          "http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/user/info",
-          {
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          }
-        )
-        .then(() => {
-          userInfo = JSON.parse(jwtDecode(accessToken).USER);
-          console.log(userInfo);
-          localStorage.setItem("token", accessToken);
-          dispatch(
-            login({
-              userId: userInfo.id,
-              userToken: accessToken,
-              userEmail: userInfo.email,
-              userImg: userInfo.img,
-              userName: userInfo.name,
-              userGender: userInfo.gender,
-              userAge: userInfo.age,
-              userPhone: userInfo.phone,
-              userRegion: userInfo.region,
-              userRole: userInfo.role,
-            })
-          );
-          navigate("/");
-        });
+
+      await UserInfo(accessToken).then(() => {
+        userInfo = JSON.parse(jwtDecode(accessToken).USER);
+        console.log(userInfo);
+        localStorage.setItem("token", accessToken);
+        dispatch(
+          login({
+            userId: userInfo.id,
+            userToken: accessToken,
+            userEmail: userInfo.email,
+            userImg: userInfo.img,
+            userName: userInfo.name,
+            userGender: userInfo.gender,
+            userAge: userInfo.age,
+            userPhone: userInfo.phone,
+            userRegion: userInfo.region,
+            userRole: userInfo.role,
+          })
+        );
+        navigate("/");
+      });
+
     } catch (err) {
       alert("oAuth token expired");
       console.log(err);

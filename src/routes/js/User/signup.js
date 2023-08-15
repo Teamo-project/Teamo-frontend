@@ -5,8 +5,9 @@ import signup from "../../css/signup.module.css";
 import menu from "../../../components/css/navigationMenu.module.css";
 import { useEffect, useState } from "react";
 import { getBoardDetailApi } from "../../../apis/boardApi";
-import axios from "axios";
 import home from "../../css/home.module.css";
+import { SignUp, confirmEmailCode, sendEmailCode } from "../../../apis/UserApi";
+
 // 게시물 상세 페이지
 
 function BoardDetail() {
@@ -66,14 +67,9 @@ function BoardDetail() {
 
   const finalSubmit = async () => {
     try {
-      await axios
-        .post(
-          `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/user/join`,
-          user
-        )
-        .then((res) => {
-          console.log(res);
-        });
+      await SignUp(user).then((res) => {
+        console.log(res);
+      });
     } catch (err) {
       console.log(err);
     }
@@ -133,15 +129,11 @@ function BoardDetail() {
 
   const sendCode = async () => {
     try {
-      await axios
-        .get(
-          `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/user/emails/verification-requests?email=${email}`
-        )
-        .then((res) => {
-          if (res.status === 500) {
-            alert("이미 회원가입된 이메일입니다.");
-          }
-        });
+      await sendEmailCode(email).then((res) => {
+        if (res.status === 500) {
+          alert("이미 회원가입된 이메일입니다.");
+        }
+      });
     } catch (err) {
       console.log(err);
     }
@@ -157,20 +149,16 @@ function BoardDetail() {
 
   const confirmCode = async () => {
     try {
-      await axios
-        .get(
-          `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/user/emails/verifications?email=${email}&code=${code}`
-        )
-        .then((res) => {
-          if (res.data.authResult) {
-            setIsConfirmCode(true);
-            setCodetext("*인증 성공");
-          } else {
-            setIsConfirmCode(false);
-            setCodetext("*인증 실패");
-          }
-          console.log(res.data.authResult);
-        });
+      await confirmEmailCode(email, code).then((res) => {
+        if (res.data.authResult) {
+          setIsConfirmCode(true);
+          setCodetext("*인증 성공");
+        } else {
+          setIsConfirmCode(false);
+          setCodetext("*인증 실패");
+        }
+        console.log(res.data.authResult);
+      });
     } catch (err) {
       console.log(err);
     }

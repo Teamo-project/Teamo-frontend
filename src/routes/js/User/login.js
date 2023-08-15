@@ -6,10 +6,10 @@ import googleLogo from "../../img/googleLogo.png";
 import naverLogo from "../../img/naverLogo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { login } from "../../../redux/slices/userSlice";
-
+import { UserInfo } from "../../../apis/UserApi";
+import { SelfLogin } from "../../../apis/UserApi";
 function Login() {
   const navigate = useNavigate();
 
@@ -40,46 +40,32 @@ function Login() {
   };
   const signup = async (token) => {
     try {
-      console.log(token);
-      await axios
-        .get(
-          "http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/user/info",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        )
-        .then((res) => {
-          console.log(res.data.img);
-          dispatch(
-            login({
-              userId: res.data.id,
-              userToken: token,
-              userEmail: res.data.email,
-              userImg: res.data.img,
-              userName: res.data.name,
-              userGender: res.data.gender,
-              userAge: res.data.age,
-              userPhone: res.data.phone,
-              userRegion: res.data.region,
-            })
-          );
-          navigate("/");
-        });
+      await UserInfo(token).then((res) => {
+        console.log(res.data.img);
+        dispatch(
+          login({
+            userId: res.data.id,
+            userToken: token,
+            userEmail: res.data.email,
+            userImg: res.data.img,
+            userName: res.data.name,
+            userGender: res.data.gender,
+            userAge: res.data.age,
+            userPhone: res.data.phone,
+            userRegion: res.data.region,
+          })
+        );
+        navigate("/");
+      });
     } catch (err) {
       alert("oAuth token expired");
       console.log(err);
     }
   };
 
-  const onLogin = () => {
-    axios
-      .post(
-        "http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/user/login",
-        user
-      )
-      .then((res) => {
+  const onLogin = async () => {
+    try {
+      await SelfLogin(user).then((res) => {
         if (res.status === 500) {
           alert(
             "이메일 또는 비밀번호가 잘못되었습니다. 다시 로그인을 진행해주세요."
@@ -89,10 +75,10 @@ function Login() {
           localStorage.setItem("token", token);
           signup(token);
         }
-      })
-      .catch((err) => {
-        alert("로그인을 다시 진행해주세요.");
       });
+    } catch (err) {
+      alert("로그인을 다시 진행해주세요.");
+    }
   };
 
   const onSignUp = () => {
