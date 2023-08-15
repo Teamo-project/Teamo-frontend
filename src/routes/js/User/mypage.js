@@ -11,9 +11,9 @@ import passwordImg from "../../../components/img/Password.png";
 
 import { DeleteUser, UserInfo } from "../../../apis/UserApi";
 
-
 import MentorPost from "../../../components/js/Mypage/MentorPost";
 import MenteePost from "../../../components/js/Mypage/MenteePost";
+import axios from "axios";
 
 // 첫 웹사이트 메인페이지
 function Mypage() {
