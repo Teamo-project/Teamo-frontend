@@ -10,10 +10,10 @@ import { ChangingInfo, DeleteUser, UserInfo } from "../../../apis/UserApi";
 
 // 첫 웹사이트 메인페이지
 function ChangeInfo() {
-  const [ispasswordType, setIspasswordType] = useState(false);
-  const [ispasswordSame, setIspasswordSame] = useState(false);
-  const [isphone, setIsphone] = useState(false);
-  const [isage, setIsage] = useState(false);
+  const [ispasswordType, setIspasswordType] = useState(true);
+  const [ispasswordSame, setIspasswordSame] = useState(true);
+  const [isphone, setIsphone] = useState(true);
+  const [isage, setIsage] = useState(true);
 
   const [passwordtext, setPasswordtext] = useState("*비밀번호를 입력해주세요.");
   const [passwordSameText, setPasswordSameText] =
@@ -39,8 +39,9 @@ function ChangeInfo() {
 
   const pushInfo = async () => {
     try {
-      await ChangingInfo(user).then((res) => {
+      await ChangingInfo(user, token).then((res) => {
         console.log(res);
+        navigate("/mypage");
       });
     } catch (err) {
       console.log(err);

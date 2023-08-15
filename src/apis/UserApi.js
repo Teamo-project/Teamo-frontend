@@ -14,8 +14,12 @@ export const SelfLogin = (payload) => {
   return axios.post(`${url}/v1/user/login`, payload);
 };
 
-export const ChangingInfo = (payload) => {
-  return axios.put(`${url}/v1/user/update`, payload);
+export const ChangingInfo = (payload, token) => {
+  return axios.put(`${url}/v1/user/update`, payload, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 };
 
 export const DeleteUser = (payload) => {
