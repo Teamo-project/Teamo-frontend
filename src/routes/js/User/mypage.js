@@ -20,7 +20,7 @@ function Mypage() {
   const token = useSelector((state) => state.persistedReducer.user.userToken);
   const [user, setUser] = useState({});
   const userRole = useSelector((state) => state.persistedReducer.user.userRole);
-  const [MentoringPost, setMentoringPost] = useState({});
+  const [MentoringPost, setMentoringPost] = useState([]);
   const getUserInfo = async () => {
     try {
       const resp = await UserInfo(token);
@@ -49,7 +49,7 @@ function Mypage() {
         { headers: { Authorization: `Bearer ${token}` } }
       )
       .then((res) => {
-        console.log(res, "in axios");
+        console.log(res.data.content, "in axios");
         setMentoringPost(res.data.content);
         console.log(MentoringPost);
       })
@@ -224,9 +224,15 @@ function Mypage() {
         </div>
 
         <div className={mypage.mento}>
-          {console.log(MentoringPost)}
+          {console.log("멘토리", MentoringPost)}
+
           {userRole == "mentor" ? (
-            <MentorPost postingInfo={MentoringPost} />
+            <div>
+              <h3>내가 쓴 멘토링 글</h3>
+              {MentoringPost.map((e) => {
+                return <MentorPost postingInfo={e} />;
+              })}
+            </div>
           ) : (
             <MenteePost />
           )}

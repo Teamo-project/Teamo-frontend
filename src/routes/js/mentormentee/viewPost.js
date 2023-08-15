@@ -9,6 +9,7 @@ import menu from "../../../components/css/navigationMenu.module.css";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import {
+  applyMentee,
   applyMentoring,
   deletePost,
   endMentoring,
@@ -23,8 +24,9 @@ function ViewPost() {
   const postingId = useParams().postingId;
   const [description, setDescription] = useState("");
   const [isPopup, setIsPopup] = useState(false);
-
+  const [menteePopup, setMenteePopup] = useState(false);
   const [mentees, setMentees] = useState([]);
+  const [appliedMentees, setAplliedMentees] = useState([]);
   console.log(postingId);
   const [info, setInfo] = useState({
     isReceipt: "",
@@ -44,6 +46,7 @@ function ViewPost() {
     } else {
       viewPostDetail(postingId, accessToken)
         .then(function (res) {
+          console.log(res.data.menteees, "처음 받아오는거");
           setMentees(res.data.menteees);
           console.log(mentees);
           setInfo({
@@ -64,7 +67,7 @@ function ViewPost() {
   }, []);
 
   function subTitleBack(input, flag) {
-    return flag === "1" ? (
+    return flag == "1" ? (
       <div className={post.subTitle}>{input}</div>
     ) : (
       <div className={post.subTitle} style={{ background: "#EAEAEA" }}>
@@ -72,12 +75,14 @@ function ViewPost() {
       </div>
     );
   }
-
   const handlePopup = () => {
     if (accessToken === undefined) {
       alert("로그인 해주세요.");
       navigate("/login");
     } else setIsPopup(!isPopup);
+  };
+  const handleMenteePopup = () => {
+    setMenteePopup(!menteePopup);
   };
   const handleDescription = (e) => {
     setDescription(e.target.value);
@@ -116,6 +121,19 @@ function ViewPost() {
         });
     }
   };
+
+  const applyMenteeRequest = (mentee) => {
+    console.log(mentee.applyMenteeId, "멘티아이디");
+
+    applyMentee(mentee.applyMenteeId)
+      .then((res) => {
+        console.log(res, "멘티 신청한거 지원동기");
+      })
+      .catch((err) => console.log(err));
+  };
+  const handleMenteePopupCancel = () => {
+    setMenteePopup(false);
+  };
   const handlePopupCancel = () => {
     setIsPopup(false);
   };
@@ -129,6 +147,72 @@ function ViewPost() {
               x
             </button>
             <p className={post.applyTitle}>멘티 지원</p>
+            <div className={post.applyInputBox}>
+              <div
+                style={{
+                  display: "flex",
+                  width: "428px",
+                  margin: "0 auto",
+                }}
+              >
+                <div style={{ width: "200px" }}>
+                  <p className={post.popupText}>성함</p>
+                  <input
+                    className={post.applyInput}
+                    style={{ width: "200px" }}
+                  ></input>
+                </div>
+                <div style={{ width: "100px", marginLeft: "26px" }}>
+                  <p className={post.popupText}>성별</p>
+                  <input
+                    style={{ width: "100px" }}
+                    className={post.applyInput}
+                  ></input>
+                </div>
+              </div>
+
+              <div className={post.inputDiv}>
+                <p className={post.popupText}>이메일</p>
+                <br />
+                <input className={post.applyInput}></input>
+              </div>
+              <div className={post.inputDiv}>
+                <p className={post.popupText}>나이</p>
+                <input className={post.applyInput}></input>
+              </div>
+              <div className={post.inputDiv}>
+                <p className={post.popupText}>주 거주 지역</p>
+                <input className={post.applyInput}></input>
+              </div>
+              <div className={post.inputDiv}>
+                <p className={post.popupText}>지원 동기</p>
+                <input
+                  onChange={handleDescription}
+                  className={post.applyInput}
+                  style={{ height: "182px" }}
+                ></input>
+              </div>
+            </div>
+            <button onClick={applyRequest} className={post.applyBtn}>
+              지원하기
+            </button>
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
+
+      {menteePopup ? (
+        <div>
+          <div className={post.popupBackground}></div>
+          <div className={post.applyPopup}>
+            <button
+              onClick={handleMenteePopupCancel}
+              className={post.popupCancel}
+            >
+              x
+            </button>
+            <p className={post.applyTitle}>지원한 멘티</p>
             <div className={post.applyInputBox}>
               <div
                 style={{
@@ -293,13 +377,16 @@ function ViewPost() {
           {userRole === "mentor" ? (
             <div className={post.mentoring} style={{ marginRight: "10px" }}>
               <p style={{ marginLeft: "20px" }}>신청한 멘티</p>
-
+              {console.log(mentees, "현재 멘티")}
               {mentees === undefined
                 ? ""
                 : mentees.map((ele) => {
                     console.log(ele.menteeName);
                     return (
-                      <button className={post.menteeBtn}>
+                      <button
+                        onClick={(applyMenteeRequest(ele), handleMenteePopup)}
+                        className={post.menteeBtn}
+                      >
                         {ele.menteeName}
                       </button>
                     );
