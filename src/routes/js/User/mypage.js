@@ -17,6 +17,7 @@ import MenteePost from "../../../components/js/Mypage/MenteePost";
 function Mypage() {
   const token = useSelector((state) => state.persistedReducer.user.userToken);
   const [user, setUser] = useState({});
+
   const userRole = useSelector((state) => state.persistedReducer.user.userRole);
   const [MentoringPost, setMentoringPost] = useState([]);
   const getUserInfo = async () => {
