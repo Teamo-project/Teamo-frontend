@@ -4,12 +4,17 @@ import navigation from "../css/navigation.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { useEffect, useState } from "react";
+
+
+import Mypage from "../../routes/js/User/mypage";
+
 import axios from "axios";
-import Mypage from "../../routes/js/mypage";
+
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/slices/userSlice";
 import profile from "../img/Profile.png";
 import log from "../img/Logout.png";
+import axios from "axios";
 
 // 제일 위 로고쪽 부분
 function Navigation(prop) {
@@ -23,7 +28,7 @@ function Navigation(prop) {
       .get(
         "http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/user/logout",
         {
-          headers: { Authorization: `Bearer ${accessToken}` },
+          headers: { Authorization: `Bearer ${token}` },
         }
       )
       .then((res) => {

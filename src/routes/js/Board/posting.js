@@ -278,7 +278,7 @@ function Posting() {
               </div>
               <div
                 style={{
-                  marginLeft: "450px",
+                  marginLeft: "520px",
                   display: "flex",
                   alignItems: "center",
                   width: "64px",
@@ -302,24 +302,9 @@ function Posting() {
                   fontSize: "16px",
                   justifyContent: "center",
                   padding: "0px 16px",
-                  borderRight: "1px solid #545454",
                 }}
               >
                 등록일
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  width: "52px",
-                  height: "24px",
-                  fontWeight: "700",
-                  fontSize: "16px",
-                  justifyContent: "center",
-                  padding: "0px 16px",
-                }}
-              >
-                조회수
               </div>
             </div>
 
@@ -334,6 +319,7 @@ function Posting() {
                       style={{ textDecoration: "none", color: "black" }}
                     >
                       <div
+                        key={board.id}
                         style={{
                           display: "flex",
                           alignItems: "center",
@@ -396,7 +382,7 @@ function Posting() {
                             fontSize: "16px",
                             justifyContent: "center",
                             padding: "0px 8px",
-                            marginLeft: "50px",
+                            marginLeft: "100px",
                           }}
                         >
                           익명
@@ -415,21 +401,6 @@ function Posting() {
                           }}
                         >
                           {board.createDate.substring(0, 10)}
-                        </div>
-                        <div
-                          style={{
-                            marginRight: "20px",
-                            display: "flex",
-                            alignItems: "center",
-                            width: "46px",
-                            height: "32px",
-                            fontWeight: "700",
-                            fontSize: "16px",
-                            justifyContent: "center",
-                            padding: "0px 8px",
-                          }}
-                        >
-                          0
                         </div>
                       </div>
                     </Link>
@@ -447,6 +418,7 @@ function Posting() {
                       style={{ textDecoration: "none", color: "black" }}
                     >
                       <div
+                        key={board.id}
                         style={{
                           display: "flex",
                           alignItems: "center",
@@ -509,7 +481,7 @@ function Posting() {
                             fontSize: "16px",
                             justifyContent: "center",
                             padding: "0px 8px",
-                            marginLeft: "50px",
+                            marginLeft: "100px",
                           }}
                         >
                           익명
@@ -528,21 +500,6 @@ function Posting() {
                           }}
                         >
                           {board.createDate.substring(0, 10)}
-                        </div>
-                        <div
-                          style={{
-                            marginRight: "20px",
-                            display: "flex",
-                            alignItems: "center",
-                            width: "46px",
-                            height: "32px",
-                            fontWeight: "700",
-                            fontSize: "16px",
-                            justifyContent: "center",
-                            padding: "0px 8px",
-                          }}
-                        >
-                          0
                         </div>
                       </div>
                     </Link>
@@ -560,6 +517,7 @@ function Posting() {
                       style={{ textDecoration: "none", color: "black" }}
                     >
                       <div
+                        key={board.id}
                         style={{
                           display: "flex",
                           alignItems: "center",
@@ -622,7 +580,7 @@ function Posting() {
                             fontSize: "16px",
                             justifyContent: "center",
                             padding: "0px 8px",
-                            marginLeft: "50px",
+                            marginLeft: "100px",
                           }}
                         >
                           익명
@@ -641,21 +599,6 @@ function Posting() {
                           }}
                         >
                           {board.createDate.substring(0, 10)}
-                        </div>
-                        <div
-                          style={{
-                            marginRight: "20px",
-                            display: "flex",
-                            alignItems: "center",
-                            width: "46px",
-                            height: "32px",
-                            fontWeight: "700",
-                            fontSize: "16px",
-                            justifyContent: "center",
-                            padding: "0px 8px",
-                          }}
-                        >
-                          0
                         </div>
                       </div>
                     </Link>
@@ -673,6 +616,7 @@ function Posting() {
                       style={{ textDecoration: "none", color: "black" }}
                     >
                       <div
+                        key={board.id}
                         style={{
                           display: "flex",
                           alignItems: "center",
@@ -735,7 +679,7 @@ function Posting() {
                             fontSize: "16px",
                             justifyContent: "center",
                             padding: "0px 8px",
-                            marginLeft: "50px",
+                            marginLeft: "100px",
                           }}
                         >
                           익명
@@ -754,21 +698,6 @@ function Posting() {
                           }}
                         >
                           {board.createDate.substring(0, 10)}
-                        </div>
-                        <div
-                          style={{
-                            marginRight: "20px",
-                            display: "flex",
-                            alignItems: "center",
-                            width: "46px",
-                            height: "32px",
-                            fontWeight: "700",
-                            fontSize: "16px",
-                            justifyContent: "center",
-                            padding: "0px 8px",
-                          }}
-                        >
-                          0
                         </div>
                       </div>
                     </Link>
@@ -786,6 +715,7 @@ function Posting() {
                       style={{ textDecoration: "none", color: "black" }}
                     >
                       <div
+                        key={board.id}
                         style={{
                           display: "flex",
                           alignItems: "center",
@@ -848,7 +778,7 @@ function Posting() {
                             fontSize: "16px",
                             justifyContent: "center",
                             padding: "0px 8px",
-                            marginLeft: "50px",
+                            marginLeft: "100px",
                           }}
                         >
                           익명
@@ -867,21 +797,6 @@ function Posting() {
                           }}
                         >
                           {board.createDate.substring(0, 10)}
-                        </div>
-                        <div
-                          style={{
-                            marginRight: "20px",
-                            display: "flex",
-                            alignItems: "center",
-                            width: "46px",
-                            height: "32px",
-                            fontWeight: "700",
-                            fontSize: "16px",
-                            justifyContent: "center",
-                            padding: "0px 8px",
-                          }}
-                        >
-                          0
                         </div>
                       </div>
                     </Link>
@@ -899,6 +814,7 @@ function Posting() {
                       style={{ textDecoration: "none", color: "black" }}
                     >
                       <div
+                        key={board.id}
                         style={{
                           display: "flex",
                           alignItems: "center",
@@ -961,7 +877,7 @@ function Posting() {
                             fontSize: "16px",
                             justifyContent: "center",
                             padding: "0px 8px",
-                            marginLeft: "50px",
+                            marginLeft: "100px",
                           }}
                         >
                           익명
@@ -980,21 +896,6 @@ function Posting() {
                           }}
                         >
                           {board.createDate.substring(0, 10)}
-                        </div>
-                        <div
-                          style={{
-                            marginRight: "20px",
-                            display: "flex",
-                            alignItems: "center",
-                            width: "46px",
-                            height: "32px",
-                            fontWeight: "700",
-                            fontSize: "16px",
-                            justifyContent: "center",
-                            padding: "0px 8px",
-                          }}
-                        >
-                          0
                         </div>
                       </div>
                     </Link>

@@ -234,26 +234,27 @@
 }
 
 .footerRight {
-  width: 548px;
+  width: 948px;
   height: 236px;
   margin-left: 90px;
   display: flex;
 }
 
 .footerAgency {
+  margin-left: 110px;
   margin-top: 25px;
   width: 196px;
   height: 236px;
 }
 .footerSpon {
-  margin-left: 70px;
+  margin-left: 120px;
   margin-top: 25px;
   height: 236px;
   width: 112px;
   margin-top: 25px;
 }
 .footerSponsor {
-  margin-left: 70px;
+  margin-left: 120px;
 
   margin-top: 25px;
   width: 72px;
