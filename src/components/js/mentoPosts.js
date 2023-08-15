@@ -4,7 +4,7 @@ import mentoStyle from "../../routes/css/mento.module.css";
 function Posts(postInfo) {
   console.log(postInfo);
   return (
-    <div>
+    <div key={postInfo.id}>
       <div className={mentoStyle.postsContent}>
         <div className={mentoStyle.postsContents}>
           <span style={{ marginRight: "42px" }}>{postInfo.id}</span>

@@ -11,6 +11,7 @@ function ProgramEtc() {
         if (event.category === "기타") {
           return (
             <a
+              key={event.url}
               href={event.url}
               target="_blank"
               style={{

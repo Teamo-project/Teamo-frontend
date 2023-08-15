@@ -4,9 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import menu from "../../../components/css/navigationMenu.module.css";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import axios from "axios";
 import changeInfo from "../../css/changeUserInfo.module.css";
 import userImg from "../../../components/img/user_img.png";
+import { ChangingInfo, DeleteUser, UserInfo } from "../../../apis/UserApi";
 
 // 첫 웹사이트 메인페이지
 function ChangeInfo() {
@@ -39,13 +39,9 @@ function ChangeInfo() {
 
   const pushInfo = async () => {
     try {
-      await axios
-        .put(
-          `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/user/update/${user.id}`
-        )
-        .then((res) => {
-          console.log(res);
-        });
+      await ChangingInfo(user).then((res) => {
+        console.log(res);
+      });
     } catch (err) {
       console.log(err);
     }
@@ -70,12 +66,7 @@ function ChangeInfo() {
 
   const getUserInfo = async () => {
     try {
-      const resp = await axios.get(
-        `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/user/info`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      const resp = await UserInfo(token);
       setUser(resp.data);
     } catch (err) {
       console.error(err);
@@ -173,13 +164,9 @@ function ChangeInfo() {
     const deleteAlert = alert("회원탈퇴를 하시겠습니까?");
     if (deleteAlert) {
       try {
-        await axios
-          .delete(
-            `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/user/withdraw/?userId=${user.id}`
-          )
-          .then((res) => {
-            console.log(res);
-          });
+        await DeleteUser(user.id).then((res) => {
+          console.log(res);
+        });
       } catch (err) {
         console.log(err);
       }
@@ -725,12 +712,13 @@ function ChangeInfo() {
                   width: "80px",
                   height: "36px",
                   border: "3px solid #d9d9d9",
+                  cursor: "pointer",
                 }}
               >
                 확인
               </Button>
               <Link
-                to="/inquire"
+                to="/mypage"
                 style={{ textDecoration: "none", color: "black" }}
               >
                 <Button
@@ -739,6 +727,7 @@ function ChangeInfo() {
                     height: "36px",
                     border: "3px solid #d9d9d9",
                     marginLeft: "20px",
+                    cursor: "pointer",
                   }}
                 >
                   취소

@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import google from "../../css/FirstGoogleSignUp.module.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "react-bootstrap";
-import axios from "axios";
 import { isDisabled } from "@testing-library/user-event/dist/utils";
+import { GoogleLogin } from "../../../apis/UserApi";
 
-function FirstGoogle() {
+function FirstSocial() {
   const userId = useParams();
   const navigate = useNavigate();
   const [user, setUser] = useState({
@@ -37,16 +37,10 @@ function FirstGoogle() {
 
   const submit = async () => {
     try {
-      console.log(user);
-      await axios
-        .post(
-          "http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/auth/join/plus",
-          user
-        )
-        .then((res) => {
-          alert("회원가입이 되었습니다. 로그인을 다시 진행해주세요.");
-          navigate("/login");
-        });
+      await GoogleLogin(user).then((res) => {
+        alert("회원가입이 되었습니다. 로그인을 다시 진행해주세요.");
+        navigate("/login");
+      });
     } catch (err) {
       console.log(err);
     }
@@ -198,4 +192,4 @@ function FirstGoogle() {
   );
 }
 
-export default FirstGoogle;
+export default FirstSocial;

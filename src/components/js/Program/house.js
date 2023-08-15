@@ -11,6 +11,7 @@ function ProgramHouse() {
         if (event.category === "주거") {
           return (
             <a
+              key={event.url}
               href={event.url}
               target="_blank"
               style={{
