@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import google from "../css/FirstGoogleSignUp.module.css";
+import google from "../../css/FirstGoogleSignUp.module.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import axios from "axios";
