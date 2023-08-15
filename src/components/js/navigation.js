@@ -4,11 +4,7 @@ import navigation from "../css/navigation.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { useEffect, useState } from "react";
-
-
 import Mypage from "../../routes/js/User/mypage";
-
-import axios from "axios";
 
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/slices/userSlice";

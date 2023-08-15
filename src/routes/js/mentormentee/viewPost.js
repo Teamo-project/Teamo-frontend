@@ -1,14 +1,19 @@
 import Navigation from "../../../components/js/navigation";
-import Footer from "../../../components/js/footer";
+
 import home from "../../css/home.module.css";
 import post from "../../css/post.module.css";
 import { useEffect, useState } from "react";
-import axios from "axios";
+
 import { Link, useParams } from "react-router-dom";
 import menu from "../../../components/css/navigationMenu.module.css";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { isRejected } from "@reduxjs/toolkit";
+import {
+  applyMentoring,
+  deletePost,
+  endMentoring,
+  viewPostDetail,
+} from "../../../apis/mentorMentee";
 import { useSelector } from "react-redux";
 function ViewPost() {
   const userRole = useSelector((state) => state.persistedReducer.user.userRole);
@@ -33,17 +38,11 @@ function ViewPost() {
   });
 
   useEffect(() => {
-    if (accessToken == "") {
+    if (accessToken === "") {
       alert("로그인을 진행해주세요!");
       navigate("/login");
     } else {
-      axios
-        .get(
-          `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring/${postingId}`,
-          {
-            headers: { Authorization: `Bearer ${accessToken}` },
-          }
-        )
+      viewPostDetail(postingId, accessToken)
         .then(function (res) {
           setMentees(res.data.menteees);
           console.log(mentees);
@@ -65,7 +64,7 @@ function ViewPost() {
   }, []);
 
   function subTitleBack(input, flag) {
-    return flag == "1" ? (
+    return flag === "1" ? (
       <div className={post.subTitle}>{input}</div>
     ) : (
       <div className={post.subTitle} style={{ background: "#EAEAEA" }}>
@@ -85,46 +84,29 @@ function ViewPost() {
   };
   const deleteRequest = () => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
-      axios
-        .delete(
-          `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring/${postingId}`
-        )
-        .then((res) => {
-          navigate("/postlist");
-          alert("삭제되었습니다.");
-        });
+      deletePost(postingId).then((res) => {
+        navigate("/postlist");
+        alert("삭제되었습니다.");
+      });
     } else {
       alert("취소합니다.");
     }
   };
   const endRequest = () => {
-    axios
-      .patch(
-        `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring/${postingId}/receipt`
-      )
-      .then(() => {
-        setInfo({ isReceipt: false });
-        console.log(info);
-        navigate("/postlist");
-        alert("마감되었습니다.");
-      });
+    endMentoring(postingId).then(() => {
+      setInfo({ isReceipt: false });
+      navigate("/postlist");
+      alert("마감되었습니다.");
+    });
   };
+
   const applyRequest = () => {
     if (info.isReceipt === false) {
       alert("마감되었습니다.");
     } else if (description === "") {
       alert("지원동기를 입력하십시오.");
     } else {
-      axios
-        .post(
-          `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentee/${postingId}`,
-          {
-            description: description,
-          },
-          {
-            headers: { Authorization: `Bearer ${accessToken}` },
-          }
-        )
+      applyMentoring(postingId, description, accessToken)
         .then((res) => {
           alert("지원이 완료되었습니다!");
           navigate("/postlist");
@@ -255,13 +237,13 @@ function ViewPost() {
           <div className={post.subTitleBox}>
             {subTitleBack("분류", 0)} {subTitleBack(info.category, 1)}
             {subTitleBack("마감여부", 0)}{" "}
-            {subTitleBack(info.isReceipt == true ? "모집중" : "마감", 1)}
+            {subTitleBack(info.isReceipt === true ? "모집중" : "마감", 1)}
           </div>
           <hr className={post.line}></hr>
 
           <div className={post.mainText}>
             {info.description}
-            {info.isReceipt == true ? (
+            {info.isReceipt === true ? (
               <div className={post.recruitment}>
                 모집인원 {info.count} / {info.limited}
               </div>
@@ -283,7 +265,7 @@ function ViewPost() {
             )}
 
             {console.log(accessToken)}
-            {accessToken == undefined || userRole == "mentee" ? (
+            {accessToken === undefined || userRole === "mentee" ? (
               ""
             ) : (
               <Link
@@ -293,14 +275,14 @@ function ViewPost() {
                 <button className={post.mentoringBtn}>수정하기</button>
               </Link>
             )}
-            {accessToken == undefined || userRole == "mentee" ? (
+            {accessToken === undefined || userRole === "mentee" ? (
               ""
             ) : (
               <button className={post.mentoringBtn} onClick={endRequest}>
                 접수 마감
               </button>
             )}
-            {accessToken == undefined || userRole == "mentee" ? (
+            {accessToken === undefined || userRole === "mentee" ? (
               ""
             ) : (
               <button className={post.mentoringBtn} onClick={deleteRequest}>
