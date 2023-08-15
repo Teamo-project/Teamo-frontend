@@ -8,10 +8,8 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import NullUserImg from "../../../components/img/user_img.png";
 import passwordImg from "../../../components/img/Password.png";
-
+import axios from "axios";
 import { DeleteUser, UserInfo } from "../../../apis/UserApi";
-
-
 import MentorPost from "../../../components/js/Mypage/MentorPost";
 import MenteePost from "../../../components/js/Mypage/MenteePost";
 
