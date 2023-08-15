@@ -74,3 +74,7 @@ export const applyMentoring = (postingId, description, accessToken) => {
     }
   );
 };
+
+export const applyMentee = (menteeId) => {
+  return axios.get(`${URL}/v1/mentee/${menteeId}`);
+};

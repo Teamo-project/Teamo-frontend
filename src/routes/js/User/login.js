@@ -22,7 +22,9 @@ function Login() {
   const GoogleLogin = () => {
     window.location.href = `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorize/google?redirect_uri=${nowURL.origin}/oauth2/redirect`;
   };
-
+  const naverLogin = () => {
+    window.location.href = `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorize/naver?redirect_uri=${nowURL.origin}/oauth2/redirect`;
+  };
   // 이메일과 비밀번호로 로그인
   const [user, setUser] = useState({
     email: "",
@@ -160,6 +162,7 @@ function Login() {
           </div>
         </button>
         <button
+          onClick={naverLogin}
           type="button"
           className={`${logincss.Button} ${logincss.naver}`}
         >
