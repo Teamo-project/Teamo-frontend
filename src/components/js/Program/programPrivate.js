@@ -11,6 +11,7 @@ function ProgramPrivate() {
         if (event.who === "민간") {
           return (
             <a
+              key={event.url}
               href={event.url}
               target="_blank"
               style={{

@@ -5,7 +5,7 @@ import { Button } from "react-bootstrap";
 import { isDisabled } from "@testing-library/user-event/dist/utils";
 import { GoogleLogin } from "../../../apis/UserApi";
 
-function FirstGoogle() {
+function FirstSocial() {
   const userId = useParams();
   const navigate = useNavigate();
   const [user, setUser] = useState({
@@ -192,4 +192,4 @@ function FirstGoogle() {
   );
 }
 
-export default FirstGoogle;
+export default FirstSocial;

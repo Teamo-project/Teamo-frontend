@@ -11,6 +11,7 @@ function ProgramTotal() {
       {program.map((event) => {
         return (
           <a
+            key={event.url}
             href={event.url}
             target="_blank"
             style={{

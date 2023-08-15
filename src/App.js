@@ -18,7 +18,7 @@ import Inquire from "./routes/js/inquire";
 import SignUp from "./routes/js/User/signup";
 import ChangeInfo from "./routes/js/User/changeUserInfo";
 
-import FirstGoogle from "./routes/js/User/firstGoogleLogin";
+import FirstSocial from "./routes/js/User/firstSocialLogin";
 
 function App() {
   return (
@@ -26,30 +26,33 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />}></Route>
+
+          <Route path="/oauth2/redirect" element={<Redirection />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
           <Route
-            path="/signup/Google/:userId"
-            element={<FirstGoogle />}
+            path="/signup/social/:userId"
+            element={<FirstSocial />}
           ></Route>
+
           <Route path="/program" element={<Program />}></Route>
           <Route path="/posting" element={<Posting />}></Route>
           <Route path="/posting/write" element={<Write />}></Route>
           <Route path="/posting/:postingId" element={<BoardDetail />}></Route>
-
-          <Route path="/oauth2/redirect" element={<Redirection />}></Route>
-
           <Route path="/update/:postingId" element={<Update />}></Route>
           <Route
             path="/update/:postId/comment/:commentId"
             element={<Modifycomment />}
           ></Route>
-          <Route path="/mypage" element={<Mypage />}></Route>
-          <Route path="/changeInfo" element={<ChangeInfo />}></Route>
+
           <Route path="/postlist" element={<Mento />}></Route>
           <Route path="/createpost" element={<CreatePost />}></Route>
           <Route path="/viewpost/:postingId" element={<ViewPost />}></Route>
           <Route path="/editpost/:postingId" element={<EditPost />}></Route>
+
+          <Route path="/mypage" element={<Mypage />}></Route>
+          <Route path="/changeInfo" element={<ChangeInfo />}></Route>
+
           <Route path="/inquire" element={<Inquire />}></Route>
         </Routes>
       </Router>
