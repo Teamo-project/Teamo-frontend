@@ -1,11 +1,11 @@
 import Navigation from "../../../components/js/navigation";
 import { Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import menu from "../../../components/css/navigationMenu.module.css";
 import home from "../../css/home.module.css";
 import mypage from "../../css/mypage.module.css";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import NullUserImg from "../../../components/img/user_img.png";
 import passwordImg from "../../../components/img/Password.png";
 
@@ -14,9 +14,12 @@ import { DeleteUser, UserInfo } from "../../../apis/UserApi";
 import MentorPost from "../../../components/js/Mypage/MentorPost";
 import MenteePost from "../../../components/js/Mypage/MenteePost";
 import axios from "axios";
+import { logout } from "../../../redux/slices/userSlice";
 
 // 첫 웹사이트 메인페이지
 function Mypage() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const token = useSelector((state) => state.persistedReducer.user.userToken);
   const [user, setUser] = useState({});
   const userRole = useSelector((state) => state.persistedReducer.user.userRole);
@@ -30,11 +33,14 @@ function Mypage() {
     }
   };
   const deleteUser = async () => {
-    const deleteAlert = alert("회원탈퇴를 하시겠습니까?");
+    let deleteAlert = window.confirm("회원탈퇴를 하시겠습니까?");
     if (deleteAlert) {
       try {
+        console.log(user.id);
         await DeleteUser(user.id).then((res) => {
-          console.log(res);
+          navigate("/");
+          dispatch(logout());
+          localStorage.removeItem("token");
         });
       } catch (err) {
         console.log(err);

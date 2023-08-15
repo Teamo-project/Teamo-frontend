@@ -3,10 +3,11 @@ import { Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import menu from "../../../components/css/navigationMenu.module.css";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import changeInfo from "../../css/changeUserInfo.module.css";
 import userImg from "../../../components/img/user_img.png";
 import { ChangingInfo, DeleteUser, UserInfo } from "../../../apis/UserApi";
+import { logout } from "../../../redux/slices/userSlice";
 
 // 첫 웹사이트 메인페이지
 function ChangeInfo() {
@@ -48,6 +49,7 @@ function ChangeInfo() {
     }
   };
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const token = useSelector((state) => state.persistedReducer.user.userToken);
   const [user, setUser] = useState({
@@ -162,11 +164,14 @@ function ChangeInfo() {
   };
 
   const deleteUser = async () => {
-    const deleteAlert = alert("회원탈퇴를 하시겠습니까?");
+    let deleteAlert = window.confirm("회원탈퇴를 하시겠습니까?");
     if (deleteAlert) {
       try {
+        console.log(user.id);
         await DeleteUser(user.id).then((res) => {
-          console.log(res);
+          navigate("/");
+          dispatch(logout());
+          localStorage.removeItem("token");
         });
       } catch (err) {
         console.log(err);
