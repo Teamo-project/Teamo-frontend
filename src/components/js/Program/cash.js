@@ -11,6 +11,7 @@ function ProgramCash() {
         if (event.category === "금융") {
           return (
             <a
+              key={event.url}
               href={event.url}
               style={{
                 textDecoration: "none",

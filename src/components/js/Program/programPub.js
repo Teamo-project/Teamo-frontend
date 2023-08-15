@@ -11,6 +11,7 @@ function ProgramPub() {
         if (event.who === "공공") {
           return (
             <a
+              key={event.url}
               href={event.url}
               target="_blank"
               style={{

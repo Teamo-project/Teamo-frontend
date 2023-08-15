@@ -19,7 +19,7 @@ export const ChangingInfo = (payload) => {
 };
 
 export const DeleteUser = (payload) => {
-  return axios.delete(`${url}/v1/user/withdraw/?userId=${payload}`);
+  return axios.delete(`${url}/v1/user/withdraw/${payload}`);
 };
 
 export const GoogleLogin = (payload) => {

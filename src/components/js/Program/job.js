@@ -11,6 +11,7 @@ function ProgramJob() {
         if (event.category === "취업") {
           return (
             <a
+              key={event.url}
               href={event.url}
               target="_blank"
               style={{

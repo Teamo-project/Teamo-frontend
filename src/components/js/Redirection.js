@@ -17,7 +17,6 @@ function Redirection() {
   let userInfo = "";
   const signup = async () => {
     try {
-
       await UserInfo(accessToken).then(() => {
         userInfo = JSON.parse(jwtDecode(accessToken).USER);
         console.log(userInfo);
@@ -38,7 +37,6 @@ function Redirection() {
         );
         navigate("/");
       });
-
     } catch (err) {
       alert("oAuth token expired");
       console.log(err);
@@ -48,8 +46,8 @@ function Redirection() {
 
   useEffect(() => {
     if (accessToken === null) {
-      alert("구글을 통한 회원가입을 위하여 추가정보를 기입해주세요.");
-      navigate(`/signup/Google/${userId}`);
+      alert("소셜을 통한 회원가입을 위하여 추가정보를 기입해주세요.");
+      navigate(`/signup/social/${userId}`);
     } else {
       console.log(accessToken);
 

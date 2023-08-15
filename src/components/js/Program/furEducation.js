@@ -11,6 +11,7 @@ function ProgramFurEducation() {
         if (event.category === "진학") {
           return (
             <a
+              key={event.url}
               href={event.url}
               target="_blank"
               style={{
