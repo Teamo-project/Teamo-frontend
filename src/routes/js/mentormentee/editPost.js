@@ -2,24 +2,25 @@ import Navigation from "../../../components/js/navigation";
 
 import post from "../../css/createPost.module.css";
 import { useState } from "react";
-
+import { viewPostDetail } from "../../../apis/mentorMentee";
 import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import home from "../../css/home.module.css";
 import menu from "../../../components/css/navigationMenu.module.css";
 import { Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 import { editPost } from "../../../apis/mentorMentee";
 function EditPost() {
+  const navigate = useNavigate();
   const accessToken = localStorage.token;
   const registor = useSelector((state) => state.persistedReducer.user.userName);
   const [mainText, setMainText] = useState("");
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [recruit, setRecruit] = useState("");
+  const [postInfo, setPostInfo] = useState({});
   const today = new Date();
-  const navigate = useNavigate();
-
   const postingId = useParams().postingId;
   const registDay =
     today.getFullYear() + "." + (today.getMonth() + 1) + "." + today.getDate();
@@ -34,8 +35,22 @@ function EditPost() {
   };
   const handleCategory = (e) => {
     setCategory(e.target.value);
+    console.log(title, category, recruit, mainText);
   };
-
+  useEffect(() => {
+    viewPostDetail(postingId, accessToken)
+      .then(function (res) {
+        setPostInfo(res.data);
+        setTitle(res.data.title);
+        setCategory(res.data.category);
+        setRecruit(res.data.limited);
+        setMainText(res.data.description);
+        console.log(postInfo, "포스트 정보");
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
+  }, []);
   const editRequest = () => {
     if (title === "" || category === "" || recruit === "" || mainText === "") {
       alert("정보를 모두 기입 후 수정하기 버튼을 눌러주세요");
@@ -115,8 +130,8 @@ function EditPost() {
         <div className={post.postBox}>
           <div className={post.postTitle}>
             <input
+              defaultValue={postInfo.title}
               onChange={handleTitle}
-              placeholder="제목을 입력해주세요"
               className={post.titleText}
             ></input>
           </div>
@@ -129,9 +144,10 @@ function EditPost() {
           <div className={post.subTitleBox}>
             {subTitleBack("분류", 0)}
             <select
-              onClick={handleCategory}
+              onChange={handleCategory}
               className={post.subTitle}
               style={{ width: "270px" }}
+              value={postInfo.category}
             >
               <option value="" disabled selected>
                 분류 선택
@@ -142,9 +158,10 @@ function EditPost() {
             </select>
             {subTitleBack("모집 ", 0)}
             <select
-              onClick={handleRecruit}
+              onChange={handleRecruit}
               className={post.subTitle}
               style={{ width: "270px" }}
+              value={postInfo.limited}
             >
               <option value="" disabled selected>
                 인원 선택
@@ -166,7 +183,7 @@ function EditPost() {
           <div className={post.mainText}>
             <textarea
               onChange={handleMainText}
-              placeholder="글을 작성하세요"
+              defaultValue={postInfo.description}
               className={post.mainTextInput}
             ></textarea>
           </div>

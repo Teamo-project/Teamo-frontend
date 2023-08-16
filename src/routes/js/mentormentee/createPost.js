@@ -10,18 +10,21 @@ import menu from "../../../components/css/navigationMenu.module.css";
 import { Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { createPost } from "../../../apis/mentorMentee";
+import { useEffect } from "react";
 function CreatePost() {
   const accessToken = localStorage.token;
-
   const registor = useSelector((state) => state.persistedReducer.user.userName);
   const [mainText, setMainText] = useState("");
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [recruit, setRecruit] = useState("");
+
   const today = new Date();
   const navigate = useNavigate();
+
   const registDay =
     today.getFullYear() + "." + (today.getMonth() + 1) + "." + today.getDate();
+
   const handleRecruit = (e) => {
     setRecruit(e.target.value);
   };
@@ -34,7 +37,7 @@ function CreatePost() {
   const handleCategory = (e) => {
     setCategory(e.target.value);
   };
-
+  console.log(title, category, mainText, recruit);
   const posting = () => {
     if (title === "" || category === "" || recruit === "" || mainText === "") {
       alert("정보를 모두 기입 후 작성 완료버튼을 눌러주세요");

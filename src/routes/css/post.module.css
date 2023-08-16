@@ -3,7 +3,7 @@
   height: 700px;
   border-top: solid 1px #989898;
   border-bottom: solid 1px #989898;
-  margin: 300px auto 200px;
+  margin-top: 300px;
 }
 .titleText {
   margin-left: 20px;
@@ -197,12 +197,99 @@
 .popupCancel:hover {
   cursor: pointer;
 }
-.menteeBtn {
-  width: 200px;
-  height: 50px;
+
+.appliedMenteeBox {
+  width: 639px;
+  height: 264px;
+
   background-color: #fff;
-  border: 1px solid #333;
+  border-bottom: 1px solid #989898;
 }
-.menteeBtn:hover {
+.appliedMenteeTitleBox {
+  width: 639px;
+  height: 60px;
+  background-color: #eaeaea;
+  border-bottom: 1px solid #989898;
+  display: flex;
+}
+
+.appliedMenteeTitle {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  align-items: center;
+
+  margin-left: 26px;
+}
+.appliedMenteeListBox {
+  height: 204px;
+  width: 264px;
+}
+.appliedMenteeButton {
+  width: 80px;
+  height: 80px;
+  background: #f1f1f1;
+  margin-top: 11px;
+  margin-left: 40px;
+}
+.appliedMenteeButton:hover {
   cursor: pointer;
+}
+.appliedMenteeName {
+  display: flex;
+  width: 80px;
+  height: 20px;
+
+  justify-content: center;
+  align-items: center;
+
+  border-right: 1px solid #f1f1f1;
+  border-bottom: 1px solid #f1f1f1;
+  border-left: 1px solid #f1f1f1;
+
+  color: #444;
+  font-family: Pretendard;
+  font-size: 12px;
+
+  font-weight: 400;
+}
+.appliedMenteeImg {
+  width: 80px;
+  height: 60px;
+}
+.mentoringEditDeleteBox {
+  margin-top: 23px;
+}
+.mentoringEditDeleteBtn {
+  width: 80px;
+  height: 42px;
+
+  background: #66c109;
+  border: 0px;
+  float: right;
+  justify-content: center;
+
+  color: #fff;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.mentoringEndBox {
+  width: 325px;
+  height: 168px;
+  background: #ffffff;
+  box-shadow: -2px 5px 13px rgba(161, 83, 255, 0.15);
+  border-radius: 18px;
+  float: right;
+  margin-top: -165px;
+
+  border-radius: 18px;
+  background: var(--color-white, #fff);
+  box-shadow: 0px 4px 4px 0px rgba(102, 193, 9, 0.2);
 }

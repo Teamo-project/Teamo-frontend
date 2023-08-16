@@ -3,7 +3,7 @@ import Navigation from "../../../components/js/navigation";
 import home from "../../css/home.module.css";
 import post from "../../css/post.module.css";
 import { useEffect, useState } from "react";
-
+import apply from "../../css/mentorMentee/menteeApply.module.css";
 import { Link, useParams } from "react-router-dom";
 import menu from "../../../components/css/navigationMenu.module.css";
 import { Button } from "react-bootstrap";
@@ -18,7 +18,8 @@ import {
 import { useSelector } from "react-redux";
 function ViewPost() {
   const userRole = useSelector((state) => state.persistedReducer.user.userRole);
-  console.log(userRole);
+  const mentee = useSelector((state) => state.persistedReducer.user);
+  const userId = useSelector((state) => state.persistedReducer.user.userId);
   const navigate = useNavigate();
   const accessToken = localStorage.token;
   const postingId = useParams().postingId;
@@ -26,9 +27,10 @@ function ViewPost() {
   const [isPopup, setIsPopup] = useState(false);
   const [menteePopup, setMenteePopup] = useState(false);
   const [mentees, setMentees] = useState([]);
-  const [appliedMentees, setAplliedMentees] = useState([]);
-  console.log(postingId);
+  const [popupMentee, setPopupMentee] = useState({});
+
   const [info, setInfo] = useState({
+    mentorInfo: "",
     isReceipt: "",
     title: "",
     description: "",
@@ -46,10 +48,10 @@ function ViewPost() {
     } else {
       viewPostDetail(postingId, accessToken)
         .then(function (res) {
-          console.log(res.data.menteees, "처음 받아오는거");
+          console.log(res.data);
           setMentees(res.data.menteees);
-          console.log(mentees);
           setInfo({
+            mentorInfo: res.data.mentorInfo,
             isReceipt: res.data.isReceipt,
             title: res.data.title,
             description: res.data.description,
@@ -108,6 +110,7 @@ function ViewPost() {
   const applyRequest = () => {
     if (info.isReceipt === false) {
       alert("마감되었습니다.");
+      navigate("/postlist");
     } else if (description === "") {
       alert("지원동기를 입력하십시오.");
     } else {
@@ -118,25 +121,18 @@ function ViewPost() {
         })
         .catch((err) => {
           alert(err.response.data.message);
+          navigate("/postlist");
         });
     }
   };
 
-  const applyMenteeRequest = (mentee) => {
-    console.log(mentee.applyMenteeId, "멘티아이디");
-
-    applyMentee(mentee.applyMenteeId)
-      .then((res) => {
-        console.log(res, "멘티 신청한거 지원동기");
-      })
-      .catch((err) => console.log(err));
-  };
   const handleMenteePopupCancel = () => {
     setMenteePopup(false);
   };
   const handlePopupCancel = () => {
     setIsPopup(false);
   };
+
   return (
     <div>
       {isPopup ? (
@@ -147,7 +143,7 @@ function ViewPost() {
               x
             </button>
             <p className={post.applyTitle}>멘티 지원</p>
-            <div className={post.applyInputBox}>
+            <div className={apply.applyInputBox}>
               <div
                 style={{
                   display: "flex",
@@ -157,40 +153,45 @@ function ViewPost() {
               >
                 <div style={{ width: "200px" }}>
                   <p className={post.popupText}>성함</p>
-                  <input
-                    className={post.applyInput}
-                    style={{ width: "200px" }}
-                  ></input>
+                  <div className={apply.applyInput} style={{ width: "200px" }}>
+                    <p className={apply.text}> {mentee.userName}</p>
+                  </div>
                 </div>
                 <div style={{ width: "100px", marginLeft: "26px" }}>
                   <p className={post.popupText}>성별</p>
-                  <input
-                    style={{ width: "100px" }}
-                    className={post.applyInput}
-                  ></input>
+                  <div style={{ width: "100px" }} className={apply.applyInput}>
+                    <p className={apply.text}> {mentee.userGender}</p>
+                  </div>
                 </div>
               </div>
 
               <div className={post.inputDiv}>
                 <p className={post.popupText}>이메일</p>
                 <br />
-                <input className={post.applyInput}></input>
+                <div className={apply.applyInput}>
+                  {" "}
+                  <p className={apply.text}>{mentee.userEmail} </p>
+                </div>
               </div>
               <div className={post.inputDiv}>
                 <p className={post.popupText}>나이</p>
-                <input className={post.applyInput}></input>
+                <div className={apply.applyInput}>
+                  <p className={apply.text}>{mentee.userAge}</p>
+                </div>
               </div>
               <div className={post.inputDiv}>
                 <p className={post.popupText}>주 거주 지역</p>
-                <input className={post.applyInput}></input>
+                <div className={apply.applyInput}>
+                  <p className={apply.text}>{mentee.userRegion}</p>
+                </div>
               </div>
               <div className={post.inputDiv}>
                 <p className={post.popupText}>지원 동기</p>
-                <input
+                <textarea
                   onChange={handleDescription}
-                  className={post.applyInput}
-                  style={{ height: "182px" }}
-                ></input>
+                  className={apply.applyInput}
+                  style={{ height: "182px", resize: "none", fontSize: "15px" }}
+                ></textarea>
               </div>
             </div>
             <button onClick={applyRequest} className={post.applyBtn}>
@@ -212,8 +213,8 @@ function ViewPost() {
             >
               x
             </button>
-            <p className={post.applyTitle}>지원한 멘티</p>
-            <div className={post.applyInputBox}>
+            <p className={post.applyTitle}>멘티 지원</p>
+            <div className={apply.applyInputBox}>
               <div
                 style={{
                   display: "flex",
@@ -223,40 +224,53 @@ function ViewPost() {
               >
                 <div style={{ width: "200px" }}>
                   <p className={post.popupText}>성함</p>
-                  <input
-                    className={post.applyInput}
-                    style={{ width: "200px" }}
-                  ></input>
+                  <div className={apply.applyInput} style={{ width: "200px" }}>
+                    <p className={apply.text}> {popupMentee.applicantName}</p>
+                  </div>
                 </div>
                 <div style={{ width: "100px", marginLeft: "26px" }}>
                   <p className={post.popupText}>성별</p>
-                  <input
-                    style={{ width: "100px" }}
-                    className={post.applyInput}
-                  ></input>
+                  <div style={{ width: "100px" }} className={apply.applyInput}>
+                    <p className={apply.text}>
+                      {" "}
+                      {"popupMentee.applicantGender"}
+                    </p>
+                  </div>
                 </div>
               </div>
 
               <div className={post.inputDiv}>
                 <p className={post.popupText}>이메일</p>
                 <br />
-                <input className={post.applyInput}></input>
+                <div className={apply.applyInput}>
+                  {" "}
+                  <p className={apply.text}>{popupMentee.applicantEmail} </p>
+                </div>
               </div>
               <div className={post.inputDiv}>
                 <p className={post.popupText}>나이</p>
-                <input className={post.applyInput}></input>
+                <div className={apply.applyInput}>
+                  <p className={apply.text}>{"popupMentee.applicantAge"}</p>
+                </div>
               </div>
               <div className={post.inputDiv}>
                 <p className={post.popupText}>주 거주 지역</p>
-                <input className={post.applyInput}></input>
+                <div className={apply.applyInput}>
+                  <p className={apply.text}>{"popupMentee.applicatnRegion"}</p>
+                </div>
               </div>
               <div className={post.inputDiv}>
                 <p className={post.popupText}>지원 동기</p>
-                <input
-                  onChange={handleDescription}
-                  className={post.applyInput}
-                  style={{ height: "182px" }}
-                ></input>
+                <div
+                  className={apply.applyInput}
+                  style={{
+                    height: "182px",
+                    resize: "none",
+                    fontSize: "15px",
+                  }}
+                >
+                  <p className={apply.text}> {popupMentee.description}</p>
+                </div>
               </div>
             </div>
             <button onClick={applyRequest} className={post.applyBtn}>
@@ -267,7 +281,6 @@ function ViewPost() {
       ) : (
         ""
       )}
-      {console.log(info.isReceipt)}
       <div
         style={{
           position: "relative",
@@ -336,64 +349,101 @@ function ViewPost() {
             )}
           </div>
 
-          <div className={post.mentoring}>
-            {userRole === "mentee" ? (
-              <div>
-                <p className={post.mentoringText}>멘토링 연결 신청</p>
-                <button className={post.mentoringBtn} onClick={handlePopup}>
-                  신청하러가기
-                </button>
-              </div>
-            ) : (
-              ""
-            )}
+          {userRole === "mentee" ? (
+            <div className={post.mentoring}>
+              <p className={post.mentoringText}>멘토링 연결 신청</p>
+              <button className={post.mentoringBtn} onClick={handlePopup}>
+                신청하러가기
+              </button>
+            </div>
+          ) : (
+            ""
+          )}
+          {console.log(info.mentorInfo.id, userId, "확인")}
+        </div>
+        <div>
+          <div className={post.mentoringEditDeleteBox}>
+            {/* //수정버튼 */}
 
-            {console.log(accessToken)}
-            {accessToken === undefined || userRole === "mentee" ? (
+            {accessToken === undefined ||
+            userRole === "mentee" ||
+            info.mentorInfo.id !== userId ? (
+              ""
+            ) : info.count !== 0 ? (
               ""
             ) : (
               <Link
                 to={`/editpost/${postingId}`}
                 style={{ textDecoration: "none" }}
               >
-                <button className={post.mentoringBtn}>수정하기</button>
+                <button className={post.mentoringEditDeleteBtn}>수정</button>
               </Link>
             )}
-            {accessToken === undefined || userRole === "mentee" ? (
+            {/* //삭제버튼 */}
+            {accessToken === undefined ||
+            userRole === "mentee" ||
+            info.mentorInfo.id !== userId ? (
               ""
             ) : (
-              <button className={post.mentoringBtn} onClick={endRequest}>
-                접수 마감
-              </button>
-            )}
-            {accessToken === undefined || userRole === "mentee" ? (
-              ""
-            ) : (
-              <button className={post.mentoringBtn} onClick={deleteRequest}>
-                삭제하기
+              <button
+                className={post.mentoringEditDeleteBtn}
+                onClick={deleteRequest}
+                style={{ marginRight: "20px" }}
+              >
+                삭제
               </button>
             )}
           </div>
-          {userRole === "mentor" ? (
-            <div className={post.mentoring} style={{ marginRight: "10px" }}>
-              <p style={{ marginLeft: "20px" }}>신청한 멘티</p>
-              {console.log(mentees, "현재 멘티")}
-              {mentees === undefined
-                ? ""
-                : mentees.map((ele) => {
-                    console.log(ele.menteeName);
-                    return (
-                      <button
-                        onClick={(applyMenteeRequest(ele), handleMenteePopup)}
-                        className={post.menteeBtn}
-                      >
-                        {ele.menteeName}
-                      </button>
-                    );
-                  })}
+          {userRole === "mentor" && info.mentorInfo.id === userId ? (
+            <div className={post.appliedMenteeBox}>
+              <div className={post.appliedMenteeTitleBox}>
+                <p className={post.appliedMenteeTitle}>신청한 멘티 목록</p>
+              </div>
+              <div className={post.appliedMenteeListBox}>
+                {mentees === undefined
+                  ? ""
+                  : mentees.map((ele) => {
+                      return (
+                        <div
+                          className={post.appliedMenteeButton}
+                          onClick={() => {
+                            applyMentee(ele.applyMenteeId)
+                              .then((res) => {
+                                console.log(res.data, "신청한 멘티");
+                                setPopupMentee(res.data);
+                                console.log(popupMentee);
+                              })
+                              .catch((err) => console.log(err));
+
+                            setMenteePopup(true);
+                          }}
+                        >
+                          <img
+                            className={post.appliedMenteeImg}
+                            src={ele.menteeImg}
+                          ></img>
+                          <div className={post.appliedMenteeName}>
+                            {ele.menteeName}
+                          </div>
+                        </div>
+                      );
+                    })}
+              </div>
             </div>
           ) : (
             ""
+          )}
+          {accessToken === undefined ||
+          userRole === "mentee" ||
+          info.mentorInfo.id !== userId ? (
+            ""
+          ) : (
+            <div className={post.mentoringEndBox}>
+              <p className={post.mentoringText}>멘토링 연결 마감</p>
+              <button className={post.mentoringBtn} onClick={endRequest}>
+                마감하기
+              </button>
+            </div>
           )}
         </div>
       </div>

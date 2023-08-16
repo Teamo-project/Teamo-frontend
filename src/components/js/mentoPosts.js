@@ -7,8 +7,19 @@ function Posts(postInfo) {
     <div key={postInfo.id}>
       <div className={mentoStyle.postsContent}>
         <div className={mentoStyle.postsContents}>
-          <span style={{ marginRight: "42px" }}>{postInfo.id}</span>
-          <span> {postInfo.category}</span>
+          <div style={{ width: "30px" }}>
+            <span
+              style={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              {postInfo.id}
+            </span>
+          </div>
+          <div style={{ marginLeft: "34px" }}>
+            <span> {postInfo.category}</span>
+          </div>
           <Link to={`/viewpost/${postInfo.id}`} className={mentoStyle.linkPage}>
             <span className={mentoStyle.span}>{postInfo.title}</span>
           </Link>
@@ -16,13 +27,20 @@ function Posts(postInfo) {
 
         <div
           className={mentoStyle.postsContents}
-          style={{ marginRight: "10px" }}
+          style={{ marginRight: "23px" }}
         >
-          <flex style={{ marginRight: "30px" }}>{postInfo.creatorName}</flex>{" "}
-          <flex style={{ marginRight: "30px" }}>{postInfo.createDate}</flex>{" "}
-          <flex style={{ marginRight: "15px" }}>
-            {postInfo.isReceipt == true ? "모집중" : "마감"}
-          </flex>
+          <span style={{ marginRight: "37px" }}>{postInfo.creatorName}</span>{" "}
+          <span style={{ marginRight: "30px" }}>{postInfo.createDate}</span>{" "}
+          <div style={{ width: "50px" }}>
+            <span
+              style={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              {postInfo.isReceipt == true ? "모집중" : "마감"}
+            </span>
+          </div>
         </div>
       </div>
       <hr className={mentoStyle.line2}></hr>
