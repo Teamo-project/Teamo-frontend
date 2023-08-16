@@ -27,7 +27,8 @@ function BoardDetail() {
   const [emailtext, setEmailtext] = useState("*이메일을 입력해주세요.");
   const [codetext, setCodetext] = useState("");
   const [passwordtext, setPasswordtext] = useState("*비밀번호를 입력해주세요.");
-  const [passwordSameText, setPasswordSameText] = useState("");
+  const [passwordSameText, setPasswordSameText] =
+    useState("*비밀번호가 다릅니다.");
   const [phonetext, setPhonetext] = useState("*전화번호를 입력해주세요.");
   const [agetext, setAgetext] = useState("*나이를 입력해주세요.");
   const [gendertext, setGendertext] = useState("");
@@ -39,7 +40,7 @@ function BoardDetail() {
     if (user.name === "") {
       alert("이름을 입력해주세요");
     } else if (!isEmail) {
-      alert("이메일을 형식에 맞게 다시 입력해주세요.");
+      alert("잘못된 이메일 형식입니다. 다시 확인해주세요.");
     } else if (!isConfirmCode) {
       alert("이메일 인증에 실패하였습니다. 다시 진행해주세요.");
     } else if (!ispasswordType) {
@@ -119,10 +120,10 @@ function BoardDetail() {
     });
 
     if (!emailRegex.test(emailCurrent)) {
-      setEmailtext("*이메일 형식이 틀렸어요! 다시 확인해주세요.");
+      setEmailtext("*잘못된 이메일 형식입니다. 다시 확인해주세요.");
       setIsEmail(false);
     } else {
-      setEmailtext("");
+      setEmailtext("*사용가능한 이메일 주소입니다.");
       setIsEmail(true);
     }
   };
@@ -130,11 +131,12 @@ function BoardDetail() {
   const sendCode = async () => {
     try {
       await sendEmailCode(email).then((res) => {
-        if (res.status === 500) {
-          alert("이미 회원가입된 이메일입니다.");
-        }
+        console.log(res);
       });
     } catch (err) {
+      if (err.response.data.code === 500) {
+        alert("이미 회원가입된 이메일입니다.");
+      }
       console.log(err);
     }
   };
@@ -176,18 +178,10 @@ function BoardDetail() {
       setPasswordtext("*비밀번호 형식이 올바르지 않습니다.");
     } else if (regExp.test(passwordCurrent)) {
       setIspasswordType(true);
-      setPasswordtext("*올바른 형식입니다.");
+      setPasswordtext("*사용가능한 비밀번호입니다.");
     } else {
       setIspasswordType(false);
       setPasswordtext("*비밀번호 형식이 올바르지 않습니다");
-    }
-
-    if (password === passwordConfirm) {
-      setIspasswordSame(true);
-      setPasswordSameText("*비밀번호가 같습니다.");
-    } else {
-      setIspasswordSame(false);
-      setPasswordSameText("*비밀번호가 다릅니다.");
     }
   };
 
@@ -214,16 +208,16 @@ function BoardDetail() {
       phone: phoneCurrent,
     });
 
-    const regex = /^[0-9\b]{0,11}$/;
+    const regex = /^[0-9\b]{11,11}$/;
     if (phoneCurrent === "") {
       setIsphone(false);
       setPhonetext("*전화번호를 입력해주세요.");
     } else if (regex.test(e.target.value)) {
       setIsphone(true);
-      setPhonetext("");
+      setPhonetext("*사용가능한 전화번호입니다.");
     } else {
       setIsphone(false);
-      setPhonetext("*올바른 형식으로 입력해주세요.");
+      setPhonetext("*올바른 전화번호 형식으로 입력해주세요.");
     }
   };
 
@@ -317,7 +311,7 @@ function BoardDetail() {
         <div
           style={{
             width: "980px",
-            height: "1086px",
+            height: "1136px",
             margin: "268px auto 58px",
             display: "flex",
             flexShrink: "0",
@@ -360,14 +354,22 @@ function BoardDetail() {
                   height: "20px",
                   color: "red",
                   fontSize: "13px",
-                  marginLeft: "210px",
+                  marginLeft: "8px",
+                  marginTop: "3px",
                 }}
               >
                 *이름을 입력해주세요
               </div>
             ) : (
               <div
-                style={{ width: "160px", height: "20px", color: "red" }}
+                style={{
+                  width: "160px",
+                  height: "20px",
+                  color: "blue",
+                  fontSize: "13px",
+                  marginTop: "3px",
+                  marginLeft: "8px",
+                }}
               ></div>
             )}
           </div>
@@ -381,6 +383,7 @@ function BoardDetail() {
                 fontWeight: "600",
                 fontStyle: "normal",
                 lineHeight: "20px",
+                marginTop: "6px",
               }}
             >
               이메일
@@ -414,17 +417,33 @@ function BoardDetail() {
                 인증 코드 전송
               </Button>
             </div>
-            <div
-              style={{
-                width: "160px",
-                height: "20px",
-                color: "red",
-                fontSize: "13px",
-                marginLeft: "192px",
-              }}
-            >
-              {emailtext}
-            </div>
+            {isEmail ? (
+              <div
+                style={{
+                  width: "300px",
+                  height: "20px",
+                  color: "blue",
+                  fontSize: "13px",
+                  marginTop: "3px",
+                  marginLeft: "8px",
+                }}
+              >
+                {emailtext}
+              </div>
+            ) : (
+              <div
+                style={{
+                  width: "300px",
+                  height: "20px",
+                  color: "red",
+                  fontSize: "13px",
+                  marginTop: "3px",
+                  marginLeft: "8px",
+                }}
+              >
+                {emailtext}
+              </div>
+            )}
           </div>
           <div>
             <div
@@ -436,6 +455,7 @@ function BoardDetail() {
                 fontWeight: "600",
                 fontStyle: "normal",
                 lineHeight: "20px",
+                marginTop: "6px",
               }}
             >
               인증코드
@@ -469,19 +489,35 @@ function BoardDetail() {
                 인증 확인
               </Button>
             </div>
-            <div
-              style={{
-                width: "160px",
-                height: "20px",
-                color: "red",
-                fontSize: "13px",
-                marginLeft: "272px",
-              }}
-            >
-              {codetext}
-            </div>
+            {isConfirmCode ? (
+              <div
+                style={{
+                  width: "300px",
+                  height: "20px",
+                  color: "blue",
+                  fontSize: "13px",
+                  marginTop: "3px",
+                  marginLeft: "8px",
+                }}
+              >
+                {codetext}
+              </div>
+            ) : (
+              <div
+                style={{
+                  width: "300px",
+                  height: "20px",
+                  color: "red",
+                  fontSize: "13px",
+                  marginTop: "3px",
+                  marginLeft: "8px",
+                }}
+              >
+                {codetext}
+              </div>
+            )}
           </div>
-          <div style={{ display: "flex" }}>
+          <div style={{ display: "flex", marginTop: "6px" }}>
             <div>
               <div
                 style={{
@@ -497,23 +533,39 @@ function BoardDetail() {
                 비밀번호(8~16자의 영문,숫자만 포함)
               </div>
               <input
-                type="text"
+                type="password"
                 placeholder="비밀번호 입력"
                 name="password"
                 value={password}
                 onChange={onChangePassword}
               />
-              <div
-                style={{
-                  width: "140px",
-                  height: "20px",
-                  color: "red",
-                  fontSize: "13px",
-                  marginLeft: "208px",
-                }}
-              >
-                {passwordtext}
-              </div>
+              {ispasswordType ? (
+                <div
+                  style={{
+                    width: "300px",
+                    height: "20px",
+                    color: "blue",
+                    fontSize: "13px",
+                    marginTop: "3px",
+                    marginLeft: "8px",
+                  }}
+                >
+                  {passwordtext}
+                </div>
+              ) : (
+                <div
+                  style={{
+                    width: "300px",
+                    height: "20px",
+                    color: "red",
+                    fontSize: "13px",
+                    marginTop: "3px",
+                    marginLeft: "8px",
+                  }}
+                >
+                  {passwordtext}
+                </div>
+              )}
             </div>
             <div style={{ marginLeft: "56px" }}>
               <div
@@ -530,23 +582,40 @@ function BoardDetail() {
                 비밀번호 확인
               </div>
               <input
-                type="text"
+                type="password"
                 placeholder="비밀번호 입력"
                 name="passwordConfirm"
                 value={passwordConfirm}
                 onChange={onChangePasswordSame}
               />
-              <div
-                style={{
-                  width: "160px",
-                  height: "20px",
-                  color: "red",
-                  fontSize: "13px",
-                  marginLeft: "212px",
-                }}
-              >
-                {passwordSameText}
-              </div>
+
+              {ispasswordSame ? (
+                <div
+                  style={{
+                    width: "300px",
+                    height: "20px",
+                    color: "blue",
+                    fontSize: "13px",
+                    marginTop: "3px",
+                    marginLeft: "8px",
+                  }}
+                >
+                  {passwordSameText}
+                </div>
+              ) : (
+                <div
+                  style={{
+                    width: "300px",
+                    height: "20px",
+                    color: "red",
+                    fontSize: "13px",
+                    marginTop: "3px",
+                    marginLeft: "8px",
+                  }}
+                >
+                  {passwordSameText}
+                </div>
+              )}
             </div>
           </div>
           <div>
@@ -558,6 +627,7 @@ function BoardDetail() {
                 fontSize: "14px",
                 fontWeight: "600",
                 fontStyle: "normal",
+                marginTop: "6px",
                 lineHeight: "20px",
               }}
             >
@@ -570,17 +640,33 @@ function BoardDetail() {
               value={phone}
               onChange={changePhone}
             />
-            <div
-              style={{
-                width: "160px",
-                height: "20px",
-                color: "red",
-                fontSize: "13px",
-                marginLeft: "180px",
-              }}
-            >
-              {phonetext}
-            </div>
+            {isphone ? (
+              <div
+                style={{
+                  width: "300px",
+                  height: "20px",
+                  color: "blue",
+                  fontSize: "13px",
+                  marginTop: "3px",
+                  marginLeft: "8px",
+                }}
+              >
+                {phonetext}
+              </div>
+            ) : (
+              <div
+                style={{
+                  width: "300px",
+                  height: "20px",
+                  color: "red",
+                  fontSize: "13px",
+                  marginTop: "3px",
+                  marginLeft: "8px",
+                }}
+              >
+                {phonetext}
+              </div>
+            )}
           </div>
           <div>
             <div
@@ -591,6 +677,7 @@ function BoardDetail() {
                 fontSize: "14px",
                 fontWeight: "600",
                 fontStyle: "normal",
+                marginTop: "6px",
                 lineHeight: "20px",
               }}
             >
@@ -606,6 +693,7 @@ function BoardDetail() {
                 borderRadius: "8px",
                 border: "1px solid #ccc",
                 paddingLeft: "16px",
+                marginTop: "6px",
               }}
             >
               <option value="서울">서울</option>
@@ -643,11 +731,12 @@ function BoardDetail() {
             />
             <div
               style={{
-                width: "160px",
+                width: "300px",
                 height: "20px",
                 color: "red",
                 fontSize: "13px",
-                marginLeft: "200px",
+                marginLeft: "8px",
+                marginTop: "3px",
               }}
             >
               {agetext}
@@ -696,6 +785,7 @@ function BoardDetail() {
                   color: "red",
                   fontSize: "13px",
                   marginLeft: "12px",
+                  marginTop: "3px",
                 }}
               >
                 {gendertext === "" ? "*성별을 선택해주세요" : ""}
@@ -742,6 +832,7 @@ function BoardDetail() {
                   color: "red",
                   fontSize: "13px",
                   marginLeft: "4px",
+                  marginTop: "3px",
                 }}
               >
                 {roletext === "" ? "*본인의 역할을 선택해주세요" : ""}

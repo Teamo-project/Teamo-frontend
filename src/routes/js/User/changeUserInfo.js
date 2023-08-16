@@ -90,21 +90,13 @@ function ChangeInfo() {
     var regExp = /^(?=.*[a-zA-Z])(?=.*[0-9])/;
     if (passwordCurrent.length < 8 || passwordCurrent.length > 16) {
       setIspasswordType(false);
-      setPasswordtext("*비밀번호 형식이 올바르지 않습니다.");
+      setPasswordtext("*잘못된 비밀번호 형식입니다.");
     } else if (regExp.test(passwordCurrent)) {
       setIspasswordType(true);
-      setPasswordtext("*올바른 형식입니다.");
+      setPasswordtext("*사용가능한 비밀번호입니다.");
     } else {
       setIspasswordType(false);
-      setPasswordtext("*비밀번호 형식이 올바르지 않습니다");
-    }
-
-    if (password === passwordConfirm) {
-      setIspasswordSame(true);
-      setPasswordSameText("*비밀번호가 같습니다.");
-    } else {
-      setIspasswordSame(false);
-      setPasswordSameText("*비밀번호가 다릅니다.");
+      setPasswordtext("*잘못된 비밀번호 형식입니다.");
     }
   };
 
@@ -128,16 +120,16 @@ function ChangeInfo() {
       phone: phoneCurrent,
     });
 
-    const regex = /^[0-9\b]{0,11}$/;
+    const regex = /^[0-9\b]{11,11}$/;
     if (phoneCurrent === "") {
       setIsphone(false);
       setPhonetext("*전화번호를 입력해주세요.");
     } else if (regex.test(e.target.value)) {
       setIsphone(true);
-      setPhonetext("");
+      setPhonetext("*사용가능한 전화번호입니다.");
     } else {
       setIsphone(false);
-      setPhonetext("*올바른 형식으로 입력해주세요.");
+      setPhonetext("*올바른 전화번호 형식으로 입력해주세요.");
     }
   };
 
@@ -347,11 +339,11 @@ function ChangeInfo() {
                     <div
                       style={{
                         color: "red",
-                        marginLeft: "380px",
+                        marginLeft: "281px",
                         fontSize: "13px",
                       }}
                     >
-                      {name === "" ? "이름을 입력해주세요" : ""}
+                      {name === "" ? "*이름을 입력해주세요" : ""}
                     </div>
                   </div>
                   <div
@@ -392,12 +384,13 @@ function ChangeInfo() {
                       value={password}
                       onChange={onChangePassword}
                       style={{
-                        width: "238px",
+                        width: "230px",
                         height: "22px",
                         border: "2px solid #d9d9d9",
                         paddingLeft: "10px",
                       }}
                     />
+
                     <div
                       style={{
                         marginLeft: "10px",
@@ -409,16 +402,29 @@ function ChangeInfo() {
                       (8~16자의 영문 대,소문자와 숫자의 조합으로만 이용
                       가능합니다.){" "}
                     </div>
-                    <div
-                      style={{
-                        color: "red",
-                        marginLeft: "85px",
-                        width: "180px",
-                        fontSize: "13px",
-                      }}
-                    >
-                      {passwordtext}
-                    </div>
+                    {ispasswordType ? (
+                      <div
+                        style={{
+                          color: "blue",
+                          marginLeft: "55px",
+                          width: "200px",
+                          fontSize: "13px",
+                        }}
+                      >
+                        {passwordtext}
+                      </div>
+                    ) : (
+                      <div
+                        style={{
+                          color: "red",
+                          marginLeft: "55px",
+                          width: "200px",
+                          fontSize: "13px",
+                        }}
+                      >
+                        {passwordtext}
+                      </div>
+                    )}
                   </div>
                   <div
                     style={{
@@ -441,23 +447,36 @@ function ChangeInfo() {
                       value={passwordConfirm}
                       onChange={onChangePasswordSame}
                       style={{
-                        width: "240px",
+                        width: "232px",
                         height: "22px",
                         border: "2px solid #d9d9d9",
                         paddingLeft: "10px",
                       }}
                     />
 
-                    <div
-                      style={{
-                        color: "red",
-                        marginLeft: "306px",
-                        width: "180px",
-                        fontSize: "13px",
-                      }}
-                    >
-                      {passwordSameText}
-                    </div>
+                    {ispasswordSame ? (
+                      <div
+                        style={{
+                          color: "blue",
+                          marginLeft: "282px",
+                          width: "200px",
+                          fontSize: "13px",
+                        }}
+                      >
+                        {passwordSameText}
+                      </div>
+                    ) : (
+                      <div
+                        style={{
+                          color: "red",
+                          marginLeft: "282px",
+                          width: "200px",
+                          fontSize: "13px",
+                        }}
+                      >
+                        {passwordSameText}
+                      </div>
+                    )}
                   </div>
                   <div
                     style={{
@@ -497,7 +516,7 @@ function ChangeInfo() {
                       value={phone}
                       onChange={changePhone}
                       style={{
-                        width: "218px",
+                        width: "217px",
                         height: "22px",
                         border: "2px solid #d9d9d9",
                         paddingLeft: "10px",
@@ -512,16 +531,29 @@ function ChangeInfo() {
                     >
                       "-"를 제외한 숫자만으로 입력해주세요.
                     </div>
-                    <div
-                      style={{
-                        color: "red",
-                        marginLeft: "15px",
-                        width: "140px",
-                        fontSize: "13px",
-                      }}
-                    >
-                      {phonetext}
-                    </div>
+                    {isphone ? (
+                      <div
+                        style={{
+                          color: "blue",
+                          marginLeft: "-10px",
+                          width: "170px",
+                          fontSize: "13px",
+                        }}
+                      >
+                        {phonetext}
+                      </div>
+                    ) : (
+                      <div
+                        style={{
+                          color: "red",
+                          marginLeft: "-10px",
+                          width: "160px",
+                          fontSize: "13px",
+                        }}
+                      >
+                        {phonetext}
+                      </div>
+                    )}
                   </div>
                   <div
                     style={{
@@ -544,7 +576,7 @@ function ChangeInfo() {
                       value={age}
                       onChange={changeAge}
                       style={{
-                        width: "255px",
+                        width: "218px",
                         height: "22px",
                         border: "2px solid #d9d9d9",
                         paddingLeft: "10px",
@@ -554,7 +586,7 @@ function ChangeInfo() {
                     <div
                       style={{
                         color: "red",
-                        marginLeft: "305px",
+                        marginLeft: "279px",
                         width: "190px",
                         fontSize: "13px",
                       }}

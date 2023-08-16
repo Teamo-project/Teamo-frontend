@@ -41,3 +41,10 @@ export const confirmEmailCode = (email, code) => {
     `${url}/v1/user/emails/verifications?email=${email}&code=${code}`
   );
 };
+
+export const mentoScroll = (token) => {
+  return axios.get(
+    `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring/my?last=`,
+    { headers: { Authorization: `Bearer ${token}` } }
+  );
+};

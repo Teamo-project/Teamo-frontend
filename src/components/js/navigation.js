@@ -50,7 +50,14 @@ function Navigation(prop) {
 
   return (
     <div>
-      <div style={{ position: "relative", width: "1180px", display: "flex" }}>
+      <div
+        style={{
+          position: "relative",
+          width: "1180px",
+          display: "flex",
+          marginTop: "11px",
+        }}
+      >
         <img className={navigation.man} src={man_logo} alt="holo_img" />
 
         <div className={navigation.logobox}>
