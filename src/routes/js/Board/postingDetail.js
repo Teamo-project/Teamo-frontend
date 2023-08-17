@@ -1,6 +1,6 @@
 import Navigation from "../../../components/js/navigation";
 import { Button } from "react-bootstrap";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import menu from "../../../components/css/navigationMenu.module.css";
 import axios from "axios";
 import Board from "../../../components/js/Board/Board";
@@ -10,7 +10,7 @@ import { getBoardDetailApi } from "../../../apis/boardApi";
 // 게시물 상세 페이지
 function BoardDetail() {
   const { postingId } = useParams();
-
+  const navigate = useNavigate();
   // 해당 postingId에 해당하는 게시물의 정보 가져오기
   const [board, setBoard] = useState({});
 
@@ -20,7 +20,11 @@ function BoardDetail() {
       setBoard(resp.data);
       console.log(resp.data);
     } catch (err) {
-      console.log(err);
+      console.log(err.response.data.message);
+      if (err.response.data.message === "객체를 찾을 수 없습니다.") {
+        alert("회원탈퇴한 유저의 게시물입니다.");
+        navigate("/posting");
+      }
     }
   };
   useEffect(() => {
