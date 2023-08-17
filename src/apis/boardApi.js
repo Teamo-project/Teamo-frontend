@@ -43,8 +43,8 @@ export const writeCommentApi = (payload, token) => {
   });
 };
 
-export const getCommentListApi = (postingId, page) => {
-  return axios.get(`${url}/v1/reply/${postingId}/list?&page=${page}`, {
+export const getCommentListApi = (id, page) => {
+  return axios.get(`${url}/v1/reply/${id}/list?&page=${page}`, {
     headers: { Authorization: "Bearer debug" },
   });
 };

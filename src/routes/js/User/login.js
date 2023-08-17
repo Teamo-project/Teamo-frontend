@@ -45,7 +45,7 @@ function Login() {
   const signup = async (token) => {
     try {
       await UserInfo(token).then((res) => {
-        console.log(res.data.img);
+        console.log(res);
         dispatch(
           login({
             userId: res.data.id,
@@ -57,8 +57,10 @@ function Login() {
             userAge: res.data.age,
             userPhone: res.data.phone,
             userRegion: res.data.region,
+            userRole: res.data.role,
           })
         );
+
         navigate("/");
       });
     } catch (err) {

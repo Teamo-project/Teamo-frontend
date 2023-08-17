@@ -68,7 +68,7 @@ function Inquire() {
       >
         <div style={{ marginTop: "93px", marginLeft: "620px" }}>
           <Link
-            to="https://map.naver.com/v5/search/%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C%20%EA%B4%91%EC%A7%84%EA%B5%AC%20%EB%8A%A5%EB%8F%99%EB%A1%9C%20209/address/14145800.060003486,4516255.989162069,%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C%20%EA%B4%91%EC%A7%84%EA%B5%AC%20%EB%8A%A5%EB%8F%99%EB%A1%9C%20209,new?c=16,0,0,0,dh&isCorrectAnswer=true"
+            to="http://map.naver.com/v5/search/%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C%20%EA%B4%91%EC%A7%84%EA%B5%AC%20%EB%8A%A5%EB%8F%99%EB%A1%9C%20209/address/14145800.060003486,4516255.989162069,%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C%20%EA%B4%91%EC%A7%84%EA%B5%AC%20%EB%8A%A5%EB%8F%99%EB%A1%9C%20209,new?c=16,0,0,0,dh&isCorrectAnswer=true"
             target="_blank"
           >
             <Button
@@ -85,7 +85,7 @@ function Inquire() {
             </Button>
           </Link>{" "}
           <Link
-            to="https://www.google.co.kr/maps/place/%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C+%EA%B4%91%EC%A7%84%EA%B5%AC+%EB%8A%A5%EB%8F%99%EB%A1%9C+209/data=!4m6!3m5!1s0x357ca4d0480e0b61:0xa888e407e45da527!8m2!3d37.5507345!4d127.0741314!16s%2Fg%2F11bzl0pqq4?hl=ko&entry=ttu"
+            to="http://www.google.co.kr/maps/place/%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C+%EA%B4%91%EC%A7%84%EA%B5%AC+%EB%8A%A5%EB%8F%99%EB%A1%9C+209/data=!4m6!3m5!1s0x357ca4d0480e0b61:0xa888e407e45da527!8m2!3d37.5507345!4d127.0741314!16s%2Fg%2F11bzl0pqq4?hl=ko&entry=ttu"
             target="_blank"
           >
             <Button
