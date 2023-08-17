@@ -1,5 +1,5 @@
 import Navigation from "../../../components/js/navigation";
-
+import nullImg from "../../../components/img/user_img.png";
 import home from "../../css/home.module.css";
 import post from "../../css/post.module.css";
 import { useEffect, useState } from "react";
@@ -410,10 +410,18 @@ function ViewPost() {
                               setMenteePopup(true);
                             }}
                           >
-                            <img
-                              className={post.appliedMenteeImg}
-                              src={ele.menteeImg}
-                            ></img>
+                            {ele.menteeImg === "null" ? (
+                              <img
+                                className={post.appliedMenteeImg}
+                                src={nullImg}
+                              ></img>
+                            ) : (
+                              <img
+                                className={post.appliedMenteeImg}
+                                src={ele.menteeImg}
+                              ></img>
+                            )}
+
                             <div className={post.appliedMenteeName}>
                               {ele.menteeName}
                             </div>

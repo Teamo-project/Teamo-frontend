@@ -245,6 +245,7 @@
 .appliedMenteeListBox {
   height: 204px;
   width: 264px;
+
   display: flex;
 }
 .appliedMenteeButton {
