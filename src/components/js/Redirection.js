@@ -20,7 +20,7 @@ function Redirection() {
       await UserInfo(accessToken).then(() => {
         userInfo = JSON.parse(jwtDecode(accessToken).USER);
         console.log(userInfo);
-        localStorage.setItem("token", accessToken);
+        sessionStorage.setItem("token", accessToken);
         dispatch(
           login({
             userId: userInfo.id,
