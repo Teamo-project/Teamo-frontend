@@ -57,7 +57,6 @@ function Mypage() {
   };
 
   useEffect(() => {
-
     if (userRole === "mentor") {
       mentoScroll(token)
         .then((res) => {
@@ -77,7 +76,6 @@ function Mypage() {
           console.log(err);
         });
     }
-
   }, []);
 
   useEffect(() => {
@@ -250,10 +248,12 @@ function Mypage() {
 
           {userRole == "mentor" ? (
             <div>
-              <h3>내가 쓴 멘토링 글</h3>
-              {MentoringPost.map((e) => {
-                return <MentorPost postingInfo={e} />;
-              })}
+              <h3 style={{ marginLeft: "20px" }}>내가 쓴 멘토링 글</h3>
+              <div style={{ overflowY: "scroll", height: "536px" }}>
+                {MentoringPost.map((e) => {
+                  return <MentorPost postingInfo={e} />;
+                })}
+              </div>
             </div>
           ) : (
             <div>
