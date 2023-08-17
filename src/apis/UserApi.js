@@ -43,8 +43,13 @@ export const confirmEmailCode = (email, code) => {
 };
 
 export const mentoScroll = (token) => {
-  return axios.get(
-    `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring/my?last=`,
-    { headers: { Authorization: `Bearer ${token}` } }
-  );
+  return axios.get(`${url}/v1/mentoring/my?last=`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+};
+
+export const menteeScroll = (token) => {
+  return axios.get(`${url}/v1/mentee/my?last=`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
 };
