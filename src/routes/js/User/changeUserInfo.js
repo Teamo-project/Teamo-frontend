@@ -16,8 +16,9 @@ function ChangeInfo() {
   const [isage, setIsage] = useState(false);
 
   const [passwordtext, setPasswordtext] = useState("*비밀번호를 입력해주세요.");
-  const [passwordSameText, setPasswordSameText] =
-    useState("*비밀번호가 다릅니다.");
+  const [passwordSameText, setPasswordSameText] = useState(
+    "*비밀번호가 다릅니다."
+  );
   const [phonetext, setPhonetext] = useState("");
   const [agetext, setAgetext] = useState("");
 

@@ -13,7 +13,9 @@ import { useEffect } from "react";
 import { editPost } from "../../../apis/mentorMentee";
 function EditPost() {
   const navigate = useNavigate();
-  const accessToken = localStorage.token;
+  const accessToken = useSelector(
+    (state) => state.persistedReducer.user.userToken
+  );
   const registor = useSelector((state) => state.persistedReducer.user.userName);
   const [mainText, setMainText] = useState("");
   const [title, setTitle] = useState("");
@@ -93,8 +95,7 @@ function EditPost() {
           position: "relative",
           display: "flex",
           flexDirection: "column",
-          width: "980px",
-
+          width: "1180px",
           margin: "0 auto",
         }}
       >

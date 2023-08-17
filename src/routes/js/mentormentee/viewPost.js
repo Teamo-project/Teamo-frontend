@@ -21,7 +21,9 @@ function ViewPost() {
   const mentee = useSelector((state) => state.persistedReducer.user);
   const userId = useSelector((state) => state.persistedReducer.user.userId);
   const navigate = useNavigate();
-  const accessToken = localStorage.token;
+  const accessToken = useSelector(
+    (state) => state.persistedReducer.user.userToken
+  );
   const postingId = useParams().postingId;
   const [description, setDescription] = useState("");
   const [isPopup, setIsPopup] = useState(false);
@@ -286,7 +288,7 @@ function ViewPost() {
           position: "relative",
           display: "flex",
           flexDirection: "column",
-          width: "980px",
+          width: "1180px",
           // marginLeft: "230px",
           // marginRight: "230px",
           margin: "0 auto",
@@ -349,107 +351,106 @@ function ViewPost() {
             )}
           </div>
 
-          {userRole === "mentee" ? (
-            <div className={post.mentoring}>
-              <p className={post.mentoringText}>멘토링 연결 신청</p>
-              <button className={post.mentoringBtn} onClick={handlePopup}>
-                신청하러가기
-              </button>
-            </div>
-          ) : (
-            ""
-          )}
           {console.log(info.mentorInfo.id, userId, "확인")}
-        </div>
-        <div>
-          <div className={post.mentoringEditDeleteBox}>
-            {/* //수정버튼 */}
+          <div style={{ marginTop: "58px" }}>
+            <div className={post.mentoringEditDeleteBox}>
+              {/* //수정버튼 */}
 
-            {accessToken === undefined ||
-            userRole === "mentee" ||
-            info.mentorInfo.id !== userId ? (
-              ""
-            ) : info.count !== 0 ? (
-              ""
+              {accessToken === undefined ||
+              userRole === "mentee" ||
+              info.mentorInfo.id !== userId ? (
+                ""
+              ) : info.count !== 0 ? (
+                ""
+              ) : (
+                <Link
+                  to={`/editpost/${postingId}`}
+                  style={{ textDecoration: "none" }}
+                >
+                  <button className={post.mentoringEditDeleteBtn}>수정</button>
+                </Link>
+              )}
+              {/* //삭제버튼 */}
+              {accessToken === undefined ||
+              userRole === "mentee" ||
+              info.mentorInfo.id !== userId ? (
+                ""
+              ) : (
+                <button
+                  className={post.mentoringEditDeleteBtn}
+                  onClick={deleteRequest}
+                  style={{ marginRight: "20px" }}
+                >
+                  삭제
+                </button>
+              )}
+            </div>
+            {userRole === "mentor" && info.mentorInfo.id === userId ? (
+              <div className={post.appliedMenteeBox}>
+                <div className={post.appliedMenteeTitleBox}>
+                  <p className={post.appliedMenteeTitle}>신청한 멘티 목록</p>
+                </div>
+                <div className={post.appliedMenteeListBox}>
+                  {mentees === undefined
+                    ? ""
+                    : mentees.map((ele) => {
+                        return (
+                          <div
+                            className={post.appliedMenteeButton}
+                            onClick={() => {
+                              applyMentee(ele.applyMenteeId)
+                                .then((res) => {
+                                  console.log(res.data, "신청한 멘티");
+                                  setPopupMentee(res.data);
+                                  console.log(popupMentee);
+                                })
+                                .catch((err) => console.log(err));
+
+                              setMenteePopup(true);
+                            }}
+                          >
+                            <img
+                              className={post.appliedMenteeImg}
+                              src={ele.menteeImg}
+                            ></img>
+                            <div className={post.appliedMenteeName}>
+                              {ele.menteeName}
+                            </div>
+                          </div>
+                        );
+                      })}
+                </div>
+              </div>
             ) : (
-              <Link
-                to={`/editpost/${postingId}`}
-                style={{ textDecoration: "none" }}
-              >
-                <button className={post.mentoringEditDeleteBtn}>수정</button>
-              </Link>
+              ""
             )}
-            {/* //삭제버튼 */}
-            {accessToken === undefined ||
-            userRole === "mentee" ||
-            info.mentorInfo.id !== userId ? (
+
+            {userRole === "mentee" ? (
+              <div
+                className={post.mentoringEndBox}
+                style={{ marginTop: "20px" }}
+              >
+                <p className={post.mentoringText}>멘토링 연결 신청</p>
+                <button className={post.mentoringBtn} onClick={handlePopup}>
+                  신청하러가기
+                </button>
+              </div>
+            ) : info.mentorInfo.id !== userId ? (
               ""
             ) : (
-              <button
-                className={post.mentoringEditDeleteBtn}
-                onClick={deleteRequest}
-                style={{ marginRight: "20px" }}
-              >
-                삭제
-              </button>
+              <div className={post.mentoringEndBox}>
+                <p className={post.mentoringText}>멘토링 연결 마감</p>
+                <button className={post.mentoringBtn} onClick={endRequest}>
+                  마감하기
+                </button>
+              </div>
             )}
           </div>
-          {userRole === "mentor" && info.mentorInfo.id === userId ? (
-            <div className={post.appliedMenteeBox}>
-              <div className={post.appliedMenteeTitleBox}>
-                <p className={post.appliedMenteeTitle}>신청한 멘티 목록</p>
-              </div>
-              <div className={post.appliedMenteeListBox}>
-                {mentees === undefined
-                  ? ""
-                  : mentees.map((ele) => {
-                      return (
-                        <div
-                          className={post.appliedMenteeButton}
-                          onClick={() => {
-                            applyMentee(ele.applyMenteeId)
-                              .then((res) => {
-                                console.log(res.data, "신청한 멘티");
-                                setPopupMentee(res.data);
-                                console.log(popupMentee);
-                              })
-                              .catch((err) => console.log(err));
-
-                            setMenteePopup(true);
-                          }}
-                        >
-                          <img
-                            className={post.appliedMenteeImg}
-                            src={ele.menteeImg}
-                          ></img>
-                          <div className={post.appliedMenteeName}>
-                            {ele.menteeName}
-                          </div>
-                        </div>
-                      );
-                    })}
-              </div>
-            </div>
-          ) : (
-            ""
-          )}
-          {accessToken === undefined ||
-          userRole === "mentee" ||
-          info.mentorInfo.id !== userId ? (
-            ""
-          ) : (
-            <div className={post.mentoringEndBox}>
-              <p className={post.mentoringText}>멘토링 연결 마감</p>
-              <button className={post.mentoringBtn} onClick={endRequest}>
-                마감하기
-              </button>
-            </div>
-          )}
         </div>
       </div>
 
       {/* <Footer /> */}
-      <div className={home.footer}>
+      <div className={home.footer} style={{ marginTop: "330px" }}>
         <div className={home.footerLeft}>
           <Link to="/" style={{ textDecoration: "none" }}>
             <h2>홀로서기</h2>

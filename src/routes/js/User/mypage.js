@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import NullUserImg from "../../../components/img/user_img.png";
 import passwordImg from "../../../components/img/Password.png";
 import axios from "axios";
-import { DeleteUser, UserInfo, mentoScroll } from "../../../apis/UserApi";
+import { DeleteUser, UserInfo } from "../../../apis/UserApi";
 import MentorPost from "../../../components/js/Mypage/MentorPost";
 import MenteePost from "../../../components/js/Mypage/MenteePost";
 
@@ -42,10 +42,15 @@ function Mypage() {
   };
 
   useEffect(() => {
-    mentoScroll(token)
+    axios
+      .get(
+        "http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/v1/mentoring/my",
+        { headers: { Authorization: `Bearer ${token}` } }
+      )
       .then((res) => {
         console.log(res.data.content, "in axios");
         setMentoringPost(res.data.content);
+        console.log(MentoringPost);
       })
       .catch((err) => {
         console.log(err);
@@ -124,7 +129,7 @@ function Mypage() {
                 }}
               >
                 <img
-                  src={user.img === "null" ? NullUserImg : user.img}
+                  src={user.img !== "" ? user.img : NullUserImg}
                   alt="User"
                   style={{
                     width: "40px",
@@ -222,12 +227,10 @@ function Mypage() {
 
           {userRole == "mentor" ? (
             <div>
-              <h3 style={{ marginLeft: "20px" }}>내가 쓴 멘토링 글</h3>
-              <div style={{ overflowY: "scroll", height: "536px" }}>
-                {MentoringPost.map((e) => {
-                  return <MentorPost postingInfo={e} />;
-                })}
-              </div>
+              <h3>내가 쓴 멘토링 글</h3>
+              {MentoringPost.map((e) => {
+                return <MentorPost postingInfo={e} />;
+              })}
             </div>
           ) : (
             <MenteePost />
