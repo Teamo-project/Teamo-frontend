@@ -4,6 +4,7 @@
   border-top: solid 1px #989898;
   border-bottom: solid 1px #989898;
   margin-top: 300px;
+  margin: 300px auto 0;
 }
 .titleText {
   margin-left: 20px;
@@ -53,7 +54,6 @@
 
 .recruitment {
   position: absolute;
-  right: 0;
   bottom: 0;
 }
 
@@ -230,7 +230,7 @@
 }
 .appliedMenteeButton {
   width: 80px;
-  height: 80px;
+  height: 84px;
   background: #f1f1f1;
   margin-top: 11px;
   margin-left: 40px;
@@ -242,18 +242,12 @@
   display: flex;
   width: 80px;
   height: 20px;
-
   justify-content: center;
-  align-items: center;
-
-  border-right: 1px solid #f1f1f1;
-  border-bottom: 1px solid #f1f1f1;
-  border-left: 1px solid #f1f1f1;
-
+  position: sticky;
   color: #444;
   font-family: Pretendard;
   font-size: 12px;
-
+  top: 0;
   font-weight: 400;
 }
 .appliedMenteeImg {
@@ -266,7 +260,7 @@
 .mentoringEditDeleteBtn {
   width: 80px;
   height: 42px;
-
+  margin-top: 23px;
   background: #66c109;
   border: 0px;
   float: right;
@@ -280,6 +274,9 @@
   font-weight: 700;
   line-height: normal;
 }
+.mentoringEditDeleteBtn:hover {
+  cursor: pointer;
+}
 .mentoringEndBox {
   width: 325px;
   height: 168px;
@@ -292,4 +289,8 @@
   border-radius: 18px;
   background: var(--color-white, #fff);
   box-shadow: 0px 4px 4px 0px rgba(102, 193, 9, 0.2);
+}
+
+.pagination li:active {
+  background-color: #66c109;
 }

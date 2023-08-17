@@ -9,12 +9,14 @@ import { useDispatch, useSelector } from "react-redux";
 import NullUserImg from "../../../components/img/user_img.png";
 import passwordImg from "../../../components/img/Password.png";
 import axios from "axios";
+
 import {
   DeleteUser,
   UserInfo,
   menteeScroll,
   mentoScroll,
 } from "../../../apis/UserApi";
+
 import MentorPost from "../../../components/js/Mypage/MentorPost";
 import MenteePost from "../../../components/js/Mypage/MenteePost";
 import { logout } from "../../../redux/slices/userSlice";
@@ -43,7 +45,7 @@ function Mypage() {
     if (deleteAlert) {
       try {
         await DeleteUser(user.id).then((res) => {
-          localStorage.removeItem("token");
+          sessionStorage.removeItem("token");
           dispatch(logout());
           alert("회원탈퇴가 되었습니다.");
           navigate("/");
@@ -55,6 +57,7 @@ function Mypage() {
   };
 
   useEffect(() => {
+
     if (userRole === "mentor") {
       mentoScroll(token)
         .then((res) => {
@@ -74,6 +77,7 @@ function Mypage() {
           console.log(err);
         });
     }
+
   }, []);
 
   useEffect(() => {
@@ -148,7 +152,7 @@ function Mypage() {
                 }}
               >
                 <img
-                  src={user.img === "null" ? NullUserImg : user.img}
+                  src={user.img !== "" ? user.img : NullUserImg}
                   alt="User"
                   style={{
                     width: "40px",
@@ -246,12 +250,10 @@ function Mypage() {
 
           {userRole == "mentor" ? (
             <div>
-              <h3 style={{ marginLeft: "20px" }}>내가 쓴 멘토링 글</h3>
-              <div style={{ overflowY: "scroll", height: "536px" }}>
-                {MentoringPost.map((e) => {
-                  return <MentorPost postingInfo={e} />;
-                })}
-              </div>
+              <h3>내가 쓴 멘토링 글</h3>
+              {MentoringPost.map((e) => {
+                return <MentorPost postingInfo={e} />;
+              })}
             </div>
           ) : (
             <div>

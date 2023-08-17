@@ -1,7 +1,7 @@
 import Navigation from "../../../components/js/navigation";
 import mentoStyle from "../../css/mento.module.css";
 import Posts from "../../../components/js/mentoPosts";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import home from "../../css/home.module.css";
 import menu from "../../../components/css/navigationMenu.module.css";
 import { Button } from "react-bootstrap";
@@ -11,15 +11,22 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { viewPostList } from "../../../apis/mentorMentee";
 function Mento() {
+  const navigate = useNavigate();
   const userRole = useSelector((state) => state.persistedReducer.user.userRole);
   const [page, setPage] = useState(1);
   const [searchText, setSearchText] = useState("");
   const [searchCategory, setSearchCategory] = useState("");
   const [boardList, setBoardList] = useState([]);
   const [totalElem, setTotalElem] = useState(0);
-  const accessToken = localStorage.getItem("token");
+  const accessToken = useSelector(
+    (state) => state.persistedReducer.user.userToken
+  );
 
   useEffect(() => {
+    if (accessToken === "") {
+      alert("로그인 후 이용 가능한 서비스입니다.");
+      navigate("/login");
+    }
     viewPostList(searchText, searchCategory, accessToken, page)
       .then(function (res) {
         console.log(res.data.totalElements);
@@ -29,7 +36,7 @@ function Mento() {
       .catch(function (res) {
         console.log(res);
       });
-  }, [page, searchText, searchCategory]);
+  }, [page, searchText, searchCategory, accessToken]);
 
   const handleSearchText = (e) => {
     e.preventDefault();

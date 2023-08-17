@@ -29,7 +29,7 @@ function Navigation(prop) {
         }
       )
       .then((res) => {
-        localStorage.removeItem("token");
+        sessionStorage.removeItem("token");
         dispatch(logout());
         navigate("/");
       })
