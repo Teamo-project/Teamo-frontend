@@ -150,7 +150,7 @@ function Mypage() {
                 }}
               >
                 <img
-                  src={user.img !== "" ? user.img : NullUserImg}
+                  src={user.img !== "null" ? user.img : NullUserImg}
                   alt="User"
                   style={{
                     width: "40px",
@@ -274,7 +274,7 @@ function Mypage() {
           <Link to="/" style={{ textDecoration: "none" }}>
             <h2>홀로서기</h2>
           </Link>
-          <p>청소년 자립 지원 공공 서비스</p>
+          <p>청소년f 자립 지원 공공 서비스</p>
           <div>연락처 : 010-4470-2175</div>
           <div>이메일 : chandelier7642@gmail.com</div>
           <div>주소 : 세종대학교 학생회관 B123</div>

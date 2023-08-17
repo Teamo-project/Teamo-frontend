@@ -41,14 +41,6 @@ li.active {
   background-color: #66c109;
 }
 
-li:hover {
-  background-color: #66c109;
-}
-
-li:hover a {
-  color: white;
-}
-
 .page-selection {
   width: 48px;
   height: 30px;
