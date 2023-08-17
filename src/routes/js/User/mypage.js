@@ -227,7 +227,7 @@ function Mypage() {
 
           {userRole == "mentor" ? (
             <div>
-              <h3>내가 쓴 멘토링 글</h3>
+              <h3 className={mypage.mentoringTitle}>내가 쓴 멘토링 글</h3>
               {MentoringPost.map((e) => {
                 return <MentorPost postingInfo={e} />;
               })}

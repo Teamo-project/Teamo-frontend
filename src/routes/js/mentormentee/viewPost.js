@@ -215,7 +215,7 @@ function ViewPost() {
             >
               x
             </button>
-            <p className={post.applyTitle}>멘티 지원</p>
+            <p className={post.applyTitle}>멘티 정보</p>
             <div className={apply.applyInputBox}>
               <div
                 style={{
@@ -233,10 +233,7 @@ function ViewPost() {
                 <div style={{ width: "100px", marginLeft: "26px" }}>
                   <p className={post.popupText}>성별</p>
                   <div style={{ width: "100px" }} className={apply.applyInput}>
-                    <p className={apply.text}>
-                      {" "}
-                      {"popupMentee.applicantGender"}
-                    </p>
+                    <p className={apply.text}> {popupMentee.applicantGender}</p>
                   </div>
                 </div>
               </div>
@@ -252,13 +249,13 @@ function ViewPost() {
               <div className={post.inputDiv}>
                 <p className={post.popupText}>나이</p>
                 <div className={apply.applyInput}>
-                  <p className={apply.text}>{"popupMentee.applicantAge"}</p>
+                  <p className={apply.text}>{popupMentee.applicantAge}</p>
                 </div>
               </div>
               <div className={post.inputDiv}>
                 <p className={post.popupText}>주 거주 지역</p>
                 <div className={apply.applyInput}>
-                  <p className={apply.text}>{"popupMentee.applicatnRegion"}</p>
+                  <p className={apply.text}>{popupMentee.applicantRegion}</p>
                 </div>
               </div>
               <div className={post.inputDiv}>
@@ -275,9 +272,6 @@ function ViewPost() {
                 </div>
               </div>
             </div>
-            <button onClick={applyRequest} className={post.applyBtn}>
-              지원하기
-            </button>
           </div>
         </div>
       ) : (
@@ -326,6 +320,13 @@ function ViewPost() {
         <div className={post.postBox}>
           <div className={post.postTitle}>
             <p className={post.titleText}>{info.title}</p>
+            {info.isReceipt === true ? (
+              <div className={post.recruitmentMentee}>
+                모집인원 {info.count} / {info.limited}
+              </div>
+            ) : (
+              ""
+            )}
           </div>
           <hr className={post.line}></hr>
           <div className={post.subTitleBox}>
@@ -340,16 +341,7 @@ function ViewPost() {
           </div>
           <hr className={post.line}></hr>
 
-          <div className={post.mainText}>
-            {info.description}
-            {info.isReceipt === true ? (
-              <div className={post.recruitment}>
-                모집인원 {info.count} / {info.limited}
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
+          <div className={post.mainText}>{info.description}</div>
 
           {console.log(info.mentorInfo.id, userId, "확인")}
           <div style={{ marginTop: "58px" }}>
@@ -375,6 +367,8 @@ function ViewPost() {
               userRole === "mentee" ||
               info.mentorInfo.id !== userId ? (
                 ""
+              ) : info.count !== 0 ? (
+                ""
               ) : (
                 <button
                   className={post.mentoringEditDeleteBtn}
@@ -389,6 +383,13 @@ function ViewPost() {
               <div className={post.appliedMenteeBox}>
                 <div className={post.appliedMenteeTitleBox}>
                   <p className={post.appliedMenteeTitle}>신청한 멘티 목록</p>
+                  {info.isReceipt === true ? (
+                    <div className={post.recruitment}>
+                      모집인원 {info.count} / {info.limited}
+                    </div>
+                  ) : (
+                    ""
+                  )}
                 </div>
                 <div className={post.appliedMenteeListBox}>
                   {mentees === undefined

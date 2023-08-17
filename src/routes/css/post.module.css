@@ -46,17 +46,35 @@
   font-weight: 700;
   font-size: 18px;
   padding: 30px 10px;
-
+  white-space: pre-wrap;
+  /* 줄바꿈처리 */
   width: 950px;
   height: 400px;
   position: relative;
 }
 
 .recruitment {
-  position: absolute;
-  bottom: 0;
+  color: #000;
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  align-items: center;
+  display: flex;
+  margin-left: 330px;
 }
-
+.recruitmentMentee {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  align-items: center;
+  position: absolute;
+  margin-left: 840px;
+}
 .mentoring {
   width: 325px;
   height: 168px;
@@ -227,6 +245,7 @@
 .appliedMenteeListBox {
   height: 204px;
   width: 264px;
+  display: flex;
 }
 .appliedMenteeButton {
   width: 80px;
@@ -289,8 +308,4 @@
   border-radius: 18px;
   background: var(--color-white, #fff);
   box-shadow: 0px 4px 4px 0px rgba(102, 193, 9, 0.2);
-}
-
-.pagination li:active {
-  background-color: #66c109;
 }

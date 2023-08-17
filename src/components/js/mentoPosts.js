@@ -7,17 +7,17 @@ function Posts(postInfo) {
     <div key={postInfo.id}>
       <div className={mentoStyle.postsContent}>
         <div className={mentoStyle.postsContents}>
-          <div style={{ width: "30px" }}>
+          <div style={{ width: "50px", marginLeft: "8px" }}>
             <span
               style={{
                 display: "flex",
                 justifyContent: "center",
               }}
             >
-              {postInfo.id}
+              {postInfo.count} / {postInfo.limited}
             </span>
           </div>
-          <div style={{ marginLeft: "34px" }}>
+          <div style={{ marginLeft: "38px" }}>
             <span> {postInfo.category}</span>
           </div>
           <Link to={`/viewpost/${postInfo.id}`} className={mentoStyle.linkPage}>
@@ -27,7 +27,7 @@ function Posts(postInfo) {
 
         <div
           className={mentoStyle.postsContents}
-          style={{ marginRight: "23px" }}
+          style={{ marginRight: "25px" }}
         >
           <span style={{ marginRight: "37px" }}>{postInfo.creatorName}</span>{" "}
           <span style={{ marginRight: "30px" }}>{postInfo.createDate}</span>{" "}
