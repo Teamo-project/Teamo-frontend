@@ -7,6 +7,7 @@ import { GoogleLogin } from "../../../apis/UserApi";
 
 function FirstSocial() {
   const userId = useParams();
+  const [isClicked, setIsClicked] = useState("");
   const navigate = useNavigate();
   const [user, setUser] = useState({
     userId: userId.userId,
@@ -20,7 +21,7 @@ function FirstSocial() {
   const { phone, gender, region, age, role } = user;
   const onChange = (event) => {
     const { value, name } = event.target;
-
+    console.log(event, "event");
     setUser({
       ...user,
       [name]: value,
@@ -60,7 +61,12 @@ function FirstSocial() {
       submit();
     }
   };
-
+  const handleClick = (e) => {
+    console.log(e.target.value);
+    setIsClicked(e.target.value);
+    console.log(isClicked, "state");
+    onChange(e);
+  };
   return (
     <div style={{ width: "100%", height: "100vh", backgroundColor: "#FAFAFA" }}>
       <div style={{ position: "absolute", top: "0", width: "100%" }}>
@@ -147,18 +153,35 @@ function FirstSocial() {
               </span>
               <button
                 value="mentor"
-                onClick={onChange}
+                onClick={handleClick}
                 name="role"
                 className={google.mentomenti}
+                style={
+                  isClicked === "mentor"
+                    ? { backgroundColor: "#66c109", color: "white" }
+                    : { backgroundColor: "white", color: "black" }
+                }
               >
                 멘토
               </button>
               <button
                 value="mentee"
-                onClick={onChange}
+                onClick={handleClick}
                 name="role"
                 className={google.mentomenti}
-                style={{ marginLeft: "35px" }}
+                style={
+                  isClicked === "mentee"
+                    ? {
+                        backgroundColor: "#66c109",
+                        color: "white",
+                        marginLeft: "20px",
+                      }
+                    : {
+                        backgroundColor: "white",
+                        color: "black",
+                        marginLeft: "20px",
+                      }
+                }
               >
                 멘티
               </button>

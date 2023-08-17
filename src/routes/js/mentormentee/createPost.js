@@ -32,22 +32,28 @@ function CreatePost() {
   };
   const handleMainText = (e) => {
     setMainText(e.target.value);
+    console.log(mainText);
   };
   const handleTitle = (e) => {
     setTitle(e.target.value);
   };
+
   const handleCategory = (e) => {
     setCategory(e.target.value);
   };
-  console.log(title, category, mainText, recruit);
+
   const posting = () => {
+    const contentsReplaceNewline = () => {
+      return mainText.replaceAll("<br>", "\r\n");
+    };
+
     if (title === "" || category === "" || recruit === "" || mainText === "") {
       alert("정보를 모두 기입 후 작성 완료버튼을 눌러주세요");
     } else {
       createPost(
         {
           title: title,
-          description: mainText,
+          description: contentsReplaceNewline(),
           category: category,
           limited: recruit,
         },
