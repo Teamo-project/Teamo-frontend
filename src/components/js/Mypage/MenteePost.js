@@ -9,7 +9,7 @@ import { useEffect } from "react";
 function MenteePost(e) {
   const id = e.postingInfo.id;
   const [postContent, setPostContent] = useState("");
-  const accessToken = localStorage.getItem("token");
+  const accessToken = sessionStorage.getItem("token");
   useEffect(() => {
     try {
       viewPostDetail(id, accessToken).then((res) => {

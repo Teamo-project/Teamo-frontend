@@ -45,7 +45,7 @@ function Login() {
   const signup = async (token) => {
     try {
       await UserInfo(token).then((res) => {
-        console.log(res.data.img);
+        console.log(res);
         dispatch(
           login({
             userId: res.data.id,
@@ -60,6 +60,7 @@ function Login() {
             userRole: res.data.role,
           })
         );
+
         navigate("/");
       });
     } catch (err) {
@@ -77,7 +78,7 @@ function Login() {
           );
         } else if (res.status === 200) {
           const token = res.data.accessToken;
-          localStorage.setItem("token", token);
+          sessionStorage.setItem("token", token);
           signup(token);
         }
       });
