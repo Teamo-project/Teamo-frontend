@@ -9,7 +9,12 @@ import { useSelector } from "react-redux";
 import NullUserImg from "../../../components/img/user_img.png";
 import passwordImg from "../../../components/img/Password.png";
 import axios from "axios";
-import { DeleteUser, UserInfo, mentoScroll } from "../../../apis/UserApi";
+import {
+  DeleteUser,
+  UserInfo,
+  menteeScroll,
+  mentoScroll,
+} from "../../../apis/UserApi";
 import MentorPost from "../../../components/js/Mypage/MentorPost";
 import MenteePost from "../../../components/js/Mypage/MenteePost";
 
@@ -20,6 +25,7 @@ function Mypage() {
 
   const userRole = useSelector((state) => state.persistedReducer.user.userRole);
   const [MentoringPost, setMentoringPost] = useState([]);
+
   const getUserInfo = async () => {
     try {
       const resp = await UserInfo(token);
@@ -42,14 +48,25 @@ function Mypage() {
   };
 
   useEffect(() => {
-    mentoScroll(token)
-      .then((res) => {
-        console.log(res.data.content, "in axios");
-        setMentoringPost(res.data.content);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (userRole === "mentor") {
+      mentoScroll(token)
+        .then((res) => {
+          console.log(res.data.content, "in axios");
+          setMentoringPost(res.data.content);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      menteeScroll(token)
+        .then((res) => {
+          console.log(res.data.content, "in axios");
+          setMentoringPost(res.data.content);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, []);
 
   useEffect(() => {
@@ -230,7 +247,14 @@ function Mypage() {
               </div>
             </div>
           ) : (
-            <MenteePost />
+            <div>
+              <h3 style={{ marginLeft: "20px" }}>내가 참여한 멘티 프로그램</h3>
+              <div style={{ overflowY: "scroll", height: "536px" }}>
+                {MentoringPost.map((e) => {
+                  return <MenteePost postingInfo={e} />;
+                })}
+              </div>
+            </div>
           )}
         </div>
       </div>
