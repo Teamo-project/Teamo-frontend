@@ -8,7 +8,7 @@ import home from "../../../routes/css/home.module.css";
 import { getBoardListApi } from "../../../apis/boardApi";
 import Pagination from "react-js-pagination";
 import { useSelector } from "react-redux";
-
+import "../../css/Board/paging.css";
 // 게시판 페이지
 function Posting() {
   const navigate = useNavigate();

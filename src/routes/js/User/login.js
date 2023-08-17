@@ -27,7 +27,6 @@ function Login() {
     window.location.href = `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorize/naver?redirect_uri=${nowURL.origin}/oauth2/redirect`;
   };
 
-
   // 이메일과 비밀번호로 로그인
   const [user, setUser] = useState({
     email: "",
@@ -46,7 +45,7 @@ function Login() {
   const signup = async (token) => {
     try {
       await UserInfo(token).then((res) => {
-        console.log(res.data.img);
+        console.log(res);
         dispatch(
           login({
             userId: res.data.id,
@@ -58,8 +57,10 @@ function Login() {
             userAge: res.data.age,
             userPhone: res.data.phone,
             userRegion: res.data.region,
+            userRole: res.data.role,
           })
         );
+
         navigate("/");
       });
     } catch (err) {
@@ -77,7 +78,7 @@ function Login() {
           );
         } else if (res.status === 200) {
           const token = res.data.accessToken;
-          localStorage.setItem("token", token);
+          sessionStorage.setItem("token", token);
           signup(token);
         }
       });
@@ -151,7 +152,6 @@ function Login() {
           </div>
         </button>
         <button
-         
           type="button"
           className={`${logincss.Button} ${logincss.naver}`}
           onClick={NaverLogin}
