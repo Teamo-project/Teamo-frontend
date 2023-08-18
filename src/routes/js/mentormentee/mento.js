@@ -10,6 +10,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { viewPostList } from "../../../apis/mentorMentee";
+import "../../css/mentorMentee/paging.css";
 function Mento() {
   const navigate = useNavigate();
   const userRole = useSelector((state) => state.persistedReducer.user.userRole);
@@ -29,7 +30,7 @@ function Mento() {
     }
     viewPostList(searchText, searchCategory, accessToken, page)
       .then(function (res) {
-        console.log(res.data.totalElements);
+        console.log(res);
         setTotalElem(res.data.totalElements);
         setBoardList(res.data.content);
       })
@@ -48,8 +49,6 @@ function Mento() {
 
   const handlePageChange = (page) => {
     setPage(page);
-
-    console.log(page);
   };
 
   return (
@@ -114,7 +113,9 @@ function Mento() {
         <div className={mentoStyle.posts}>
           <hr className={mentoStyle.line} style={{ marginTop: "60px" }} />
           <div className={mentoStyle.postsTop}>
-            <div className={mentoStyle.postsTopName}>순번 | 분류 | 제목</div>
+            <div className={mentoStyle.postsTopName}>
+              모집인원 | 분류 | 제목
+            </div>
             <div
               className={mentoStyle.postsTopRegistInfo}
               style={{ marginRight: "20px" }}
@@ -134,6 +135,7 @@ function Mento() {
                 creatorName={ele.creatorName}
                 count={ele.count}
                 isReceipt={ele.isReceipt}
+                limited={ele.limited}
               />
             );
           })}

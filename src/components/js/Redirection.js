@@ -9,12 +9,13 @@ import { UserInfo } from "../../apis/UserApi";
 function Redirection() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  console.log(document.referrer);
   const searchParams = new URLSearchParams(window.location.search);
   const urlParams = new URL(window.location.href).searchParams;
   const accessToken = urlParams.get("accessToken");
   const userId = urlParams.get("userId");
   let userInfo = "";
+  console.log(window.location.href);
   const signup = async () => {
     try {
       await UserInfo(accessToken).then(() => {
@@ -35,7 +36,7 @@ function Redirection() {
             userRole: userInfo.role,
           })
         );
-        navigate("/");
+        //navigate("/");
       });
     } catch (err) {
       alert("oAuth token expired");

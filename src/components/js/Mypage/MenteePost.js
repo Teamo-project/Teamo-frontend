@@ -7,9 +7,10 @@ import { viewPostDetail } from "../../../apis/mentorMentee";
 import { useEffect } from "react";
 
 function MenteePost(e) {
-  const id = e.postingInfo.id;
+  const id = e.postingInfo.mentoringId;
   const [postContent, setPostContent] = useState("");
-  const accessToken = localStorage.getItem("token");
+  const accessToken = sessionStorage.getItem("token");
+
   useEffect(() => {
     try {
       viewPostDetail(id, accessToken).then((res) => {
@@ -20,12 +21,12 @@ function MenteePost(e) {
     }
   }, []);
 
-  console.log(e.postingInfo, "in MentorPost Component");
+  console.log(e.postingInfo.id, "in menteePost Component");
   return (
     <div>
       <div className={home.programPro} style={{ marginTop: "20px" }}>
         <Link
-          to={`/viewpost/${e.postingInfo.id}`}
+          to={`/viewpost/${id}`}
           style={{ textDecoration: "none", color: "black" }}
         >
           <div

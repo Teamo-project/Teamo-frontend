@@ -88,7 +88,7 @@
   height: 36px;
   margin-left: 10px;
 }
-
+/* 
 ul {
   display: flex;
   list-style: none;
@@ -135,6 +135,7 @@ li.active {
 li:hover {
   background-color: #66c109;
 }
+
 li:hover a {
   color: white;
 }
@@ -142,5 +143,5 @@ li:hover a {
 .page-selection {
   width: 48px;
   height: 30px;
-  color: #ffffff;
-}
+  background-color: #66c109;
+} */

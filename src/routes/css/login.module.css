@@ -79,7 +79,7 @@
 .btnBox {
   display: flex;
   flex-direction: column;
-  margin-top: 250px;
+  margin-top: 230px;
   padding-bottom: 182px;
 }
 .Button {
@@ -92,12 +92,7 @@
   margin: 10px auto 0;
   font-size: 14px;
 }
-.kakao {
-  color: #000000;
-  font-weight: 600;
-  font-family: "Inter";
-  background-color: #fee500;
-}
+
 .naver {
   color: #767678;
   font-weight: 500;

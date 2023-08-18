@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import logincss from "../../css/login.module.css";
 import man_logo from "../../../components/img/user.png";
-import kakagoLogo from "../../img/kakaoLogo.png";
 import googleLogo from "../../img/googleLogo.png";
 import naverLogo from "../../img/naverLogo.png";
 import { Link, useNavigate } from "react-router-dom";
@@ -12,12 +11,12 @@ import { UserInfo } from "../../../apis/UserApi";
 import { SelfLogin } from "../../../apis/UserApi";
 function Login() {
   const navigate = useNavigate();
-
   const nowURL = new URL(window.location.href);
   console.log(nowURL.origin, "zz");
 
   const dispatch = useDispatch();
-
+  const serverDomain = "http://www.holoseogi.co.kr";
+  const local = "http://localhost:3000";
   // 구글 로그인 연결
   const GoogleLogin = () => {
     window.location.href = `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorize/google?redirect_uri=${nowURL.origin}/oauth2/redirect`;
@@ -26,7 +25,6 @@ function Login() {
   const NaverLogin = () => {
     window.location.href = `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorize/naver?redirect_uri=${nowURL.origin}/oauth2/redirect`;
   };
-
 
   // 이메일과 비밀번호로 로그인
   const [user, setUser] = useState({
@@ -46,7 +44,7 @@ function Login() {
   const signup = async (token) => {
     try {
       await UserInfo(token).then((res) => {
-        console.log(res.data.img);
+        console.log(res);
         dispatch(
           login({
             userId: res.data.id,
@@ -58,8 +56,10 @@ function Login() {
             userAge: res.data.age,
             userPhone: res.data.phone,
             userRegion: res.data.region,
+            userRole: res.data.role,
           })
         );
+
         navigate("/");
       });
     } catch (err) {
@@ -77,7 +77,7 @@ function Login() {
           );
         } else if (res.status === 200) {
           const token = res.data.accessToken;
-          localStorage.setItem("token", token);
+          sessionStorage.setItem("token", token);
           signup(token);
         }
       });
@@ -91,7 +91,7 @@ function Login() {
   };
 
   return (
-    <div style={{ width: "100%" }}>
+    <div style={{ width: "100%", height: "100vh" }}>
       {/* 로그인 박스 부분 */}
       <div className={logincss.loginBox}>
         <div className={logincss.logo}>
@@ -142,16 +142,6 @@ function Login() {
       {/* SNS 로그인 부분 */}
       <div className={logincss.btnBox}>
         <button
-          type="button"
-          className={`${logincss.Button} ${logincss.kakao}`}
-        >
-          <div className={logincss.buttonText}>
-            <img className={logincss.btnLogo} src={kakagoLogo}></img>
-            <div className={logincss.buttonText2}>카카오로 로그인하기</div>
-          </div>
-        </button>
-        <button
-         
           type="button"
           className={`${logincss.Button} ${logincss.naver}`}
           onClick={NaverLogin}

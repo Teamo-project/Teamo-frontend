@@ -13,16 +13,18 @@ import { logout } from "../../../redux/slices/userSlice";
 function ChangeInfo() {
   const [ispasswordType, setIspasswordType] = useState(false);
   const [ispasswordSame, setIspasswordSame] = useState(false);
-  const [isphone, setIsphone] = useState(false);
-  const [isage, setIsage] = useState(false);
+  const [isphone, setIsphone] = useState(true);
+  const [isage, setIsage] = useState(true);
 
   const [passwordtext, setPasswordtext] = useState("*비밀번호를 입력해주세요.");
-  const [passwordSameText, setPasswordSameText] = useState(
-    "*비밀번호가 다릅니다."
-  );
+  const [passwordSameText, setPasswordSameText] =
+    useState("*비밀번호가 다릅니다.");
   const [phonetext, setPhonetext] = useState("");
   const [agetext, setAgetext] = useState("");
 
+  const token = useSelector((state) => state.persistedReducer.user.userToken);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const onSubmitInfo = () => {
     if (user.name === "") {
       alert("이름을 입력해주세요.");
@@ -41,17 +43,16 @@ function ChangeInfo() {
 
   const pushInfo = async () => {
     try {
-      await ChangingInfo(user).then((res) => {
+      await ChangingInfo(user, token).then((res) => {
         console.log(res);
+        alert("회원 정보가 변경되었습니다.");
+        navigate("/mypage");
       });
     } catch (err) {
       console.log(err);
     }
   };
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const token = useSelector((state) => state.persistedReducer.user.userToken);
   const [user, setUser] = useState({
     id: "",
     name: "",
@@ -160,7 +161,7 @@ function ChangeInfo() {
     if (deleteAlert) {
       try {
         await DeleteUser(user.id).then((res) => {
-          localStorage.removeItem("token");
+          sessionStorage.removeItem("token");
           dispatch(logout());
           alert("회원탈퇴가 되었습니다.");
           navigate("/");
@@ -706,7 +707,7 @@ function ChangeInfo() {
                     >
                       <img
                         style={{ width: "60px", borderRadius: "50%" }}
-                        src={user.img === null ? userImg : user.img}
+                        src={user.img === "null" ? userImg : user.img}
                       />
                     </div>
                   </div>
