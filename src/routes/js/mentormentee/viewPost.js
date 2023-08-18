@@ -139,7 +139,6 @@ function ViewPost() {
     <div>
       {isPopup ? (
         <div>
-          <div className={post.popupBackground}></div>
           <div className={post.applyPopup}>
             <button onClick={handlePopupCancel} className={post.popupCancel}>
               x
