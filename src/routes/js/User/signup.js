@@ -21,7 +21,6 @@ function BoardDetail() {
   const [isage, setIsage] = useState(false);
   const [isgender, setIsgender] = useState(false);
   const [isrole, setIsrole] = useState(false);
-  const [ischecked1, setIschecked1] = useState(false);
   const [ischecked2, setIschecked2] = useState(false);
 
   const [emailtext, setEmailtext] = useState("*이메일을 입력해주세요.");
@@ -33,7 +32,6 @@ function BoardDetail() {
   const [agetext, setAgetext] = useState("*나이를 입력해주세요.");
   const [gendertext, setGendertext] = useState("");
   const [roletext, setRoletext] = useState("");
-  const [check1Text, setCheck1Text] = useState("");
   const [check2Text, setCheck2Text] = useState("");
 
   const onSubmit = () => {
@@ -55,8 +53,6 @@ function BoardDetail() {
       alert("성별을 선택하지 않았습니다.");
     } else if (!isrole) {
       alert("멘토, 멘티 중 원하는 역할을 선택해주세요.");
-    } else if (!ischecked1) {
-      alert("약관에 동의해주세요.");
     } else if (!ischecked2) {
       alert("필수약관에 동의해주세요.");
     } else {
@@ -258,11 +254,6 @@ function BoardDetail() {
     setRoletext(e.target.value);
   };
 
-  const onCheck1 = () => {
-    setIschecked1(true);
-    setCheck1Text("check");
-  };
-
   const onCheck2 = () => {
     setIschecked2(true);
     setCheck2Text("check");
@@ -311,7 +302,7 @@ function BoardDetail() {
         <div
           style={{
             width: "980px",
-            height: "1136px",
+            height: "1066px",
             margin: "268px auto 58px",
             display: "flex",
             flexShrink: "0",
@@ -837,44 +828,6 @@ function BoardDetail() {
               >
                 {roletext === "" ? "*본인의 역할을 선택해주세요" : ""}
               </div>
-            </div>
-          </div>
-
-          <div style={{ marginTop: "20px" }}>
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <Button
-                onClick={onCheck1}
-                data-checked={check1Text === "check"}
-                className={signup.check}
-              >
-                <i class="fa-regular fa-circle-check"></i>
-              </Button>
-              <div
-                style={{
-                  width: "149px",
-                  height: "24px",
-                  fontSize: "16px",
-                  fontWeight: "16px",
-                  marginLeft: "4px",
-                }}
-              >
-                약관 전체 동의하기
-              </div>
-            </div>
-            <div
-              style={{
-                width: "348px",
-                height: "40px",
-                color: "#555",
-                fontSize: "14px",
-                fontStyle: "normal",
-                fontWeight: "400",
-                lineHeight: "20px",
-                marginTop: "8px",
-              }}
-            >
-              실명 인증된 아이디로 가입, 위치기반서비스 이용약관(선택),
-              이벤트-혜택 정보 수신(선택) 동의를 포함합니다.
             </div>
           </div>
 
