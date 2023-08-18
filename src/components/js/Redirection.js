@@ -36,7 +36,7 @@ function Redirection() {
             userRole: userInfo.role,
           })
         );
-        //navigate("/");
+        navigate("/");
       });
     } catch (err) {
       alert("oAuth token expired");
