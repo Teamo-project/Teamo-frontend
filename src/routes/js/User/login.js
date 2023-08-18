@@ -11,19 +11,18 @@ import { UserInfo } from "../../../apis/UserApi";
 import { SelfLogin } from "../../../apis/UserApi";
 function Login() {
   const navigate = useNavigate();
-
   const nowURL = new URL(window.location.href);
   console.log(nowURL.origin, "zz");
 
   const dispatch = useDispatch();
-  const severDomain = "http://www.holoseogi.co.kr";
+  const serverDomain = "http://holoseogi.co.kr";
   // 구글 로그인 연결
   const GoogleLogin = () => {
-    window.location.href = `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorize/google?redirect_uri=${severDomain}/oauth2/redirect`;
+    window.location.href = `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorize/google?redirect_uri=${serverDomain}/oauth2/redirect`;
   };
 
   const NaverLogin = () => {
-    window.location.href = `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorize/naver?redirect_uri=${severDomain}/oauth2/redirect`;
+    window.location.href = `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorize/naver?redirect_uri=${serverDomain}/oauth2/redirect`;
   };
 
   // 이메일과 비밀번호로 로그인
