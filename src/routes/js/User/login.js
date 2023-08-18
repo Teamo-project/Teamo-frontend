@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import logincss from "../../css/login.module.css";
 import man_logo from "../../../components/img/user.png";
-import kakagoLogo from "../../img/kakaoLogo.png";
 import googleLogo from "../../img/googleLogo.png";
 import naverLogo from "../../img/naverLogo.png";
 import { Link, useNavigate } from "react-router-dom";
@@ -17,14 +16,14 @@ function Login() {
   console.log(nowURL.origin, "zz");
 
   const dispatch = useDispatch();
-
+  const severDomain = "http://www.holoseogi.co.kr";
   // 구글 로그인 연결
   const GoogleLogin = () => {
-    window.location.href = `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorize/google?redirect_uri=${nowURL.origin}/oauth2/redirect`;
+    window.location.href = `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorize/google?redirect_uri=${severDomain}/oauth2/redirect`;
   };
 
   const NaverLogin = () => {
-    window.location.href = `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorize/naver?redirect_uri=${nowURL.origin}/oauth2/redirect`;
+    window.location.href = `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorize/naver?redirect_uri=${severDomain}/oauth2/redirect`;
   };
 
   // 이메일과 비밀번호로 로그인
@@ -142,15 +141,6 @@ function Login() {
 
       {/* SNS 로그인 부분 */}
       <div className={logincss.btnBox}>
-        <button
-          type="button"
-          className={`${logincss.Button} ${logincss.kakao}`}
-        >
-          <div className={logincss.buttonText}>
-            <img className={logincss.btnLogo} src={kakagoLogo}></img>
-            <div className={logincss.buttonText2}>카카오로 로그인하기</div>
-          </div>
-        </button>
         <button
           type="button"
           className={`${logincss.Button} ${logincss.naver}`}

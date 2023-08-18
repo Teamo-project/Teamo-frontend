@@ -31,7 +31,7 @@ function Mypage() {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  console.log(MentoringPost);
   const getUserInfo = async () => {
     try {
       const resp = await UserInfo(token);
@@ -57,6 +57,10 @@ function Mypage() {
   };
 
   useEffect(() => {
+    if (token === "") {
+      alert("로그인 후 이용 가능한 서비스입니다.");
+      navigate("/login");
+    }
     if (userRole === "mentor") {
       mentoScroll(token)
         .then((res) => {
@@ -248,15 +252,12 @@ function Mypage() {
 
           {userRole == "mentor" ? (
             <div>
-
-
               <h3 style={{ marginLeft: "20px" }}>내가 쓴 멘토링 글</h3>
               <div style={{ overflowY: "scroll", height: "536px" }}>
                 {MentoringPost.map((e) => {
                   return <MentorPost postingInfo={e} />;
                 })}
               </div>
-
             </div>
           ) : (
             <div>
