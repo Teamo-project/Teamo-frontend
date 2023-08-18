@@ -6,6 +6,12 @@ import { isDisabled } from "@testing-library/user-event/dist/utils";
 import { GoogleLogin } from "../../../apis/UserApi";
 
 function FirstSocial() {
+  const [isphone, setIsphone] = useState(false);
+  const [isage, setIsage] = useState(false);
+
+  const [phonetext, setPhonetext] = useState("*전화번호를 입력해주세요.");
+  const [agetext, setAgetext] = useState("*나이를 입력해주세요.");
+
   const userId = useParams();
   const [isClicked, setIsClicked] = useState("");
   const navigate = useNavigate();
@@ -28,13 +34,50 @@ function FirstSocial() {
     });
     console.log(user);
   };
-
-  const onChangePhone = () => {
+  const changePhone = (e) => {
+    const phoneCurrent = e.target.value;
     setUser({
       ...user,
-      phone: user.phone.replaceAll("-", ""),
+      phone: phoneCurrent,
     });
+
+    const regex = /^[0-9\b]{11,11}$/;
+    if (phoneCurrent === "") {
+      setIsphone(false);
+      setPhonetext("*전화번호를 입력해주세요.");
+    } else if (regex.test(e.target.value)) {
+      setIsphone(true);
+      setPhonetext("*사용가능한 전화번호입니다.");
+    } else {
+      setIsphone(false);
+      setPhonetext("*올바른 전화번호 형식으로 입력해주세요.");
+    }
   };
+
+  const changeAge = (e) => {
+    const ageCurrent = e.target.value;
+    setUser({
+      ...user,
+      age: ageCurrent,
+    });
+    const regex = /^[0-9\b]{0,3}$/;
+    if (ageCurrent === "") {
+      setIsage(false);
+      setAgetext("*나이를 입력해주세요.");
+    } else if (regex.test(e.target.value)) {
+      setIsage(true);
+      setAgetext("");
+    } else {
+      setIsage(false);
+      setAgetext("*3자리 이하숫자로만 입력해주세요.");
+    }
+  };
+  // const onChangePhone = () => {
+  //   setUser({
+  //     ...user,
+  //     phone: user.phone.replaceAll("-", ""),
+  //   });
+  // };
 
   const submit = async () => {
     try {
@@ -50,14 +93,13 @@ function FirstSocial() {
   const sumbitGoogle = () => {
     if (user.region === "") {
       alert("지역을 선택해주세요.");
-    } else if (user.age === "") {
-      alert("나이를 입력해주세요.");
-    } else if (user.phone === "") {
-      alert("전화번호를 입력해주세요.");
+    } else if (!isage) {
+      alert("나이를 형식에 맞게 입력해주세요.");
+    } else if (!isphone) {
+      alert("전화번호를 형식에 맞게 다시 입력해주세요.");
     } else if (user.role === "") {
       alert("멘토/멘티를 선택해주세요.");
     } else {
-      onChangePhone();
       submit();
     }
   };
@@ -69,7 +111,14 @@ function FirstSocial() {
   };
   return (
     <div style={{ width: "100%", height: "100vh", backgroundColor: "#FAFAFA" }}>
-      <div style={{ position: "absolute", top: "0", width: "100%" }}>
+      <div
+        style={{
+          position: "absolute",
+          top: "0",
+          width: "100%",
+          height: "100%",
+        }}
+      >
         <div className={google.googlebox}>
           <div style={{ fontSize: "24px", fontWeight: "bold" }}>
             추가정보 입력
@@ -130,22 +179,61 @@ function FirstSocial() {
                 placeholder="나이 입력(ex.25)"
                 name="age"
                 value={age}
-                onChange={onChange}
+                onChange={changeAge}
                 className={google.textInput}
               />
+              <div
+                style={{
+                  width: "300px",
+                  height: "20px",
+                  color: "red",
+                  fontSize: "13px",
+                  marginLeft: "100px",
+                  marginTop: "3px",
+                }}
+              >
+                {agetext}
+              </div>
             </div>
-            <div style={{ marginTop: "40px" }}>
+            <div style={{ marginTop: "26px" }}>
               <span style={{ width: "100px", display: "inline-block" }}>
                 전화번호 :{" "}
               </span>
               <input
                 type="text"
-                placeholder="010-0000-0000"
+                placeholder="-없이 숫자만 입력해주세요."
                 name="phone"
                 value={phone}
-                onChange={onChange}
+                onChange={changePhone}
                 className={google.textInput}
               />
+              {isphone ? (
+                <div
+                  style={{
+                    width: "300px",
+                    height: "20px",
+                    color: "blue",
+                    fontSize: "13px",
+                    marginTop: "3px",
+                    marginLeft: "100px",
+                  }}
+                >
+                  {phonetext}
+                </div>
+              ) : (
+                <div
+                  style={{
+                    width: "300px",
+                    height: "20px",
+                    color: "red",
+                    fontSize: "13px",
+                    marginTop: "3px",
+                    marginLeft: "100px",
+                  }}
+                >
+                  {phonetext}
+                </div>
+              )}
             </div>
             <div style={{ marginTop: "40px" }}>
               <span style={{ width: "100px", display: "inline-block" }}>
