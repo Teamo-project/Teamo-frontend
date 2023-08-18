@@ -19,11 +19,11 @@ function Login() {
   const local = "http://localhost:3000";
   // 구글 로그인 연결
   const GoogleLogin = () => {
-    window.location.href = `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorize/google?redirect_uri=${nowURL.origin}/oauth2/redirect`;
+    window.location.href = `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorize/google?redirect_uri=http://www.holoseogi.co.kr/oauth2/redirect`;
   };
 
   const NaverLogin = () => {
-    window.location.href = `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorize/naver?redirect_uri=${nowURL.origin}/oauth2/redirect`;
+    window.location.href = `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorize/naver?redirect_uri=http://www.holoseogi.co.kr/oauth2/redirect`;
   };
 
   // 이메일과 비밀번호로 로그인
@@ -133,14 +133,14 @@ function Login() {
             <Button onClick={onSignUp}>회원가입</Button>
           </span>
         </div>
-        <div className={logincss.lineBox}>
+        {/* <div className={logincss.lineBox}>
           <hr className={logincss.line} />
           <hr className={logincss.line2} />
-        </div>
+        </div> */}
       </div>
 
       {/* SNS 로그인 부분 */}
-      <div className={logincss.btnBox}>
+      {/* <div className={logincss.btnBox}>
         <button
           type="button"
           className={`${logincss.Button} ${logincss.naver}`}
@@ -163,7 +163,7 @@ function Login() {
             <div>구글로 로그인하기</div>
           </div>
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }
