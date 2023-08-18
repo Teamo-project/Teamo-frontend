@@ -15,7 +15,7 @@ function Login() {
   console.log(nowURL.origin, "zz");
 
   const dispatch = useDispatch();
-  const serverDomain = "http://holoseogi.co.kr";
+  const serverDomain = "http://www.holoseogi.co.kr";
   // 구글 로그인 연결
   const GoogleLogin = () => {
     window.location.href = `http://ec2-3-37-185-169.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorize/google?redirect_uri=${serverDomain}/oauth2/redirect`;
