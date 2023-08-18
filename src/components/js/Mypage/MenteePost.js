@@ -10,6 +10,7 @@ function MenteePost(e) {
   const id = e.postingInfo.id;
   const [postContent, setPostContent] = useState("");
   const accessToken = sessionStorage.getItem("token");
+  console.log(postContent, "zz");
   useEffect(() => {
     try {
       viewPostDetail(id, accessToken).then((res) => {
@@ -20,7 +21,7 @@ function MenteePost(e) {
     }
   }, []);
 
-  console.log(e.postingInfo, "in MentorPost Component");
+  console.log(e.postingInfo.id, "in menteePost Component");
   return (
     <div>
       <div className={home.programPro} style={{ marginTop: "20px" }}>
