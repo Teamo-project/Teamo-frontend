@@ -9,7 +9,7 @@ import { UserInfo } from "../../apis/UserApi";
 function Redirection() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  console.log(document.referrer);
   const searchParams = new URLSearchParams(window.location.search);
   const urlParams = new URL(window.location.href).searchParams;
   const accessToken = urlParams.get("accessToken");
@@ -36,7 +36,7 @@ function Redirection() {
             userRole: userInfo.role,
           })
         );
-        navigate("/");
+        //navigate("/");
       });
     } catch (err) {
       alert("oAuth token expired");
