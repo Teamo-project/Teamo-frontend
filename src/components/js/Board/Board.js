@@ -193,7 +193,7 @@ function Board({ id, title, boardContent, creatorId, createDate, category }) {
         </div>
 
         {/* 자기가 쓴 게시물인 것이 확인 될 시 보이도록 설정 */}
-        {state_userid === creatorId ? (
+        {state_userid === creatorId && totalitemComment === 0 ? (
           <div className={board.btn}>
             {/* 수정삭제는 게시글의 user이름과 사용자의 user이름이 같을 경우만 */}
             <Button onClick={moveToupdate}>수정</Button>
@@ -207,7 +207,7 @@ function Board({ id, title, boardContent, creatorId, createDate, category }) {
       <div
         style={{ margin: "16px 106px", fontWeight: "bold", fontSize: "1.1rem" }}
       >
-        댓글 {number}
+        댓글 {totalitemComment}
       </div>
       {/* 댓글 작성 부분 */}
       <div
