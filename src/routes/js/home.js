@@ -362,6 +362,7 @@ function Home() {
                         Left: "4px",
 
                         height: "36px",
+                        whiteSpace: "nowrap",
                         overflow: "hidden",
                         textOverflow: "ellipsis",
                         display: "flex",
@@ -404,6 +405,8 @@ function Home() {
                             style={{
                               paddingLeft: "10px",
                               marginTop: "8px",
+                              whiteSpace: "nowrap",
+
                               overflow: "hidden",
                               textOverflow: "ellipsis",
                               display: "flex",
@@ -442,9 +445,10 @@ function Home() {
                             style={{
                               paddingLeft: "10px",
                               marginTop: "8px",
-
+                              whiteSpace: "nowrap",
                               overflow: "hidden",
                               textOverflow: "ellipsis",
+
                               display: "flex",
                               alignItems: "center",
                             }}
@@ -483,6 +487,8 @@ function Home() {
                             style={{
                               paddingLeft: "10px",
                               marginTop: "8px",
+                              whiteSpace: "nowrap",
+
                               overflow: "hidden",
                               textOverflow: "ellipsis",
                               display: "flex",
@@ -523,6 +529,7 @@ function Home() {
                             style={{
                               paddingLeft: "10px",
                               marginTop: "8px",
+                              whiteSpace: "nowrap",
 
                               overflow: "hidden",
                               textOverflow: "ellipsis",

@@ -341,7 +341,7 @@ function ViewPost() {
           <hr className={post.line}></hr>
 
           <div className={post.mainText}>{info.description}</div>
-
+          {console.log(userRole, "userRole")}
           {console.log(info.mentorInfo.id, userId, "확인")}
           <div style={{ marginTop: "58px" }}>
             <div className={post.mentoringEditDeleteBox}>
