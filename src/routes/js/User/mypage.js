@@ -28,10 +28,10 @@ function Mypage() {
 
   const userRole = useSelector((state) => state.persistedReducer.user.userRole);
   const [MentoringPost, setMentoringPost] = useState([]);
-
+  console.log(MentoringPost);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  console.log(MentoringPost);
+
   const getUserInfo = async () => {
     try {
       const resp = await UserInfo(token);
