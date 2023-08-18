@@ -36,7 +36,7 @@ function Redirection() {
             userRole: userInfo.role,
           })
         );
-        //navigate("/");
+        navigate("/");
       });
     } catch (err) {
       alert("oAuth token expired");
@@ -45,18 +45,18 @@ function Redirection() {
     }
   };
 
-  // useEffect(() => {
-  //   if (accessToken === null) {
-  //     alert("소셜을 통한 회원가입을 위하여 추가정보를 기입해주세요.");
-  //     navigate(`/signup/social/${userId}`);
-  //   } else {
-  //     console.log(accessToken);
+  useEffect(() => {
+    if (accessToken === null) {
+      alert("소셜을 통한 회원가입을 위하여 추가정보를 기입해주세요.");
+      navigate(`/signup/social/${userId}`);
+    } else {
+      console.log(accessToken);
 
-  //     signup();
+      signup();
 
-  //     console.log(`엑세스토큰 : ${accessToken} 을 저장했습니다.`);
-  //   }
-  // }, [accessToken, dispatch]);
+      console.log(`엑세스토큰 : ${accessToken} 을 저장했습니다.`);
+    }
+  }, [accessToken, dispatch]);
 
   return <h3>로딩중입니다.</h3>;
 }
