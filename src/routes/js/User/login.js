@@ -133,14 +133,14 @@ function Login() {
             <Button onClick={onSignUp}>회원가입</Button>
           </span>
         </div>
-        {/* <div className={logincss.lineBox}>
+        <div className={logincss.lineBox}>
           <hr className={logincss.line} />
           <hr className={logincss.line2} />
-        </div> */}
+        </div>
       </div>
 
       {/* SNS 로그인 부분 */}
-      {/* <div className={logincss.btnBox}>
+      <div className={logincss.btnBox}>
         <button
           type="button"
           className={`${logincss.Button} ${logincss.naver}`}
@@ -163,7 +163,7 @@ function Login() {
             <div>구글로 로그인하기</div>
           </div>
         </button>
-      </div> */}
+      </div>
     </div>
   );
 }
