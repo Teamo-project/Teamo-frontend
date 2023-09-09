@@ -34,6 +34,10 @@
 - 멘토 게시글 작성
 <img width="550" alt="캡처6" src="https://github.com/Teamo-project/holoseogi-frontend/assets/102502542/479dd799-f272-401d-bba5-d6bc346cc316">
 
+- 멘토 게시글 세부 화면
+<img width="550" alt="캡처 - 멘토글" src="https://github.com/Teamo-project/holoseogi-frontend/assets/102502542/eccfac44-f826-4217-9f06-4c5839b430b6">
+
+  
 - 문의
 <img width="550" alt="캡처7" src="https://github.com/Teamo-project/holoseogi-frontend/assets/102502542/c8a69d8e-e3e8-4f44-a2d2-b4afeaf7106d">
 
